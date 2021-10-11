@@ -6,7 +6,12 @@
 
   <groupId>info.victorchu</groupId>
   <artifactId>code-lab</artifactId>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+
+  <modules>
+    <module>jdk-usage</module>
+  </modules>
 
   <name>code-lab</name>
   <url>https://github.com/chutian0610/code-lab</url>
@@ -17,4 +22,6 @@
       <name>VictorChu</name>
     </developer>
   </developers>
+
+
 </project>
