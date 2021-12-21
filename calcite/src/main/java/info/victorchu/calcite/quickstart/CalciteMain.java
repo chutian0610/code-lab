@@ -15,10 +15,11 @@ import java.sql.Statement;
 import java.util.Properties;
 
 /**
- * @Description:
+ * calcite quickstart.
+ * <a href="https://calcite.apache.org/docs/index.html"> calcite background 中的例子 </a>
+ * @Description: calcite background 中的例子
  * @Date:2021/12/20 3:54 下午
  * @Author:victorchutian
- *
  */
 
 public class CalciteMain {
