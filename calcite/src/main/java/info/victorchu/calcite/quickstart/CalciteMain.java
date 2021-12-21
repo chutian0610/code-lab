@@ -1,0 +1,49 @@
+package info.victorchu.calcite.quickstart;
+
+import info.victorchu.calcite.util.ResultSetFormatter;
+import org.apache.calcite.adapter.java.ReflectiveSchema;
+import org.apache.calcite.jdbc.CalciteConnection;
+import org.apache.calcite.schema.SchemaPlus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+
+/**
+ * @Description:
+ * @Date:2021/12/20 3:54 下午
+ * @Author:victorchutian
+ *
+ */
+
+public class CalciteMain {
+    public static Logger logger = LoggerFactory.getLogger(CalciteMain.class);
+    public static void main(String[] args) throws SQLException {
+        Properties info = new Properties();
+        info.setProperty("lex", "JAVA");
+        Connection connection = DriverManager.getConnection("jdbc:calcite:", info);
+        CalciteConnection calciteConnection = connection.unwrap(CalciteConnection.class);
+
+        final SchemaPlus rootSchema = calciteConnection.getRootSchema();
+        rootSchema.add("hr", new ReflectiveSchema(new HrSchema()));
+
+        Statement statement = calciteConnection.createStatement();
+        ResultSet resultSet =
+                statement.executeQuery("select d.deptno, min(e.empid) as min_empid \n"
+                        + "from hr.emps as e\n"
+                        + "join hr.depts as d\n"
+                        + "  on e.deptno = d.deptno\n"
+                        + "group by d.deptno\n"
+                        + "having count(*) > 1");
+        logger.info(new ResultSetFormatter().resultSet(resultSet).string());
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+    }
+}

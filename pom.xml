@@ -13,6 +13,7 @@
   <modules>
     <module>jdk-usage</module>
     <module>compiler-study</module>
+    <module>calcite</module>
   </modules>
 
   <name>code-lab</name>

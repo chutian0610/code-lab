@@ -2,6 +2,11 @@ package info.victorchu.signal;
 
 import sun.misc.Signal;
 
+/**
+ * @Description: JDK 信号处理工具类
+ * @Date:2021/12/20 3:38 下午
+ * @Author:victorchutian
+ */
 public class SignalHandler {
     public static class Handler implements sun.misc.SignalHandler {
 
