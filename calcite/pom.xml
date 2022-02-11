@@ -20,7 +20,7 @@
         <dependency>
             <groupId>org.apache.calcite</groupId>
             <artifactId>calcite-core</artifactId>
-            <version>1.18.0</version>
+            <version>1.28.0</version>
         </dependency>
         <!-- Slf4j 依赖 -->
         <dependency>
