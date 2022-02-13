@@ -28,7 +28,7 @@ public abstract class RegexNode {
     public static enum NodeType{
         REGEX_OR,                 // s|t 或
         REGEX_CONCAT,             // st 连接
-        REGEXP_REPEAT,            // 重复
+        REGEXP_REPEAT,            // s*重复
         REGEXP_CHAR               // 字符
     }
 
