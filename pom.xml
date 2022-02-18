@@ -14,6 +14,7 @@
     <module>jdk-usage</module>
     <module>compiler-study</module>
     <module>calcite</module>
+      <module>mermaidjs-java</module>
   </modules>
 
   <name>code-lab</name>
