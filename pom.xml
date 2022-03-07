@@ -14,8 +14,22 @@
     <module>jdk-usage</module>
     <module>compiler-study</module>
     <module>calcite</module>
-      <module>mermaidjs-java</module>
+    <module>mermaidjs-java</module>
+    <module>jdk-11-usage</module>
   </modules>
+
+  <profiles>
+      <profile>
+        <id>compiler</id>
+        <properties>
+          <!-- need to reset-->
+          <JAVA_11_HOME>~/.sdkman/candidates/java/11.0.11.hs-adpt</JAVA_11_HOME>
+        </properties>
+        <activation>
+          <activeByDefault>true</activeByDefault>
+        </activation>
+      </profile>
+    </profiles>
 
   <name>code-lab</name>
   <url>https://github.com/chutian0610/code-lab</url>
