@@ -2,6 +2,8 @@ package info.victorchu.signal;
 
 import sun.misc.Signal;
 
+import java.lang.management.ManagementFactory;
+
 /**
  * @Description: JDK 信号处理工具类
  * @Date:2021/12/20 3:38 下午
@@ -33,6 +35,10 @@ public class SignalHandler {
     }
 
     public static void main(String[] args) throws InterruptedException {
+        String name = ManagementFactory.getRuntimeMXBean().getName();
+        System.out.println(name);
+        String pid = name.split("@")[0];
+        System.out.println("Pid is:"+pid);
         final String[] SIGNALS = new String[]{ "TERM", "HUP", "INT" };
         for (String signalName : SIGNALS) {
             new Handler(signalName);
