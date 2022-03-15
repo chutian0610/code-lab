@@ -1,6 +1,11 @@
 package info.victorchu.fluentjackson;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 class JSONPoetTest {
     @Test
@@ -68,6 +73,24 @@ class JSONPoetTest {
                 .endObject()
                 .buildToString(true);
 
+        System.out.println(str);
+    }
+
+    @Test
+    void buildJson5(){
+        List<String> list = new ArrayList<>();
+        list.add("dsdad");
+        String str = JSONPoet.builder()
+                .build()
+                .beginObject()
+                    .name("array")
+                    .beginArray()
+                    .textNode("aweds")
+                    .endArray()
+                    .name("dsdsddsdsd")
+                    .pojo(list)
+                .endObject()
+                .buildToString(true);
         System.out.println(str);
     }
 

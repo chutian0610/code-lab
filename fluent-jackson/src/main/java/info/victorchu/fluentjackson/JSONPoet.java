@@ -11,12 +11,16 @@ import java.math.BigInteger;
 public class JSONPoet {
     static class Builder{
         private ObjectMapper mapper;
-        private JsonNode root;
+        private JsonNode rootNode;
+        private Object root;
         public JSONPoet build(){
             if(mapper == null){
                 mapper = new ObjectMapper();
             }
-            return new JSONPoet(mapper,root);
+            if(root != null){
+                rootNode = mapper.valueToTree(root);
+            }
+            return new JSONPoet(mapper,rootNode);
         }
 
         public Builder mapper(ObjectMapper mapper){
@@ -24,13 +28,26 @@ public class JSONPoet {
             return this;
         }
 
-        public Builder root(ObjectNode node){
-            this.root = node;
+        public Builder rootNode(ObjectNode node){
+            remove();
+            this.rootNode = node;
             return this;
         }
-        public Builder root(ArrayNode node){
-            this.root = node;
+        public Builder rootNode(ArrayNode node){
+            remove();
+            this.rootNode = node;
             return this;
+        }
+
+        public Builder root(Object fromNode){
+            remove();
+            this.root = fromNode;
+            return this;
+        }
+
+        private void remove(){
+            root = null;
+            rootNode = null;
         }
     }
 
@@ -71,6 +88,7 @@ public class JSONPoet {
             }
             ObjectNode objectNode = (ObjectNode) this.current.value;
             objectNode.put(this.current.nextName, jsonNode);
+            this.current.resetName();
         } else {
             throw new IllegalStateException("attempt to append element to " + this.current.value.getClass());
         }
@@ -241,6 +259,11 @@ public class JSONPoet {
         return this;
     }
 
+    public JSONPoet pojo(Object fromValue) {
+        append(om.valueToTree(fromValue));
+        return this;
+    }
+
     public JSONPoet name(String name) {
         if (name == null) {
             throw new NullPointerException("name == null");
@@ -267,6 +290,12 @@ public class JSONPoet {
             this.parent = parent;
             this.nextName = nextName;
             this.value = element;
+        }
+
+        String resetName() {
+            String tmp = this.nextName;
+            this.nextName = null;
+            return tmp;
         }
 
         boolean isRoot() {
