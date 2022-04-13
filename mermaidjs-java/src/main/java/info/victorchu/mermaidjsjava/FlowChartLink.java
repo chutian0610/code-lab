@@ -20,4 +20,8 @@ public class FlowChartLink {
 
     @Nonnull
     private FlowChartLinkConfig config;
+
+    public String getQuotedText() {
+        return Utils.getQuotedText(text);
+    }
 }
