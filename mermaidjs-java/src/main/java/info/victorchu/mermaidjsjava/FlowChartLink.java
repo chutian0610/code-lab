@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 
 @Getter
@@ -28,5 +29,13 @@ public class FlowChartLink {
 
     public String getQuotedText() {
         return Utils.getQuotedText(text);
+    }
+
+    public String drawLink(){
+        return drawLink(Optional.ofNullable(getConfig()).orElse(FlowChartLinkConfig.defaultConfig));
+    }
+
+    public String drawLink(FlowChartLinkConfig config){
+        return config.getShapeDrawerSupplier().get().drawLink(this);
     }
 }
