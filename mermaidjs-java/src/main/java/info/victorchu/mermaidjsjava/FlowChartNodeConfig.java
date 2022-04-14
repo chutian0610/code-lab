@@ -8,10 +8,10 @@ import lombok.Setter;
 import java.util.function.Supplier;
 
 import static info.victorchu.mermaidjsjava.Constant.back_slash;
-import static info.victorchu.mermaidjsjava.Constant.left_arrow;
 import static info.victorchu.mermaidjsjava.Constant.left_bracket;
 import static info.victorchu.mermaidjsjava.Constant.left_curly_bracket;
 import static info.victorchu.mermaidjsjava.Constant.left_square_bracket;
+import static info.victorchu.mermaidjsjava.Constant.right_arrow;
 import static info.victorchu.mermaidjsjava.Constant.right_bracket;
 import static info.victorchu.mermaidjsjava.Constant.right_curly_bracket;
 import static info.victorchu.mermaidjsjava.Constant.right_square_bracket;
@@ -79,7 +79,7 @@ public class FlowChartNodeConfig {
 
         // id1>This is the text in the box]
         NodeShapeDrawer asymmetricShape =
-                node -> node.getId() + left_arrow + node.getQuotedText() + right_square_bracket;
+                node -> node.getId() + right_arrow + node.getQuotedText() + right_square_bracket;
 
         // id1{This is the text in the box}
         NodeShapeDrawer rhombusShape =
