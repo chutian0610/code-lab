@@ -37,21 +37,21 @@ public class FlowChartLinkConfig {
         }
     }
     interface LinkShapeDrawer{
-        default String drawNodeWithText(FlowChartLink link){
+        default String drawLinkWithText(FlowChartLink link){
             return link.getFrom().getId() + getLink(link,link.getLevel(),link.getMultiDirection())
                     + vertical_bar +link.getQuotedText() + vertical_bar + link.getTo().getId();
         }
-        default String drawNodeWithOutText(FlowChartLink link){
+        default String drawLinkWithOutText(FlowChartLink link){
             return link.getFrom().getId() + getLink(link,link.getLevel(),link.getMultiDirection()) +link.getTo().getId();
         }
 
         String getLink(FlowChartLink link,int level,boolean multiDirection);
 
-        default String drawNode(FlowChartLink link) {
+        default String drawLink(FlowChartLink link) {
             if (link.getText() != null && link.getText().length() > 0) {
-                return drawNodeWithText(link);
+                return drawLinkWithText(link);
             } else {
-                return drawNodeWithOutText(link);
+                return drawLinkWithOutText(link);
             }
         }
 
