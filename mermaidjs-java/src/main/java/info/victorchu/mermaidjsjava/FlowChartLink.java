@@ -18,6 +18,11 @@ public class FlowChartLink {
     @Nullable
     private String text;
 
+
+    private Integer level = 1;
+
+    private Boolean multiDirection = false;
+
     @Nonnull
     private FlowChartLinkConfig config;
 

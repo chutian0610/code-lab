@@ -19,14 +19,14 @@ class FlowChartNodeDrawTest {
 
     @Test
     void drawNode1() {
-        Assertions.assertEquals("id1(this is node content)",node.drawNode());
+        Assertions.assertEquals("id1(\"this is node content\")",node.drawNode());
     }
 
     @Test
     void drawNode2() {
         FlowChartNodeConfig cfg = new FlowChartNodeConfig(() -> stadiumShape);
         node.setConfig(cfg);
-        Assertions.assertEquals("id1([this is node content])",node.drawNode());
+        Assertions.assertEquals("id1([\"this is node content\"])",node.drawNode());
     }
 
 }
