@@ -1,5 +1,7 @@
-package info.victorchu.mermaidjsjava;
+package info.victorchu.mermaidjsjava.flow;
 
+import info.victorchu.mermaidjsjava.Node;
+import info.victorchu.mermaidjsjava.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,21 +15,21 @@ import java.util.Optional;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FlowChartNode {
+public class Node implements info.victorchu.mermaidjsjava.Node {
     @Nonnull
     private String id;
     @Nullable
     private String text;
 
     @Nullable
-    private FlowChartNodeConfig config;
+    private NodeConfig config;
 
     public String getQuotedText() {
        return Utils.getQuotedText(text);
     }
 
     public String drawNode(){
-        return drawNode(Optional.ofNullable(getConfig()).orElse(FlowChartNodeConfig.defaultConfig));
+        return drawNode(Optional.ofNullable(getConfig()).orElse(NodeConfig.defaultConfig));
     }
 
     /**
@@ -35,7 +37,7 @@ public class FlowChartNode {
      * @param config
      * @return
      */
-    public String drawNode(FlowChartNodeConfig config){
+    public String drawNode(NodeConfig config){
         return config.getShapeDrawerSupplier().get().drawNode(this);
     }
 }

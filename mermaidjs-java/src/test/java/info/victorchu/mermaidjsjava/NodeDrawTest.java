@@ -1,18 +1,20 @@
 package info.victorchu.mermaidjsjava;
 
+import info.victorchu.mermaidjsjava.flow.Node;
+import info.victorchu.mermaidjsjava.flow.NodeConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static info.victorchu.mermaidjsjava.FlowChartNodeConfig.NodeShapeDrawer.stadiumShape;
+import static info.victorchu.mermaidjsjava.flow.NodeShapeDrawer.stadiumShape;
 
 
-class FlowChartNodeDrawTest {
-    private static FlowChartNode node;
+class NodeDrawTest {
+    private static Node node;
 
     @BeforeEach
     public void onBeforeEach(){
-        node= new FlowChartNode();
+        node= new Node();
         node.setId("id1");
         node.setText("this is node content");
     }
@@ -24,7 +26,7 @@ class FlowChartNodeDrawTest {
 
     @Test
     void drawNode2() {
-        FlowChartNodeConfig cfg = new FlowChartNodeConfig(() -> stadiumShape);
+        NodeConfig cfg = new NodeConfig(() -> stadiumShape);
         node.setConfig(cfg);
         Assertions.assertEquals("id1([\"this is node content\"])",node.drawNode());
     }

@@ -1,9 +1,8 @@
 package info.victorchu.mermaidjsjava;
 
+import info.victorchu.mermaidjsjava.flow.Node;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @Copyright: www.xiaojukeji.com Inc. All rights reserved.
@@ -11,11 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * @Date:2022/2/18 11:48 上午
  * @Author:victorchutian
  */
-class FlowChartNodeTest {
+class NodeTest {
 
     @Test
     void testGetQuotedText001() {
-        FlowChartNode node = new FlowChartNode();
+        Node node = new Node();
         node.setText("A double quote:\"");
         Assertions.assertEquals(node.getQuotedText(),"A double quote:#quot;");
     }

@@ -1,5 +1,7 @@
-package info.victorchu.mermaidjsjava;
+package info.victorchu.mermaidjsjava.flow;
 
+import info.victorchu.mermaidjsjava.Node;
+import info.victorchu.mermaidjsjava.Utils;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,11 +12,11 @@ import java.util.Optional;
 
 @Getter
 @Setter
-public class FlowChartLink {
+public class Link {
     @Nonnull
-    private FlowChartNode from;
+    private Node from;
     @Nonnull
-    private FlowChartNode to;
+    private Node to;
 
     @Nullable
     private String text;
@@ -25,17 +27,17 @@ public class FlowChartLink {
     private Boolean multiDirection = false;
 
     @Nonnull
-    private FlowChartLinkConfig config;
+    private LinkConfig config;
 
     public String getQuotedText() {
         return Utils.getQuotedText(text);
     }
 
     public String drawLink(){
-        return drawLink(Optional.ofNullable(getConfig()).orElse(FlowChartLinkConfig.defaultConfig));
+        return drawLink(Optional.ofNullable(getConfig()).orElse(LinkConfig.defaultConfig));
     }
 
-    public String drawLink(FlowChartLinkConfig config){
+    public String drawLink(LinkConfig config){
         return config.getShapeDrawerSupplier().get().drawLink(this);
     }
 }
