@@ -1,5 +1,7 @@
 package info.victorchu.mermaidjsjava.flow;
 
+import info.victorchu.mermaidjsjava.Node;
+
 import static info.victorchu.mermaidjsjava.Constant.back_slash;
 import static info.victorchu.mermaidjsjava.Constant.left_bracket;
 import static info.victorchu.mermaidjsjava.Constant.left_curly_bracket;
@@ -15,13 +17,13 @@ import static info.victorchu.mermaidjsjava.Constant.slash;
  */
 
 public interface NodeShapeDrawer {
-    String drawNodeWithText(Node node);
+    String drawNodeWithText(FlowNode node);
 
-    default String drawNodeWithOutText(Node node) {
+    default String drawNodeWithOutText(FlowNode node) {
         return node.getId();
     }
 
-    default String drawNode(Node node) {
+    default String drawNode(FlowNode node) {
         if (node.getText() != null && node.getText().length() > 0) {
             return drawNodeWithText(node);
         } else {

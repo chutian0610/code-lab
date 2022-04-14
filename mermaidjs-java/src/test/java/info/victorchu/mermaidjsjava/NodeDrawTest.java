@@ -1,6 +1,6 @@
 package info.victorchu.mermaidjsjava;
 
-import info.victorchu.mermaidjsjava.flow.Node;
+import info.victorchu.mermaidjsjava.flow.FlowNode;
 import info.victorchu.mermaidjsjava.flow.NodeConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,11 +10,11 @@ import static info.victorchu.mermaidjsjava.flow.NodeShapeDrawer.stadiumShape;
 
 
 class NodeDrawTest {
-    private static Node node;
+    private static FlowNode node;
 
     @BeforeEach
     public void onBeforeEach(){
-        node= new Node();
+        node= new FlowNode();
         node.setId("id1");
         node.setText("this is node content");
     }

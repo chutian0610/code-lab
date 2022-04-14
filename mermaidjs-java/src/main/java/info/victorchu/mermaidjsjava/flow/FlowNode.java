@@ -15,7 +15,7 @@ import java.util.Optional;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Node implements info.victorchu.mermaidjsjava.Node {
+public class FlowNode implements Node {
     @Nonnull
     private String id;
     @Nullable
@@ -37,7 +37,7 @@ public class Node implements info.victorchu.mermaidjsjava.Node {
      * @param config
      * @return
      */
-    public String drawNode(NodeConfig config){
+    public final String drawNode(NodeConfig config){
         return config.getShapeDrawerSupplier().get().drawNode(this);
     }
 }

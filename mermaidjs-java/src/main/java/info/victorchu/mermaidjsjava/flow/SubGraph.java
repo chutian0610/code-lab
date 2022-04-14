@@ -9,5 +9,5 @@ import lombok.Setter;
 @Setter
 public class SubGraph implements Node {
     private String id;
-    private FlowChartGraphConfig.Direction direction;
+    private Direction direction;
 }

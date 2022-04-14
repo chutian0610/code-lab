@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FlowChartGraphConfig {
-    private  Direction direction;
+    private Direction direction;
 }
