@@ -14,8 +14,8 @@ public class FlowChartGraph {
 
     private FlowChartGraphConfig config;
 
-    private List<Node> nodes;
+    private List<FlowNode> nodes;
 
-    private List<Link> links;
+    private List<FlowLink> flowLinks;
 
 }

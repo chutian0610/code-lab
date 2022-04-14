@@ -8,28 +8,28 @@ import static info.victorchu.mermaidjsjava.Constant.vertical_bar;
 import static info.victorchu.mermaidjsjava.Utils.repeat;
 
 public interface LinkShapeDrawer {
-    default String drawLinkWithText(Link link){
-        return link.getFrom().getId() + getLink(link,link.getLevel(),link.getMultiDirection())
-                + vertical_bar +link.getQuotedText() + vertical_bar + link.getTo().getId();
+    default String drawLinkWithText(FlowLink flowLink){
+        return flowLink.getFrom().getId() + getLink(flowLink, flowLink.getLevel(), flowLink.getMultiDirection())
+                + vertical_bar + flowLink.getQuotedText() + vertical_bar + flowLink.getTo().getId();
     }
-    default String drawLinkWithOutText(Link link){
-        return link.getFrom().getId() + getLink(link,link.getLevel(),link.getMultiDirection()) +link.getTo().getId();
+    default String drawLinkWithOutText(FlowLink flowLink){
+        return flowLink.getFrom().getId() + getLink(flowLink, flowLink.getLevel(), flowLink.getMultiDirection()) + flowLink.getTo().getId();
     }
 
-    String getLink(Link link, int level, boolean multiDirection);
+    String getLink(FlowLink flowLink, int level, boolean multiDirection);
 
-    default String drawLink(Link link) {
-        if (link.getText() != null && link.getText().length() > 0) {
-            return drawLinkWithText(link);
+    default String drawLink(FlowLink flowLink) {
+        if (flowLink.getText() != null && flowLink.getText().length() > 0) {
+            return drawLinkWithText(flowLink);
         } else {
-            return drawLinkWithOutText(link);
+            return drawLinkWithOutText(flowLink);
         }
     }
     LinkShapeDrawer defaultLink = new LinkShapeDrawer() {
         @Override
-        public String getLink(Link link, int level, boolean multiDirection) {
+        public String getLink(FlowLink flowLink, int level, boolean multiDirection) {
             String body = repeat(Constant.link,Constant.link,Constant.link,level);
-            ArrowType arrowType = link.getConfig().getArrowType();
+            ArrowType arrowType = flowLink.getConfig().getArrowType();
             if(multiDirection){
                 if (!arrowType.equals(ArrowType.None)) {
                     body = body.substring(0, body.length() - 1);
@@ -45,9 +45,9 @@ public interface LinkShapeDrawer {
     };
     LinkShapeDrawer thickLink = new LinkShapeDrawer() {
         @Override
-        public String getLink(Link link, int level, boolean multiDirection) {
+        public String getLink(FlowLink flowLink, int level, boolean multiDirection) {
             String body = repeat(thick_link,Constant.thick_link, thick_link,level);
-            ArrowType arrowType = link.getConfig().getArrowType();
+            ArrowType arrowType = flowLink.getConfig().getArrowType();
             if(multiDirection){
                 if (!arrowType.equals(ArrowType.None)) {
                     body = body.substring(0, body.length() - 1);
@@ -64,9 +64,9 @@ public interface LinkShapeDrawer {
 
     LinkShapeDrawer dotLink = new LinkShapeDrawer() {
         @Override
-        public String getLink(Link link, int level, boolean multiDirection) {
+        public String getLink(FlowLink flowLink, int level, boolean multiDirection) {
             String body = repeat(Constant.link,Constant.link, dot,level);
-            ArrowType arrowType = link.getConfig().getArrowType();
+            ArrowType arrowType = flowLink.getConfig().getArrowType();
             if(multiDirection){
                 return arrowType.getLeft() + body + arrowType.getRight();
             }else {

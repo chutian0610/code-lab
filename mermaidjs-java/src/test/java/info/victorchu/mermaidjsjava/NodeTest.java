@@ -1,6 +1,6 @@
 package info.victorchu.mermaidjsjava;
 
-import info.victorchu.mermaidjsjava.flow.Node;
+import info.victorchu.mermaidjsjava.flow.FlowNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ class NodeTest {
 
     @Test
     void testGetQuotedText001() {
-        Node node = new Node();
+        FlowNode node = new FlowNode();
         node.setText("A double quote:\"");
         Assertions.assertEquals(node.getQuotedText(),"A double quote:#quot;");
     }
