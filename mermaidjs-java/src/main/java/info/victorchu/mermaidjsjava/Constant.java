@@ -1,6 +1,8 @@
 package info.victorchu.mermaidjsjava;
 
 public class Constant {
+    public static final String wb=" ";
+    public static final String new_line="\n";
     public static final String left_bracket = "(";
     public static final String right_bracket = ")";
     public static final String left_square_bracket = "[";

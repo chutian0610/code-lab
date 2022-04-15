@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class MermaidJsConfig {
 
+    public static final MermaidJsConfig defaultConfig = new MermaidJsConfig();
+
     private String cdn = "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js";
 
 }
