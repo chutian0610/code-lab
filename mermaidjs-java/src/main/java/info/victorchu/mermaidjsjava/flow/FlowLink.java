@@ -2,7 +2,10 @@ package info.victorchu.mermaidjsjava.flow;
 
 import info.victorchu.mermaidjsjava.Node;
 import info.victorchu.mermaidjsjava.Utils;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.annotation.Nonnull;
@@ -12,6 +15,9 @@ import java.util.Optional;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class FlowLink {
     @Nonnull
     private Node from;
@@ -22,12 +28,16 @@ public class FlowLink {
     private String text;
 
 
+    @Nonnull
+    @Builder.Default
     private Integer level = 1;
 
+    @Nonnull
+    @Builder.Default
     private Boolean multiDirection = false;
 
-    @Nonnull
-    private LinkConfig config;
+    @Builder.Default
+    private LinkConfig config = LinkConfig.defaultConfig;
 
     /**
      * 获取转义处理后的文本
@@ -42,7 +52,7 @@ public class FlowLink {
      * @return
      */
     public String drawLink(){
-        return drawLink(Optional.ofNullable(getConfig()).orElse(LinkConfig.defaultConfig));
+        return drawLink(getConfig());
     }
 
     /**

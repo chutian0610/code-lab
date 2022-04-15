@@ -7,41 +7,40 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.UUID;
 
-@Getter
-@Setter
+import static info.victorchu.mermaidjsjava.Constant.new_line;
+
 public class MermaidJsWriter {
-    private MermaidJsConfig mermaidJsConfig;
 
     /**
      * 生成 mermaid graph
-     * @param grapha
+     * @param graph
      * @return
      */
-    public String generateGrapha(Grapha grapha){
+    public static String generateGraph(Graph graph,MermaidJsConfig mermaidJsConfig){
         StringBuilder sb = new StringBuilder();
-        sb.append("<html>").append("\n")
-                .append("  <body>").append("\n")
-                .append("    <script src=\"").append(mermaidJsConfig.getCdn()).append("\"></script>\n")
-                .append("    <script> mermaid.initialize({ startOnLoad: true }); </script>").append("\n");
-        sb.append("    <div class=\"mermaid-graph\">\n");
-        grapha.drawGrapha();
-        sb.append("    </div>\n");
-        sb.append("  </body>\n");
+        sb.append("<html>").append(new_line)
+                .append("  <body>").append(new_line)
+                .append("    <script src=\"").append(mermaidJsConfig.getCdn()).append("\"></script>").append(new_line)
+                .append("    <script> mermaid.initialize({ startOnLoad: true }); </script>").append(new_line);
+        sb.append("    <div class=\"mermaid\">").append(new_line);
+        sb.append(graph.drawGraph()).append(new_line);
+        sb.append("    </div>").append(new_line);
+        sb.append("  </body>").append(new_line);
         sb.append("</html>");
         return sb.toString();
     }
 
     /**
      * 生成 mermaid graph,并写入文件
-     * @param grapha
+     * @param graph
      * @param path
      * @throws IOException
      */
-    public void generateGrapha(Grapha grapha,String path) throws IOException {
+    public static void generateGraph(Graph graph,MermaidJsConfig mermaidJsConfig,String path,boolean write) throws IOException {
         File file = new File(path);
-        if(file.exists()) {
+        boolean exists = file.exists();
+        if(exists & !write) {
             throw new IllegalArgumentException("创建文件" + path + "失败，目标文件已存在！");
         }
         if (path.endsWith(File.separator)) {
@@ -54,12 +53,13 @@ public class MermaidJsWriter {
                 throw new IllegalArgumentException("创建目标文件所在目录失败！");
             }
         }
-        if (file.createNewFile()) {
-            BufferedWriter out = new BufferedWriter(new FileWriter(file));
-            out.write(generateGrapha(grapha));
-            out.close();
-        } else {
-            throw new IllegalArgumentException("创建文件" + path + "失败！");
+        if(!exists){
+            if (!file.createNewFile()) {
+                throw new IllegalArgumentException("创建文件" + path + "失败！");
+            }
         }
+        BufferedWriter out = new BufferedWriter(new FileWriter(file));
+        out.write(generateGraph(graph,mermaidJsConfig));
+        out.close();
     }
 }

@@ -3,6 +3,7 @@ package info.victorchu.mermaidjsjava.flow;
 import info.victorchu.mermaidjsjava.Node;
 import info.victorchu.mermaidjsjava.Utils;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,21 +16,22 @@ import java.util.Optional;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class FlowNode implements Node {
     @Nonnull
     private String id;
     @Nullable
     private String text;
 
-    @Nullable
-    private NodeConfig config;
+    @Builder.Default
+    private NodeConfig config = NodeConfig.defaultConfig;
 
     public String getQuotedText() {
        return Utils.getQuotedText(text);
     }
 
     public String drawNode(){
-        return drawNode(Optional.ofNullable(getConfig()).orElse(NodeConfig.defaultConfig));
+        return drawNode(getConfig());
     }
 
     /**
