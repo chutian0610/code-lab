@@ -5,10 +5,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import javax.annotation.concurrent.NotThreadSafe;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+/**
+ * json build tool for jackson.
+ */
+@NotThreadSafe
 public class JSONPoet {
+    /**
+     * builder class
+     */
     static class Builder{
         private ObjectMapper mapper;
         private JsonNode rootNode;
@@ -66,14 +74,19 @@ public class JSONPoet {
         }
     }
 
+    /**
+     * retreat to parent node
+     * @return
+     * @throws IllegalStateException
+     */
     NestedJsonNode retreat() throws IllegalStateException {
         if (this.current.isRoot()) {
-            // pass
+            // root node  no  need to retreat , just pass
             return null;
         }else {
-            NestedJsonNode oldCurrent = this.current;
+            NestedJsonNode tmp = this.current;
             this.current = this.current.parent;
-            return oldCurrent;
+            return tmp;
         }
     }
 
