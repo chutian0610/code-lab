@@ -1,30 +1,51 @@
 package info.victorchu.fluentjackson;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeCreator;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.ValueNode;
+import com.fasterxml.jackson.databind.util.RawValue;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+/**
+ * another json build tool for jackson.
+ */
 public class JSONS {
-    protected final JsonWriter jsonWriter;
+    protected final JsonUtil jsonUtil;
 
-    public JSONS(JsonWriter jsonWriter) {
-        this.jsonWriter = jsonWriter;
+    public JSONS() {
+        this.jsonUtil = new JsonUtil(new ObjectMapper());
     }
 
+    public JSONS(ObjectMapper om) {
+        this.jsonUtil = new JsonUtil(om);
+    }
+
+    /**
+     * build json object
+     * @return
+     */
     public JsonObjects object() {
-        return new JsonObjects(jsonWriter);
+        return new JsonObjects(jsonUtil.getOm());
     }
 
+    /**
+     * build json array
+     * @return
+     */
     public JsonArrays array() {
-        return new JsonArrays(jsonWriter);
+        return new JsonArrays(jsonUtil.getOm());
     }
-    static class JsonObjects extends JSONS {
+
+    public static class JsonObjects extends JSONS {
         protected ObjectNode currentObject;
-        private JsonObjects(JsonWriter jsonWriter) {
-            super(jsonWriter);
-            currentObject = jsonWriter.objectNode();
+        private JsonObjects(ObjectMapper om) {
+            super(om);
+            currentObject = jsonUtil.objectNode();
         }
 
         public JsonObjects booleanNode(String name, boolean v) {
@@ -113,12 +134,12 @@ public class JSONS {
         }
 
         public JsonObjects binaryNode(String name, byte[] v, int offset, int length) {
-            currentObject.set(name,jsonWriter.binaryNode(v, offset,length));
+            currentObject.set(name, jsonUtil.binaryNode(v, offset,length));
             return this;
         }
 
         public JsonObjects nullNode(String name) {
-            currentObject.set(name,jsonWriter.nullNode());
+            currentObject.set(name, jsonUtil.nullNode());
             return this;
         }
 
@@ -133,7 +154,7 @@ public class JSONS {
         }
 
         public JsonObjects pojo(String name,Object pojo){
-            currentObject.set(name,jsonWriter.pojo(pojo));
+            currentObject.set(name, jsonUtil.pojo(pojo));
             return this;
         }
 
@@ -142,99 +163,99 @@ public class JSONS {
         }
     }
 
-    static class JsonArrays extends JSONS {
+    public static class JsonArrays extends JSONS {
         protected ArrayNode array;
-        public JsonArrays(JsonWriter jsonWriter) {
-            super(jsonWriter);
-            array = jsonWriter.arrayNode();
+        public JsonArrays(ObjectMapper om) {
+            super(om);
+            array = jsonUtil.arrayNode();
         }
         public JsonArrays add(boolean v) {
-            array.add(jsonWriter.booleanNode(v));
+            array.add(jsonUtil.booleanNode(v));
             return this;
         }
 
         public JsonArrays add(byte v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(Byte v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(short v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(Short v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(int v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(Integer v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(long v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(Long v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(BigInteger v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(float v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(Float v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(double v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(Double v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(BigDecimal v) {
-            array.add(jsonWriter.numberNode(v));
+            array.add(jsonUtil.numberNode(v));
             return this;
         }
 
         public JsonArrays add(String v) {
-            array.add(jsonWriter.textNode(v));
+            array.add(jsonUtil.textNode(v));
             return this;
         }
 
         public JsonArrays add(byte[] v) {
-            array.add(jsonWriter.binaryNode(v));
+            array.add(jsonUtil.binaryNode(v));
             return this;
         }
 
         public JsonArrays add(byte[] v, int offset, int length) {
-            array.add(jsonWriter.binaryNode(v, offset, length));
+            array.add(jsonUtil.binaryNode(v, offset, length));
             return this;
         }
 
@@ -249,16 +270,134 @@ public class JSONS {
         }
 
         public JsonArrays addNull() {
-            array.add(jsonWriter.nullNode());
+            array.add(jsonUtil.nullNode());
             return this;
         }
 
         public JsonArrays addPojo(Object pojo) {
-            array.add(jsonWriter.pojo(pojo));
+            array.add(jsonUtil.pojo(pojo));
             return this;
         }
         public ArrayNode build() {
             return array;
         }
     }
+
+    /**
+     * Simple JsonNodeCreator implement.
+     */
+    private static class JsonUtil implements JsonNodeCreator {
+        public ObjectMapper getOm() {
+            return om;
+        }
+
+        private final ObjectMapper om;
+
+        public JsonUtil(ObjectMapper om) {
+            this.om = om;
+        }
+
+        public JsonNode pojo(Object value){
+            return om.valueToTree(value);
+        }
+
+        public ValueNode booleanNode(boolean v) {
+            return om.getNodeFactory().booleanNode(v);
+        }
+
+        public ValueNode numberNode(byte v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode numberNode(Byte v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode numberNode(short v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode numberNode(Short value) {
+            return om.getNodeFactory().numberNode(value);
+        }
+
+        public ValueNode numberNode(int v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode numberNode(Integer v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode numberNode(long v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode numberNode(Long v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode numberNode(BigInteger v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode numberNode(float v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode numberNode(Float v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode numberNode(double v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode numberNode(Double v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode numberNode(BigDecimal v) {
+            return om.getNodeFactory().numberNode(v);
+        }
+
+        public ValueNode textNode(String v) {
+            return om.getNodeFactory().textNode(v);
+        }
+
+        public ValueNode binaryNode(byte[] v) {
+            return om.getNodeFactory().binaryNode(v);
+        }
+
+        public ValueNode binaryNode(byte[] v, int offset, int length) {
+            return om.getNodeFactory().binaryNode(v, offset, length);
+        }
+
+        @Override
+        public ValueNode pojoNode(Object pojo) {
+            return om.getNodeFactory().pojoNode(pojo);
+        }
+
+        public ValueNode rawValueNode(RawValue value) {
+            return om.getNodeFactory().rawValueNode(value);
+        }
+
+        @Override
+        public ArrayNode arrayNode() {
+            return om.getNodeFactory().arrayNode();
+        }
+
+        public ArrayNode arrayNode(int capacity) {
+            return om.getNodeFactory().arrayNode(capacity);
+        }
+
+        public ObjectNode objectNode() {
+            return om.getNodeFactory().objectNode();
+        }
+
+        public ValueNode nullNode() {
+            return om.getNodeFactory().nullNode();
+        }
+    }
+
 }
