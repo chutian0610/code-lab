@@ -1,4 +1,4 @@
-package info.victorchu.fluentjackson.om;
+package info.victorchu.fluentjson.jackson.om;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

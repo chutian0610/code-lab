@@ -1,9 +1,7 @@
-package info.victorchu.fluentjackson;
+package info.victorchu.fluentjson.jackson;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class JSONSTest {
     @Test

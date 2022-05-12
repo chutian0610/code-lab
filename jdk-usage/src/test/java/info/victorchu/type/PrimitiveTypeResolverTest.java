@@ -1,4 +1,4 @@
-package info.victorchu.uitl;
+package info.victorchu.type;
 
 import org.junit.jupiter.api.Test;
 

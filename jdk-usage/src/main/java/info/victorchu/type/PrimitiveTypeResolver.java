@@ -1,6 +1,10 @@
-package info.victorchu.uitl;
+package info.victorchu.type;
 
 
+/**
+ * PrimitiveTypeResolver.
+ * 由于Class类只有isPrimitive方法，并不能感知到具体基类的类型。所以有了这个工具类。
+ */
 public class PrimitiveTypeResolver {
 
     public enum PrimitiveType {
