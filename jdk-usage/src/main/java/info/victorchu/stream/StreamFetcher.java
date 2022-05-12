@@ -1,7 +1,5 @@
 package info.victorchu.stream;
 
-import info.victorchu.uitl.PrimitiveTypeResolver;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.DoubleStream;

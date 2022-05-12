@@ -16,8 +16,9 @@
     <module>calcite</module>
     <module>mermaidjs-java</module>
     <module>jdk-11-usage</module>
-      <module>fluent-jackson</module>
-      <module>games</module>
+    <module>fluent-jackson</module>
+    <module>games</module>
+    <module>mybatis</module>
   </modules>
 
   <profiles>

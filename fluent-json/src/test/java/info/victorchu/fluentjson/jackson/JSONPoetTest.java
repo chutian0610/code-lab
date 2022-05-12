@@ -1,7 +1,5 @@
-package info.victorchu.fluentjackson;
+package info.victorchu.fluentjson.jackson;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
