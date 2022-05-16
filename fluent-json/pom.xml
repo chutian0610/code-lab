@@ -9,9 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>fluent-jackson</artifactId>
+    <artifactId>fluent-json</artifactId>
 
-    <name>fluent-jackson</name>
+    <name>fluent-json</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
