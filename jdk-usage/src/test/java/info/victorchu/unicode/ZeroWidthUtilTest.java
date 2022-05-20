@@ -8,8 +8,8 @@ class ZeroWidthUtilTest {
 
     @Test
     void zeroWidthToBinary() {
-        String result =  ZeroWidthUtil.zeroWidthToBinary("楼下小黑哥");
-        System.out.println(result);
+        String result =  ZeroWidthUtil.zeroWidthToBinary("看不见我");
+        System.out.println("="+result+"=");
         System.out.println(ZeroWidthUtil.zeroWidthToText(result));
     }
 }
