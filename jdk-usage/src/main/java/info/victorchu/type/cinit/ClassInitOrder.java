@@ -1,4 +1,4 @@
-package info.victorchu.cinit;
+package info.victorchu.type.cinit;
 
 public class ClassInitOrder {
 
