@@ -19,6 +19,7 @@ class Parent {
         System.out.println("Parent:构造函数被调用");
     }
 
+    //调用子类的override函数，访问子类未初始化的非静态成员变量
     public void viewValues() {
 
     }
