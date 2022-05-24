@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-class StreamFetcherTest {
+class StreamUtilsTest {
 
     @Test
     void fromCollection() {

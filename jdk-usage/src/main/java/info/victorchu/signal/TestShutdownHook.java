@@ -4,6 +4,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * jvm shutdown hook 演示
+ */
 public class TestShutdownHook {
     static Timer timer = new Timer("job-timer");
     static AtomicInteger count = new AtomicInteger(0);

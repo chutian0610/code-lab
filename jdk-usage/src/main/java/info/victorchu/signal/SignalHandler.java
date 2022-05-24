@@ -4,10 +4,8 @@ import sun.misc.Signal;
 
 import java.lang.management.ManagementFactory;
 
-/**
- * @Description: JDK 信号处理工具类
- * @Date:2021/12/20 3:38 下午
- * @Author:victorchutian
+/**JDK 信号处理工具类.
+ *
  */
 public class SignalHandler {
     public static class Handler implements sun.misc.SignalHandler {
