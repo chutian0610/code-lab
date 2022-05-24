@@ -2,8 +2,6 @@ package info.victorchu.type;
 
 import org.junit.jupiter.api.Test;
 
-import static java.lang.Class.forName;
-
 public class ClassLoaderTest {
 
     @Test
@@ -28,6 +26,10 @@ public class ClassLoaderTest {
        //null
        System.out.println(parent2);
     }
+
+    /**
+     * -Djava.system.class.loader=info.victorchu.type.TestSystemClassLoader
+     */
     @Test
     public void getSystemClassLoader(){
         // 默认是 sun.misc.Launcher$AppClassLoader
@@ -37,5 +39,10 @@ public class ClassLoaderTest {
         System.out.println(ClassLoader.getSystemClassLoader().getParent());
         ClassLoader classLoader = this.getClass().getClassLoader();
         System.out.println(classLoader);
+    }
+}
+class TestSystemClassLoader extends ClassLoader{
+    public TestSystemClassLoader(ClassLoader parent){
+        super(parent);
     }
 }

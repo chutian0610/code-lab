@@ -1,5 +1,9 @@
 package info.victorchu.type.classload;
 
+/**
+ * 用于验证Class.forName的逻辑。
+ * @see info.victorchu.type.classload.ClassLoaderDemo1
+ */
 public class ClassLoaderDemo {
 
 
