@@ -1,5 +1,8 @@
 package info.victorchu.type.cinit;
 
+/**
+ * 用于验证类初始化顺序
+ */
 public class ClassInitOrder {
 
     public static void main(String[] args) {
@@ -7,6 +10,9 @@ public class ClassInitOrder {
     }
 }
 
+/**
+ * 工具类
+ */
 class Sample {
 
     String s;

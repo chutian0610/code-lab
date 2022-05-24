@@ -7,10 +7,10 @@ import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
-/**
+/**工具类.
  * Stream 的获取方式
  */
-public class StreamFetcher {
+public class StreamUtils {
 
     public static <T> Stream<T> fromCollection(Collection<T> collection,boolean parallel) {
         return (collection ==null || collection.isEmpty())?
