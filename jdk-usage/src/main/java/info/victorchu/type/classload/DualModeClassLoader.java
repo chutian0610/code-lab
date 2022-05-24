@@ -4,9 +4,14 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 /**
+ * <pre>
+ *  0. 并行加载
+ *  1. parent first 模式。
+ *  2. child first 模式。
+ *      1. 支持部分class 是parent first
+ * </pre>
  * 双模类加载器。
- * 1. parent first 模式。
- * 2. child first 模式。
+
  */
 public class DualModeClassLoader extends URLClassLoader {
     static {

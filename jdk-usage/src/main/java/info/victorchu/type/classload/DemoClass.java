@@ -1,5 +1,9 @@
 package info.victorchu.type.classload;
 
+/**
+ * 工具类。
+ * @see info.victorchu.type.classload.ClassLoaderDemo
+ */
 public class DemoClass {
     private String name;
 

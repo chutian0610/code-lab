@@ -82,7 +82,10 @@ package info.victorchu.type.classload;
  * }
  * SourceFile: "TestClassLoad.java"
  * </pre>
+ * 用于验证常量不会导致类加载。
+ * @see info.victorchu.type.classload.ConstNotLoadClass
  */
+
 public class TestClassLoad {
     public static void main(String[] args){
         System.out.println(ConstNotLoadClass.hello);

@@ -1,5 +1,9 @@
 package info.victorchu.type.classload;
 
+/**
+ * 用于验证ClassLoader.loadClass的逻辑。
+ * @see info.victorchu.type.classload.ClassLoaderDemo
+ */
 public class ClassLoaderDemo1 {
     public static void main(String [] args){
         try {

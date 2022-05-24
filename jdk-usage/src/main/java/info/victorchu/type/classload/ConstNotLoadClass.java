@@ -52,6 +52,9 @@ package info.victorchu.type.classload;
  * }
  * SourceFile: "ConstNotLoadClass.java"
  * </pre>
+ *
+ * 用于验证常量不会导致类加载。
+ * @see info.victorchu.type.classload.TestClassLoad
  */
 public class ConstNotLoadClass {
     public static final String hello = "hello";
