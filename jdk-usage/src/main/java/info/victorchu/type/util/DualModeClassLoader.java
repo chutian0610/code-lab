@@ -1,4 +1,4 @@
-package info.victorchu.type.classload;
+package info.victorchu.type.util;
 
 import java.net.URL;
 import java.net.URLClassLoader;

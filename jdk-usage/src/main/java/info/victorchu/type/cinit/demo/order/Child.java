@@ -1,4 +1,4 @@
-package info.victorchu.type.cinit;
+package info.victorchu.type.cinit.demo.order;
 
 public class Child extends Parent{
     static Sample staticChildSample = new Sample("Child:静态成员staticChildSample初始化");

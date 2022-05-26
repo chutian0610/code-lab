@@ -1,5 +1,6 @@
 package info.victorchu.type;
 
+import info.victorchu.type.util.PrimitiveTypeResolver;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

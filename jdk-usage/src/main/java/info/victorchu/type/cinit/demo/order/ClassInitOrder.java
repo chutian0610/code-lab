@@ -1,4 +1,4 @@
-package info.victorchu.type.cinit;
+package info.victorchu.type.cinit.demo.order;
 
 /**
  * 用于验证类初始化顺序
