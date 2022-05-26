@@ -1,4 +1,5 @@
 /**
+ * 简单的表达式引擎
  * <pre>
  * 构造如下的class包装expression
  * <code>
