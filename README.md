@@ -4,20 +4,19 @@
 
 default jdk version is java 1.8.
 
-need jdk 11 configuration: 
+need jdk 11 configuration in 
+
+- jdk-11-usage
+
+
+set jdk 11 like below
 
 ```xml
-<profiles>
-    <profile>
-        <id>compiler</id>
-        <properties>
-          <!-- need to reset-->
-          <JAVA_11_HOME>~/.sdkman/candidates/java/11.0.11.hs-adpt</JAVA_11_HOME>
-        </properties>
-        <activation>
-          <activeByDefault>true</activeByDefault>
-        </activation>
-      </profile>
-    </profiles>
+<properties>
+    <JAVA_11_HOME>~/.sdkman/candidates/java/11.0.2-open/</JAVA_11_HOME>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+</properties>
+
 ```
 
