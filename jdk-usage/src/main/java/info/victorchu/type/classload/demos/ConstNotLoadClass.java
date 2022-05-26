@@ -1,4 +1,4 @@
-package info.victorchu.type.classload;
+package info.victorchu.type.classload.demos;
 
 /**
  * <pre>
@@ -6,7 +6,7 @@ package info.victorchu.type.classload;
  *   Last modified 2022-5-13; size 400 bytes
  *   MD5 checksum 0c5c7459d5ff1bafc1b0416f07071efd
  *   Compiled from "ConstNotLoadClass.java"
- * public class info.victorchu.type.classload.ConstNotLoadClass
+ * public class info.victorchu.type.classload.demos.ConstNotLoadClass
  *   minor version: 0
  *   major version: 52
  *   flags: ACC_PUBLIC, ACC_SUPER
@@ -36,7 +36,7 @@ package info.victorchu.type.classload;
  *     flags: ACC_PUBLIC, ACC_STATIC, ACC_FINAL
  *     ConstantValue: String hello
  *
- *   public info.victorchu.type.classload.ConstNotLoadClass();
+ *   public info.victorchu.type.classload.demos.ConstNotLoadClass();
  *     descriptor: ()V
  *     flags: ACC_PUBLIC
  *     Code:
@@ -54,7 +54,7 @@ package info.victorchu.type.classload;
  * </pre>
  *
  * 用于验证常量不会导致类加载。
- * @see info.victorchu.type.classload.TestClassLoad
+ * @see TestClassLoad
  */
 public class ConstNotLoadClass {
     public static final String hello = "hello";

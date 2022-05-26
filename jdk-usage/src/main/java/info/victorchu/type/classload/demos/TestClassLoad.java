@@ -1,4 +1,4 @@
-package info.victorchu.type.classload;
+package info.victorchu.type.classload.demos;
 
 
 /**
@@ -9,7 +9,7 @@ package info.victorchu.type.classload;
  *   Last modified 2022-5-13; size 649 bytes
  *   MD5 checksum 5064752767ef5aa385af2cc06c61c242
  *   Compiled from "TestClassLoad.java"
- * public class info.victorchu.type.classload.TestClassLoad
+ * public class info.victorchu.type.classload.demos.TestClassLoad
  *   minor version: 0
  *   major version: 52
  *   flags: ACC_PUBLIC, ACC_SUPER
@@ -50,7 +50,7 @@ package info.victorchu.type.classload;
  *   #34 = Utf8               println
  *   #35 = Utf8               (Ljava/lang/String;)V
  * {
- *   public info.victorchu.type.classload.TestClassLoad();
+ *   public info.victorchu.type.classload.demos.TestClassLoad();
  *     descriptor: ()V
  *     flags: ACC_PUBLIC
  *     Code:
@@ -83,7 +83,7 @@ package info.victorchu.type.classload;
  * SourceFile: "TestClassLoad.java"
  * </pre>
  * 用于验证常量不会导致类加载。
- * @see info.victorchu.type.classload.ConstNotLoadClass
+ * @see ConstNotLoadClass
  */
 
 public class TestClassLoad {

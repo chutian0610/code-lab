@@ -1,4 +1,4 @@
-package info.victorchu.type.cinit;
+package info.victorchu.type.cinit.demo.order;
 
 class Parent {
     static Sample staticSample = new Sample("Parent:静态成员staticSample初始化");
