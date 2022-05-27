@@ -9,9 +9,7 @@
     <packaging>pom</packaging>
     <modules>
 
-        <module>jdk8bom</module>
-        <module>jdk11bom</module>
-
+        <module>bom</module>
         <module>calcite</module>
         <module>common-tool</module>
         <module>compiler-study</module>

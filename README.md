@@ -2,21 +2,42 @@
 
 ## jdk version
 
-default jdk version is java 1.8.
-
-need jdk 11 configuration in 
-
-- jdk-11-usage
-
-
-set jdk 11 like below
+jdk versions path managed in module bom.
 
 ```xml
 <properties>
-    <JAVA_11_HOME>~/.sdkman/candidates/java/11.0.2-open/</JAVA_11_HOME>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-</properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <JAVA_11_HOME>/Users/didi/.sdkman/candidates/java/11.0.2-open</JAVA_11_HOME>
+    <JAVA_8_HOME>/Users/didi/.sdkman/candidates/java/ora-1.8.0_311</JAVA_8_HOME>
+  </properties>
+```
 
+编译和test插件配置
+
+```xml
+  <build>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <verbose>true</verbose>
+          <fork>true</fork>
+<!--          <executable>${JAVA_8_HOME}/bin/javac</executable>-->
+        </configuration>
+      </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M5</version>
+          <configuration>
+<!--            <jvm>${JAVA_8_HOME}/bin/java</jvm>-->
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 ```
 
