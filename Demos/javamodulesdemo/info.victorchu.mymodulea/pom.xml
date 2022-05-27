@@ -4,22 +4,23 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>info.victorchu</groupId>
+  <parent>
+    <groupId>info.victorchu</groupId>
+    <artifactId>jdk11bom</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../../../jdk11bom/pom.xml</relativePath>
+  </parent>
   <artifactId>info.victorchu.mymodulea</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <name>mymodulea</name>
+
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>9</source>
-          <target>9</target>
-        </configuration>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.8.0</version>
       </plugin>
     </plugins>
   </build>
-  <name>mymodulea</name>
-
 
 </project>

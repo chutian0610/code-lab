@@ -16,6 +16,6 @@ class NodeTest {
     void testGetQuotedText001() {
         FlowNode node = new FlowNode();
         node.setText("A double quote:\"");
-        Assertions.assertEquals(node.getQuotedText(),"A double quote:#quot;");
+        Assertions.assertEquals("\"A double quote:#quot;\"",node.getQuotedText());
     }
 }

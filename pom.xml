@@ -21,6 +21,8 @@
         <module>mybatis</module>
 
         <module>jdk-11-usage</module>
+
+        <module>Demos/javamodulesdemo</module>
     </modules>
 
 

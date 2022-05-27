@@ -29,7 +29,7 @@ public class JacksonJsonSerializer {
         try {
             return mapper.writeValueAsBytes(source);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException("Could not write JSON: " + e.getMessage(), e);
+            throw new JacksonJsonSerializerException("Could not write JSON: " + e.getMessage(), e);
         }
     }
 
@@ -51,7 +51,7 @@ public class JacksonJsonSerializer {
         try {
             return mapper.readValue(source, type);
         } catch (Exception ex) {
-            throw new RuntimeException("Could not read JSON: " + ex.getMessage(), ex);
+            throw new JacksonJsonSerializerException("Could not read JSON: " + ex.getMessage(), ex);
         }
     }
 }
