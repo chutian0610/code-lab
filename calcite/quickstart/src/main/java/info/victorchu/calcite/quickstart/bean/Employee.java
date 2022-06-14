@@ -3,7 +3,7 @@ package info.victorchu.calcite.quickstart.bean;
 import java.util.Objects;
 
 /**
- * 代码参考 apache calcite [org.apache.calcite.test.schemata.hr.Employee].
+ * 代码参考 apache info.victorchu.calcite [org.apache.info.victorchu.calcite.test.schemata.hr.Employee].
  * @Description: 公司雇员
  * @Date:2021/12/20 3:49 下午
  * @Author:victorchutian

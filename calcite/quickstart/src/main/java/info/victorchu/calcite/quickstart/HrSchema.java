@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
- * 代码参考 apache calcite [org.apache.calcite.test.schemata.hr.HrSchema].
+ * 代码参考 apache info.victorchu.calcite [org.apache.info.victorchu.calcite.test.schemata.hr.HrSchema].
  * @Description: hr schema
  * @Date:2021/12/20 3:48 下午
  * @Author:victorchutian
