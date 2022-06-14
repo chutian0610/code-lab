@@ -15,9 +15,9 @@ import java.sql.Statement;
 import java.util.Properties;
 
 /**
- * calcite quickstart.
- * <a href="https://calcite.apache.org/docs/index.html"> calcite background 中的例子 </a>
- * @Description: calcite background 中的例子
+ * info.victorchu.calcite quickstart.
+ * <a href="https://calcite.apache.org/docs/index.html"> info.victorchu.calcite background 中的例子 </a>
+ * @Description: info.victorchu.calcite background 中的例子
  * @Date:2021/12/20 3:54 下午
  * @Author:victorchutian
  */
@@ -28,7 +28,7 @@ public class CalciteMain {
         // 创建连接
         Properties info = new Properties();
         info.setProperty("lex", "JAVA");
-        Connection connection = DriverManager.getConnection("jdbc:calcite:", info);
+        Connection connection = DriverManager.getConnection("jdbc:info.victorchu.calcite:", info);
         CalciteConnection calciteConnection = connection.unwrap(CalciteConnection.class);
         // 注册schema
         final SchemaPlus rootSchema = calciteConnection.getRootSchema();
