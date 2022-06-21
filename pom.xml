@@ -20,7 +20,7 @@
 
         <module>jdk-11-usage</module>
 
-        <module>Demos/javamodulesdemo</module>
+        <module>javamodulesdemo</module>
     </modules>
 
 

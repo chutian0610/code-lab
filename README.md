@@ -1,6 +1,16 @@
 # code-lab
 
-## jdk version
+存放一些代码片段和demo
+
+## dependencies
+
+### jdk version
+
+java 8 & java 11.
+
+### maven 版本
+
+由于使用了jdk11,maven版本是3.6.3(需要大于3.5.0)。
 
 jdk versions path managed in module bom.
 
@@ -18,6 +28,7 @@ jdk versions path managed in module bom.
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+      <!--至少3.8.0版本的Maven编译器插件 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -25,7 +36,7 @@ jdk versions path managed in module bom.
         <configuration>
           <verbose>true</verbose>
           <fork>true</fork>
-<!--          <executable>${JAVA_8_HOME}/bin/javac</executable>-->
+           <executable>${JAVA_?_HOME}/bin/javac</executable>
         </configuration>
       </plugin>
         <plugin>
@@ -33,11 +44,10 @@ jdk versions path managed in module bom.
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.0.0-M5</version>
           <configuration>
-<!--            <jvm>${JAVA_8_HOME}/bin/java</jvm>-->
+            <jvm>${JAVA_?_HOME}/bin/java</jvm>
           </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
   </build>
 ```
-
