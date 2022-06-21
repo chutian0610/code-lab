@@ -12,5 +12,6 @@
         <module>entitymodule</module>
         <module>daomodule</module>
         <module>userdaomodule</module>
+        <module>appmodule</module>
     </modules>
 </project>

@@ -9,6 +9,12 @@ import java.util.Map;
 import java.util.Optional;
 
 public class UserDao implements Dao<User> {
+    public UserDao() {
+    }
+
+    public UserDao(Map<Long, User> users) {
+        this.users = users;
+    }
 
     private Map<Long, User> users;
 
