@@ -12,6 +12,11 @@ public class User {
         this.name = name;
     }
 
+    public User(String name, Long id) {
+        this.name = name;
+        this.id = id;
+    }
+
     private String name;
 
     public Long getId() {
@@ -23,4 +28,12 @@ public class User {
     }
 
     private Long id;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
