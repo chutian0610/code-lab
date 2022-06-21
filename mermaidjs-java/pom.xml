@@ -11,7 +11,7 @@
     <relativePath>../bom/pom.xml</relativePath>
   </parent>
   <artifactId>mermaidjs-java</artifactId>
-
+  <groupId>info.victorchu.mermaidjs</groupId>
   <name>mermaidjs-java</name>
 
   <properties>

@@ -10,7 +10,7 @@
     <relativePath>../bom/pom.xml</relativePath>
   </parent>
   <artifactId>compiler</artifactId>
-
+  <groupId>info.victorchu.compiler</groupId>
 
   <name>compiler-study</name>
   <description>编译原理学习代码</description>

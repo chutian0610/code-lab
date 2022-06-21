@@ -9,7 +9,7 @@
   <relativePath>../bom/pom.xml</relativePath>
 </parent>
   <artifactId>jdk-usage</artifactId>
-
+  <groupId>info.victorchu.demo.jdk8</groupId>
   <name>jdk-usage</name>
   <description>JDK相关代码</description>
 
