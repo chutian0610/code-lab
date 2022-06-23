@@ -1,11 +1,5 @@
 package info.victorchu.mermaidjsjava;
 
-/**
- * @Copyright: www.xiaojukeji.com Inc. All rights reserved.
- * @Description:
- * @Date:2022/2/18 4:47 下午
- * @Author:victorchutian
- */
 public class Utils {
     // 统一处理异常字符
     public static String getQuotedText(String text){

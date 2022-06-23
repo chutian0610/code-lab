@@ -4,12 +4,6 @@ import info.victorchu.mermaidjsjava.flow.FlowNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/**
- * @Copyright: www.xiaojukeji.com Inc. All rights reserved.
- * @Description:
- * @Date:2022/2/18 11:48 上午
- * @Author:victorchutian
- */
 class NodeTest {
 
     @Test
