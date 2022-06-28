@@ -1,6 +1,6 @@
 package info.victorchu.compiler.simpleregex.util;
 
-import info.victorchu.compiler.simpleregex.*;
+import info.victorchu.compiler.simpleregex.ast.*;
 
 /**
  * print regex node tree in terminal
