@@ -7,6 +7,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import static info.victorchu.mermaidjsjava.Constant.new_line;
 
@@ -37,7 +38,7 @@ public class MermaidJsWriter {
      * @param path
      * @throws IOException
      */
-    public static void generateGraph(Graph graph,MermaidJsConfig mermaidJsConfig,String path,boolean write) throws IOException {
+    public static Path generateGraph(Graph graph, MermaidJsConfig mermaidJsConfig, String path, boolean write) throws IOException {
         File file = new File(path);
         boolean exists = file.exists();
         if(exists & !write) {
@@ -61,5 +62,6 @@ public class MermaidJsWriter {
         BufferedWriter out = new BufferedWriter(new FileWriter(file));
         out.write(generateGraph(graph,mermaidJsConfig));
         out.close();
+        return file.toPath();
     }
 }

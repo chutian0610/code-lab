@@ -26,16 +26,28 @@ public abstract class RegexNode {
      * 节点类型
      */
     public static enum NodeType{
-        REGEX_OR,                 // s|t 或
-        REGEX_CONCAT,             // st 连接
-        REGEXP_REPEAT,            // s*重复
-        REGEXP_CHAR               // 字符
+        /**
+         * s|t 或
+         */
+        REGEX_OR,
+        /**
+         * st 连接
+         */
+        REGEX_CONCAT,
+        /**
+         * s* 重复
+         */
+        REGEXP_REPEAT,
+        /**
+         * 字符
+         */
+        REGEXP_CHAR
     }
 
     /**
-     * 访问者模式
+     * 访问者模式, 子类实现具体的 accept 方法
      * @param visitor
      */
-    public abstract void accept(AbstractVisitor visitor);
+    public abstract <T> T accept(RegexNodeVisitor<T> visitor);
 }
 

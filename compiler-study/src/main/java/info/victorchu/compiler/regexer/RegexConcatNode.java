@@ -30,11 +30,15 @@ public class RegexConcatNode extends RegexNode {
     public RegexConcatNode() {
         super(NodeType.REGEX_CONCAT);
     }
-
     @Override
-    public void accept(AbstractVisitor visitor) {
-        visitor.visit(this);
+    public <T> T accept(RegexNodeVisitor<T> visitor){
+        return visitor.visit(this);
     }
+
+
+    /**
+     * builder for  RegexConcatNode
+     */
     public static final class RegexConcatNodeBuilder {
         private RegexNode left;
         private RegexNode right;

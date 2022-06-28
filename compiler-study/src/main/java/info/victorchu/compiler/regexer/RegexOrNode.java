@@ -31,11 +31,15 @@ public class RegexOrNode extends RegexNode{
     public RegexOrNode() {
         super(NodeType.REGEX_OR);
     }
-
     @Override
-    public void accept(AbstractVisitor visitor) {
-        visitor.visit(this);
+    public <T> T accept(RegexNodeVisitor<T> visitor){
+        return visitor.visit(this);
     }
+
+
+    /**
+     * builder for  RegexOrNode
+     */
     public static final class RegexOrNodeBuilder {
         private RegexNode left;
         private RegexNode right;

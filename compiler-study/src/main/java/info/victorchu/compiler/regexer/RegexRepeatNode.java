@@ -21,9 +21,13 @@ public class RegexRepeatNode extends RegexNode{
     }
 
     @Override
-    public void accept(AbstractVisitor visitor) {
-        visitor.visit(this);
+    public <T> T accept(RegexNodeVisitor<T> visitor){
+        return visitor.visit(this);
     }
+
+    /**
+     * builder for  RegexRepeatNode
+     */
     public static final class RegexRepeatNodeBuilder {
         private RegexNode innerNode;
 

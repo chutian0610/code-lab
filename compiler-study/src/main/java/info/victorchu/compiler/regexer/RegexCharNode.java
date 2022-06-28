@@ -22,11 +22,13 @@ public class RegexCharNode extends RegexNode {
     }
 
     @Override
-    public void accept(AbstractVisitor visitor) {
-        visitor.visit(this);
+    public <T> T accept(RegexNodeVisitor<T> visitor){
+        return visitor.visit(this);
     }
 
-
+    /**
+     * builder for  RegexCharNode
+     */
     public static final class RegexCharNodeBuilder {
         private Character character;
 
