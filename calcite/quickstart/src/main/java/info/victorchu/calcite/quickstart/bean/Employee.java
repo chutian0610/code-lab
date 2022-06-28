@@ -3,10 +3,10 @@ package info.victorchu.calcite.quickstart.bean;
 import java.util.Objects;
 
 /**
+ * 公司雇员.
  * 代码参考 apache info.victorchu.calcite [org.apache.info.victorchu.calcite.test.schemata.hr.Employee].
- * @Description: 公司雇员
- * @Date:2021/12/20 3:49 下午
- * @Author:victorchutian
+ * @date 2021/12/20 3:49 下午
+ * @author victorchutian
  */
 public class Employee {
     /**

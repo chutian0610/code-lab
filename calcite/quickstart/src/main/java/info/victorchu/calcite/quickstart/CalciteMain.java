@@ -17,9 +17,8 @@ import java.util.Properties;
 /**
  * info.victorchu.calcite quickstart.
  * <a href="https://calcite.apache.org/docs/index.html"> info.victorchu.calcite background 中的例子 </a>
- * @Description: info.victorchu.calcite background 中的例子
- * @Date:2021/12/20 3:54 下午
- * @Author:victorchutian
+ * @date 2021/12/20 3:54 下午
+ * @author victorchu
  */
 
 public class CalciteMain {

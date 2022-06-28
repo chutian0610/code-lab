@@ -8,11 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Author victor
- * @Email victorchu0610@outlook.com
- * @Data 2019/6/20
- * @Version 1.0
- * @Description TODO
+ * @author victorchu
  */
 public class ScriptFactory {
 

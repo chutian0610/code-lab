@@ -4,6 +4,7 @@ package info.victorchu.compiler.simpleregex.util;
  * pair with two unmodified elements
  * @param <L>
  * @param <R>
+ * @author victorchu
  */
 public class Pair <L,R>{
     public L getLeft() {

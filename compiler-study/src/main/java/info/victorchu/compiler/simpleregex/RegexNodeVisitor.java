@@ -2,9 +2,8 @@ package info.victorchu.compiler.simpleregex;
 
 /**
  * RegexNode 的抽象访问者
- * @Description:
- * @Date:2022/2/11 5:17 下午
- * @Author:victorchutian
+ * @date 2022/2/11 5:17 下午
+ * @author victorchutian
  */
 public interface RegexNodeVisitor<T> {
 
