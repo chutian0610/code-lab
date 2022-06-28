@@ -1,4 +1,4 @@
-package info.victorchu.compiler.regexer;
+package info.victorchu.compiler.simpleregex;
 
 /**
  * RegexNode 的抽象访问者

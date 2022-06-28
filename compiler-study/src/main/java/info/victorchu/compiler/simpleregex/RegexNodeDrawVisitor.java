@@ -1,4 +1,4 @@
-package info.victorchu.compiler.regexer;
+package info.victorchu.compiler.simpleregex;
 
 import info.victorchu.mermaidjsjava.MermaidJsConfig;
 import info.victorchu.mermaidjsjava.MermaidJsWriter;
@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * use mermaidjs to draw regex graph
+ */
 public class RegexNodeDrawVisitor implements RegexNodeVisitor<Pair<FlowNode,FlowNode>> {
 
     private static final String EMPTY = "ε";
