@@ -1,5 +1,7 @@
-package info.victorchu.compiler.simpleregex;
+package info.victorchu.compiler.simpleregex.util;
 
+import info.victorchu.compiler.simpleregex.*;
+import info.victorchu.compiler.simpleregex.util.Pair;
 import info.victorchu.mermaidjsjava.MermaidJsConfig;
 import info.victorchu.mermaidjsjava.MermaidJsWriter;
 import info.victorchu.mermaidjsjava.flow.*;
