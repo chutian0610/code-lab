@@ -46,7 +46,8 @@ public abstract class RegexNode {
 
     /**
      * 访问者模式, 子类实现具体的 accept 方法
-     * @param visitor
+     * @param visitor 访问者
+     * @return 返回 T
      */
     public abstract <T> T accept(RegexNodeVisitor<T> visitor);
 }

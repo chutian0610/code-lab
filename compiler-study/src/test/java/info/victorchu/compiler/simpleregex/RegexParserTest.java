@@ -1,5 +1,6 @@
 package info.victorchu.compiler.simpleregex;
 
+import info.victorchu.compiler.simpleregex.util.RegexNodeDrawVisitor;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
