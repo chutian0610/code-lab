@@ -8,9 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @Description:
- * @Date:2021/12/20 4:01 下午
- * @Author:victorchutian
+ * @date 2021/12/20 4:01 下午
+ * @author victorchu
  */
 public class ResultSetFormatter {
     final StringBuilder buf = new StringBuilder();

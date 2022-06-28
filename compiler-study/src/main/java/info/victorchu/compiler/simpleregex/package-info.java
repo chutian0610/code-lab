@@ -12,7 +12,7 @@
  *      3. DFA 化简
  *      4. 引擎执行(NFA and DFA)
  * </pre>
- * @Date:2022/2/11 5:08 下午
- * @Author:victorchutian
+ * @date 2022/2/11 5:08 下午
+ * @author victorchutian
  */
 package info.victorchu.compiler.simpleregex;

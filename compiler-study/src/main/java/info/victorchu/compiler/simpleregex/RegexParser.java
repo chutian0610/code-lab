@@ -17,9 +17,9 @@ package info.victorchu.compiler.simpleregex;
  * {@literal <charexp>} ::= {@literal <Unicode character>} | '\' {@literal <Unicode character>}
  * </pre>
  *
- * @Description: 将正则语法解析为AST Node
- * @Date:2022/2/11 5:06 下午
- * @Author:victorchutian
+ * 将正则语法解析为AST Node.
+ * @date 2022/2/11 5:06 下午
+ * @author victorchutian
  */
 public class RegexParser {
     /**

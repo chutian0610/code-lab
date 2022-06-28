@@ -2,9 +2,8 @@ package info.victorchu.compiler.simpleregex;
 
 /**
  * 字符节点
- * @Description:
- * @Date:2022/2/11 5:18 下午
- * @Author:victorchutian
+ * @date 2022/2/11 5:18 下午
+ * @author victorchutian
  */
 public class RegexCharNode extends RegexNode {
     public RegexCharNode() {

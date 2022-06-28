@@ -2,10 +2,9 @@ package info.victorchu.compiler.simpleregex.util;
 
 import info.victorchu.compiler.simpleregex.*;
 
-import java.util.Stack;
-
 /**
  * print regex node tree in terminal
+ * @author victorchu
  */
 public class RegexNodePrintVisitor implements RegexNodeVisitor<Object> {
     private Integer depth =0;

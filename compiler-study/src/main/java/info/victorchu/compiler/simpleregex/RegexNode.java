@@ -2,9 +2,8 @@ package info.victorchu.compiler.simpleregex;
 
 /**
  * Regex AST Node 的抽象父类
- * @Description:
- * @Date:2022/2/11 5:17 下午
- * @Author:victorchutian
+ * @date 2022/2/11 5:17 下午
+ * @author victorchutian
  */
 public abstract class RegexNode {
 
