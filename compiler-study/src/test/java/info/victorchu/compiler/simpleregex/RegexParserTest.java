@@ -1,10 +1,8 @@
-package info.victorchu.compiler.regexer;
+package info.victorchu.compiler.simpleregex;
 
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class RegexParserTest {
 

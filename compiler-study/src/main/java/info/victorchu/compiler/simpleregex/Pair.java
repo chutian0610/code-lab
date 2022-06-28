@@ -1,4 +1,4 @@
-package info.victorchu.compiler.regexer;
+package info.victorchu.compiler.simpleregex;
 
 public class Pair <L,R>{
     public L getLeft() {

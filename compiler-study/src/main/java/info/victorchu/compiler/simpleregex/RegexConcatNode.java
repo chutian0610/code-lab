@@ -1,4 +1,4 @@
-package info.victorchu.compiler.regexer;
+package info.victorchu.compiler.simpleregex;
 
 /**
  * 连接节点.
