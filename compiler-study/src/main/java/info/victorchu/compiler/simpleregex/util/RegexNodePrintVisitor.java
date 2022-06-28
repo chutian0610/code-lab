@@ -4,8 +4,10 @@ import info.victorchu.compiler.simpleregex.*;
 
 import java.util.Stack;
 
+/**
+ * print regex node tree in terminal
+ */
 public class RegexNodePrintVisitor implements RegexNodeVisitor<Object> {
-    private final Stack<Integer> count = new Stack<>();
     private Integer depth =0;
     private String tab = "    ";
     private String prefix0 = "+---";
@@ -17,14 +19,6 @@ public class RegexNodePrintVisitor implements RegexNodeVisitor<Object> {
             stringBuilder.append(tab);
         }
         stringBuilder.append(prefix0+"Node[Char]("+node.getCharacter()+")").append("\n");
-
-        if(count.peek() == 1){
-            count.pop();
-            depth--;
-        }else {
-            int tmp = count.pop();
-            count.push(tmp-1);
-        }
         return null;
     }
 
@@ -35,9 +29,9 @@ public class RegexNodePrintVisitor implements RegexNodeVisitor<Object> {
         }
         stringBuilder.append(prefix0+"Node[Concat]").append("\n");
         depth++;
-        count.add(2);
         visit(node.getLeft());
         visit(node.getRight());
+        depth--;
         return null;
     }
 
@@ -48,9 +42,9 @@ public class RegexNodePrintVisitor implements RegexNodeVisitor<Object> {
         }
         stringBuilder.append(prefix0+"Node[Or]").append("\n");
         depth++;
-        count.add(2);
         visit(node.getLeft());
         visit(node.getRight());
+        depth--;
         return null;
     }
 
@@ -61,8 +55,8 @@ public class RegexNodePrintVisitor implements RegexNodeVisitor<Object> {
         }
         stringBuilder.append(prefix0+"Node[Repeat]").append("\n");
         depth++;
-        count.add(1);
         visit(node.getInnerNode());
+        depth--;
         return null;
     }
 
