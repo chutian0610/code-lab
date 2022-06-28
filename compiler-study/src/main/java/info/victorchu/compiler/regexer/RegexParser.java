@@ -11,10 +11,10 @@ package info.victorchu.compiler.regexer;
  * {@literal <unionexp>} ::= {@literal <concatexp>} {@literal <unionexp>}
  *              | {@literal <concatexp>}
  * {@literal <concatexp>} ::= {@literal <repeatexp>} '*'
- *              | &repeatexp>}
+ *              | {@literal <repeatexp>}
  * {@literal <repeatexp>} := {@literal <charexp>}
  *               | '(' {@literal <regexexp>} ')'
- * {@literal <charexp&gt; ::= {@literal <Unicode character>} | '\' {@literal <Unicode character>}
+ * {@literal <charexp>} ::= {@literal <Unicode character>} | '\' {@literal <Unicode character>}
  * </pre>
  *
  * @Description: 将正则语法解析为AST Node
@@ -22,17 +22,35 @@ package info.victorchu.compiler.regexer;
  * @Author:victorchutian
  */
 public class RegexParser {
-    private String regexStr;
+    /**
+     * 正则表达式字符串
+     */
+    private final String regexStr;
     private int position;
 
-    public static RegexNode parse(String str){
-        return new RegexParser(str).parseRegex();
+    /**
+     * 解析正则表达式字符
+     * @param regexStr 正则表达式字符串
+     * @return
+     */
+    public static RegexNode parse(String regexStr){
+        return new RegexParser(regexStr).parseRegex();
     }
 
+    /**
+     * 构造器
+     * @param regexStr 正则表达式字符串
+     */
     private RegexParser(String regexStr) {
         this.regexStr = regexStr;
     }
 
+
+    /**
+     * 判断当前字符是否匹配输入字符
+     * @param c 输入字符
+     * @return
+     */
     private boolean matchChar(char c) {
         if (position >= regexStr.length())
             return false;
@@ -43,20 +61,40 @@ public class RegexParser {
         return false;
     }
 
+    /**
+     * 判断是否到达字符串尾部
+     * @return 是否到达字符串尾部
+     */
     private boolean notEnd() {
         return position < regexStr.length();
     }
 
+    /**
+     * 当前指向字符是否在输入字符串中可以找到。
+     * @param s 输入字符串
+     * @return
+     */
     private boolean peek(String s) {
         return notEnd() && s.indexOf(regexStr.charAt(position)) != -1;
     }
 
+    /**
+     * 获取下一个字符
+     * @return
+     * @throws IllegalArgumentException
+     */
     private char next() throws IllegalArgumentException {
         if (!notEnd())
             throw new IllegalArgumentException("unexpected end-of-string");
         return regexStr.charAt(position++);
     }
 
+    /* 语法解析-递归下降 */
+
+    /**
+     * 语法解析入口
+     * @return
+     */
     private RegexNode parseRegex(){
         RegexNode regexNode = parseUnionExp();
         if(matchChar('|')){

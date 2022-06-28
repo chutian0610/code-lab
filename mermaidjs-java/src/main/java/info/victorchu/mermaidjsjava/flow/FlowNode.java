@@ -30,6 +30,7 @@ public class FlowNode implements Node {
        return Utils.getQuotedText(text);
     }
 
+    @Override
     public String drawNode(){
         return drawNode(getConfig());
     }
