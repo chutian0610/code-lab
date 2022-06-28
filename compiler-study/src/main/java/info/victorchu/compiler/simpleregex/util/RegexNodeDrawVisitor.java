@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * use mermaidjs to draw regex graph
+ * use mermaid-js to draw regex graph
  */
 public class RegexNodeDrawVisitor implements RegexNodeVisitor<Pair<FlowNode,FlowNode>> {
 
