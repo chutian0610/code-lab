@@ -27,7 +27,7 @@ public class CalciteMain {
         // 创建连接
         Properties info = new Properties();
         info.setProperty("lex", "JAVA");
-        Connection connection = DriverManager.getConnection("jdbc:info.victorchu.calcite:", info);
+        Connection connection = DriverManager.getConnection("jdbc:calcite:", info);
         CalciteConnection calciteConnection = connection.unwrap(CalciteConnection.class);
         // 注册schema
         final SchemaPlus rootSchema = calciteConnection.getRootSchema();
