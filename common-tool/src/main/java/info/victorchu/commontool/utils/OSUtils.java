@@ -1,6 +1,7 @@
 package info.victorchu.commontool.utils;
 
 /**
+ * 操作系统工具类
  * @see <a href="http://lopica.sourceforge.net/os.html">os</a>
  * @author victorchu
  * @date 2022/8/5 21:54
