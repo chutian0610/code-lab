@@ -1,5 +1,7 @@
-package info.victorchu.commontool.fluentjson.jackson;
+package info.victorchu.commontool.json.jackson;
 
+import info.victorchu.commontool.json.jackson.fluent.JSONPoet;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ class JSONPoetTest {
                 .textNode("aweds")
                 .endArray()
                 .buildToString(true);
-        System.out.println(str);
+        Assertions.assertEquals(str,"[ \"dsdsd\", \"aweds\" ]");
     }
 
     @Test
@@ -29,7 +31,10 @@ class JSONPoetTest {
                 .textNode("aweds")
                 .endObject()
                 .buildToString(true);
-        System.out.println(str);
+        Assertions.assertEquals(str,"{\n" +
+                "  \"id\" : \"dsdsd\",\n" +
+                "  \"name\" : \"aweds\"\n" +
+                "}");
     }
 
     @Test
@@ -56,7 +61,15 @@ class JSONPoetTest {
                 .endArray()
                 .buildToString(true);
 
-        System.out.println(str);
+        Assertions.assertEquals(str,"[ {\n" +
+                "  \"id\" : \"aweds\"\n" +
+                "}, {\n" +
+                "  \"id\" : \"aweds\"\n" +
+                "}, {\n" +
+                "  \"id\" : \"aweds\"\n" +
+                "}, {\n" +
+                "  \"id\" : \"aweds\"\n" +
+                "} ]");
     }
 
     @Test
@@ -70,8 +83,9 @@ class JSONPoetTest {
                     .endArray()
                 .endObject()
                 .buildToString(true);
-
-        System.out.println(str);
+        Assertions.assertEquals(str,"{\n" +
+                "  \"array\" : [ \"aweds\" ]\n" +
+                "}");
     }
 
     @Test
@@ -89,7 +103,10 @@ class JSONPoetTest {
                     .pojo(list)
                 .endObject()
                 .buildToString(true);
-        System.out.println(str);
+        Assertions.assertEquals(str,"{\n" +
+                "  \"array\" : [ \"aweds\" ],\n" +
+                "  \"dsdsddsdsd\" : [ \"dsdad\" ]\n" +
+                "}");
     }
 
 }

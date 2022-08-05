@@ -1,4 +1,4 @@
-package info.victorchu.commontool.fluentjson.jackson;
+package info.victorchu.commontool.json.jackson.fluent;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,14 +14,14 @@ import java.math.BigInteger;
 /**
  * another json build tool for jackson.
  */
-public class JSONS {
+public class JsonBuilder {
     protected final JsonUtil jsonUtil;
 
-    public JSONS() {
+    public JsonBuilder() {
         this.jsonUtil = new JsonUtil(new ObjectMapper());
     }
 
-    public JSONS(ObjectMapper om) {
+    public JsonBuilder(ObjectMapper om) {
         this.jsonUtil = new JsonUtil(om);
     }
 
@@ -41,7 +41,7 @@ public class JSONS {
         return new JsonArrays(jsonUtil.getOm());
     }
 
-    public static class JsonObjects extends JSONS {
+    public static class JsonObjects extends JsonBuilder {
         protected ObjectNode currentObject;
         private JsonObjects(ObjectMapper om) {
             super(om);
@@ -163,7 +163,7 @@ public class JSONS {
         }
     }
 
-    public static class JsonArrays extends JSONS {
+    public static class JsonArrays extends JsonBuilder {
         protected ArrayNode array;
         public JsonArrays(ObjectMapper om) {
             super(om);
@@ -301,74 +301,92 @@ public class JSONS {
             return om.valueToTree(value);
         }
 
+        @Override
         public ValueNode booleanNode(boolean v) {
             return om.getNodeFactory().booleanNode(v);
         }
 
+        @Override
         public ValueNode numberNode(byte v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode numberNode(Byte v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode numberNode(short v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode numberNode(Short value) {
             return om.getNodeFactory().numberNode(value);
         }
 
+        @Override
         public ValueNode numberNode(int v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode numberNode(Integer v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode numberNode(long v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode numberNode(Long v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode numberNode(BigInteger v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode numberNode(float v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode numberNode(Float v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode numberNode(double v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode numberNode(Double v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode numberNode(BigDecimal v) {
             return om.getNodeFactory().numberNode(v);
         }
 
+        @Override
         public ValueNode textNode(String v) {
             return om.getNodeFactory().textNode(v);
         }
 
+        @Override
         public ValueNode binaryNode(byte[] v) {
             return om.getNodeFactory().binaryNode(v);
         }
 
+        @Override
         public ValueNode binaryNode(byte[] v, int offset, int length) {
             return om.getNodeFactory().binaryNode(v, offset, length);
         }
@@ -378,6 +396,7 @@ public class JSONS {
             return om.getNodeFactory().pojoNode(pojo);
         }
 
+        @Override
         public ValueNode rawValueNode(RawValue value) {
             return om.getNodeFactory().rawValueNode(value);
         }
@@ -387,14 +406,17 @@ public class JSONS {
             return om.getNodeFactory().arrayNode();
         }
 
+        @Override
         public ArrayNode arrayNode(int capacity) {
             return om.getNodeFactory().arrayNode(capacity);
         }
 
+        @Override
         public ObjectNode objectNode() {
             return om.getNodeFactory().objectNode();
         }
 
+        @Override
         public ValueNode nullNode() {
             return om.getNodeFactory().nullNode();
         }

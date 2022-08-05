@@ -1,10 +1,15 @@
-package info.victorchu.commontool.fluentjson.jackson.om;
+package info.victorchu.commontool.json.jackson.om;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.annotation.Nullable;
 
+/**
+ * Jackson json 序列化器
+ * @author victorchu
+ * @date 2022/8/5 21:35
+ */
 public class JacksonJsonSerializer {
     private static final byte[] EMPTY_ARRAY = new byte[0];
     private final ObjectMapper mapper;

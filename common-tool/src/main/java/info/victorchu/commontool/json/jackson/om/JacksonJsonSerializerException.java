@@ -1,5 +1,8 @@
-package info.victorchu.commontool.fluentjson.jackson.om;
+package info.victorchu.commontool.json.jackson.om;
 
+/**
+ * jackson 序列化异常
+ */
 public class JacksonJsonSerializerException extends RuntimeException {
     public JacksonJsonSerializerException() {
     }

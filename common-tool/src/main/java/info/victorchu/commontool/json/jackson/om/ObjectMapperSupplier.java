@@ -1,4 +1,4 @@
-package info.victorchu.commontool.fluentjson.jackson.om;
+package info.victorchu.commontool.json.jackson.om;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -10,6 +10,9 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.util.function.Supplier;
 
+/**
+ * mapper 配置
+ */
 public class ObjectMapperSupplier implements Supplier<ObjectMapper> {
 
     @Override

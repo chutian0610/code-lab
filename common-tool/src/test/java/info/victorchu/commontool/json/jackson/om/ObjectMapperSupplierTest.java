@@ -1,4 +1,4 @@
-package info.victorchu.commontool.fluentjson.jackson.om;
+package info.victorchu.commontool.json.jackson.om;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.DeserializationFeature;

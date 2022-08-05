@@ -1,4 +1,4 @@
-package info.victorchu.commontool.fluentjson.jackson;
+package info.victorchu.commontool.json.jackson.fluent;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +17,7 @@ public class JSONPoet {
     /**
      * builder class
      */
-    static class Builder{
+    public static class Builder{
         private ObjectMapper mapper;
         private JsonNode rootNode;
         private Object root;
@@ -141,9 +141,9 @@ public class JSONPoet {
     }
 
     /*
-    /**********************************************************
-    /* Factory method for Container
-    /**********************************************************
+    **********************************************************
+    * Factory method for Container
+    **********************************************************
     */
     public JSONPoet beginArray() {
         this.current = new NestedJsonNode(this.current, this.om.createArrayNode());
