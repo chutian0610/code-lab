@@ -17,8 +17,8 @@ jdk versions path managed in module bom.
 ```xml
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <JAVA_11_HOME>/Users/didi/.sdkman/candidates/java/11.0.2-open</JAVA_11_HOME>
-    <JAVA_8_HOME>/Users/didi/.sdkman/candidates/java/ora-1.8.0_311</JAVA_8_HOME>
+    <JAVA_11_HOME>/Users/xxx/.sdkman/candidates/java/11.0.2-open</JAVA_11_HOME>
+    <JAVA_8_HOME>/Users/xxx/.sdkman/candidates/java/ora-1.8.0_311</JAVA_8_HOME>
   </properties>
 ```
 
