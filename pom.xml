@@ -10,9 +10,9 @@
     <modules>
 
         <module>bom</module>
-        <module>calcite</module>
+        <module>calcite-all</module>
         <module>common-tool</module>
-        <module>compiler-study</module>
+        <module>compiler</module>
         <module>games</module>
         <module>jdk-8-usage</module>
         <module>mermaidjs-java</module>
