@@ -267,7 +267,7 @@ public class TaskImpl implements Task{
     static {
         try {
             UNSAFE =createUnsafe();
-            Class<?> k = FutureTask.class;
+            Class<?> k = TaskImpl.class;
             stateOffset = UNSAFE.objectFieldOffset
                     (k.getDeclaredField("state"));
             waitersOffset = UNSAFE.objectFieldOffset
