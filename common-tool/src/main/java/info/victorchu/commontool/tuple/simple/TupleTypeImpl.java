@@ -24,12 +24,14 @@ public class TupleTypeImpl implements TupleType {
 
     @Override
     public Tuple createTuple(Object... values) {
-        if ( (values == null && types.length == 0)
-                || (values != null && values.length != types.length)
-        ) {
+        if (values == null && types.length == 0) {
             throw new IllegalArgumentException(
-                    "Expected "+types.length+" values, not "+
-                            (values == null ? "(null)" : values.length) + " values");
+                    "Expected "+types.length+" values, not Empty values");
+        }
+        if(values != null && values.length != types.length)
+        {
+            throw new IllegalArgumentException(
+                    "Expected "+types.length+" values, not "+ values.length + " values");
         }
 
         if (values != null) {
