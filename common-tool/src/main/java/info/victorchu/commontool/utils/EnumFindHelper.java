@@ -1,9 +1,10 @@
 package info.victorchu.commontool.utils;
 
-import com.google.common.collect.ImmutableMap;
-
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -27,14 +28,14 @@ public class EnumFindHelper<T extends Enum<T>, K> {
     /**
      * 不可变Map
      */
-    private ImmutableMap<K, T> map;
+    private Map<K, T> map;
 
     public EnumFindHelper(Class<T> clazz, EnumKeyGetter<T, K> keyGetter) {
-        ImmutableMap.Builder<K,T> builder = ImmutableMap.builder();
+        Map<K,T> builder = new HashMap<>();
         for (T enumValue : EnumSet.allOf(clazz)) {
             builder.put(keyGetter.getKey(enumValue), enumValue);
         }
-        map = builder.build();
+        map = Collections.unmodifiableMap(builder);
     }
 
     @Nullable
