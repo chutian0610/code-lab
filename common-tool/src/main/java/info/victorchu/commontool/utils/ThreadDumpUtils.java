@@ -8,9 +8,9 @@ import java.lang.management.ThreadMXBean;
  * @author victorchu
  * @date 2022/8/5 22:14
  */
-public final class ThreadDumpGenerator {
+public final class ThreadDumpUtils {
 
-    private ThreadDumpGenerator() {
+    private ThreadDumpUtils() {
     }
 
     public static String dumpAllThreads() {
