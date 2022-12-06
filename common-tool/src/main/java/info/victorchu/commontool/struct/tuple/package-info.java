@@ -4,4 +4,4 @@
  * @date 2022/8/10 23:28
  * @author victorchu
  */
-package info.victorchu.commontool.tuple.simple;
+package info.victorchu.commontool.struct.tuple;

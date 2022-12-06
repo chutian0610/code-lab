@@ -1,4 +1,4 @@
-package info.victorchu.commontool.tuple.simple;
+package info.victorchu.commontool.struct.tuple;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

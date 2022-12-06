@@ -1,4 +1,4 @@
-package info.victorchu.commontool.tuple.simple;
+package info.victorchu.commontool.struct.tuple;
 
 /**
  * @author victorchu
