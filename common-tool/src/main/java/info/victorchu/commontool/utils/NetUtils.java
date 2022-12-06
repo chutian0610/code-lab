@@ -45,6 +45,34 @@ public class NetUtils {
     }
 
     /**
+     * 获取本机mac地址
+     * @return
+     * @throws SocketException
+     * @throws UnknownHostException
+     */
+    private static String getLocalMac() throws SocketException, UnknownHostException {
+        //本机 host
+        InetAddress ia = InetAddress.getLocalHost();
+        //获取网卡，获取地址
+        byte[] mac = NetworkInterface.getByInetAddress(ia).getHardwareAddress();
+        StringBuffer sb = new StringBuffer("");
+        for(int i=0; i<mac.length; i++) {
+            if(i!=0) {
+                sb.append("-");
+            }
+            //字节转换为整数
+            int temp = mac[i]&0xff;
+            String str = Integer.toHexString(temp);
+            if(str.length()==1) {
+                sb.append("0"+str);
+            }else {
+                sb.append(str);
+            }
+        }
+        return sb.toString().toUpperCase();
+    }
+
+    /**
      * 验证 ip 合法性
      * @param ip
      * @return
@@ -72,30 +100,24 @@ public class NetUtils {
     }
 
     /**
-     * 获取本机mac地址
+     * 判断 ipv4 是否在范围内
+     *      通过将 ip 转为 long,然后通过大小判断
+     * @param ip        待判断 ip
+     * @param startIP   开始 ip
+     * @param endIP     结束 ip
      * @return
-     * @throws SocketException
-     * @throws UnknownHostException
      */
-    private static String getLocalMac() throws SocketException, UnknownHostException {
-        //本机 host
-        InetAddress ia = InetAddress.getLocalHost();
-        //获取网卡，获取地址
-        byte[] mac = NetworkInterface.getByInetAddress(ia).getHardwareAddress();
-        StringBuffer sb = new StringBuffer("");
-        for(int i=0; i<mac.length; i++) {
-            if(i!=0) {
-                sb.append("-");
-            }
-            //字节转换为整数
-            int temp = mac[i]&0xff;
-            String str = Integer.toHexString(temp);
-            if(str.length()==1) {
-                sb.append("0"+str);
-            }else {
-                sb.append(str);
-            }
-        }
-        return sb.toString().toUpperCase();
+    public static boolean isIpInRange(String ip,String startIP,String endIP){
+        return (getIp2long(startIP)<=getIp2long(ip)) && (getIp2long(ip)<=getIp2long(endIP));
+    }
+
+    static long getIp2long(String ip) {
+        ip = ip.trim();
+        String[] ips = ip.split("\\.");
+        long ip1 = Integer.parseInt(ips[0]);
+        long ip2 = Integer.parseInt(ips[1]);
+        long ip3 = Integer.parseInt(ips[2]);
+        long ip4 = Integer.parseInt(ips[3]);
+        return ip1 * 256 * 256 * 256 + ip2 * 256 * 256 + ip3 * 256 + ip4;
     }
 }

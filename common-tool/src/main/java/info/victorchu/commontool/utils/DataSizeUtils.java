@@ -1,7 +1,6 @@
 package info.victorchu.commontool.utils;
 
 /**
- * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
  * @Description:
  * @Date:2022/12/5 23:26
  * @Author:victorchutian

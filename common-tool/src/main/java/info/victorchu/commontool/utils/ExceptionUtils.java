@@ -19,7 +19,6 @@ import java.util.stream.Stream;
  * see org.apache.commons.lang3.exception.ExceptionUtils
  * </p>
  *
- * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
  * @Description:
  * @Date:2022/12/1 18:22
  * @Author:victorchutian

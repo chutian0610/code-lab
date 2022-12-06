@@ -1,7 +1,6 @@
 package info.victorchu.commontool.except;
 
 /**
- * @Copyright:www.xiaojukeji.com Inc. All rights reserved.
  * @Description:
  * @Date:2022/12/2 10:42
  * @Author:victorchutian
