@@ -10,7 +10,12 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>info.victorchu.calcite</groupId>
-  <artifactId>quickstart</artifactId>
+  <artifactId>calcite-util</artifactId>
+
+  <properties>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -37,10 +42,6 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>info.victorchu.calcite</groupId>
-      <artifactId>calcite-util</artifactId>
     </dependency>
   </dependencies>
 
