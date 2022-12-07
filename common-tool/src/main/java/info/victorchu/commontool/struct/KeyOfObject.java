@@ -1,7 +1,8 @@
 package info.victorchu.commontool.struct;
 
 /**
- * 从对象中抽取Key。重写了equals方法和hashCode方法
+ * 将对象部分属性提取为key。
+ * 从对象中抽取Key。重写了equals方法和hashCode方法.
  * @Description:
  * @Date:2022/12/6 16:30
  * @Author:victorchutian

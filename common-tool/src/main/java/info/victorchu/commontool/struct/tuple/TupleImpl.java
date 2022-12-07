@@ -3,6 +3,7 @@ package info.victorchu.commontool.struct.tuple;
 import java.util.Arrays;
 
 /**
+ * 元组的实现
  * @author victorchu
  * @date 2022/8/10 23:25
  */
@@ -21,22 +22,42 @@ public class TupleImpl implements Tuple {
         }
     }
 
+    /**
+     *  {@inheritDoc}
+     * @return
+     */
     @Override
     public TupleType getType() {
         return type;
     }
 
+    /**
+     * {@inheritDoc}
+     * @return
+     */
     @Override
     public int size() {
         return values.length;
     }
 
+    /**
+     * {@inheritDoc}
+     * @param i 元素索引
+     * @param <T>
+     * @return
+     */
     @SuppressWarnings("unchecked")
     @Override
     public <T> T getNthValue(int i) {
         return (T) values[i];
     }
 
+    /**
+     * 重写equals方法.
+     * 对Tuple中的每个元素判断是否equals
+     * @param object
+     * @return
+     */
     @Override
     public boolean equals(Object object) {
         if (object == null)  {
@@ -67,6 +88,10 @@ public class TupleImpl implements Tuple {
         return true;
     }
 
+    /**
+     * 重写 hashCode 方法.
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 17;
@@ -78,6 +103,10 @@ public class TupleImpl implements Tuple {
         return hash;
     }
 
+    /**
+     * 重写 toString 方法.
+     * @return
+     */
     @Override
     public String toString() {
         return Arrays.toString(values);
