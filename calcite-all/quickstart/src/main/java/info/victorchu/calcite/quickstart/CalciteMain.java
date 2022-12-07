@@ -15,8 +15,8 @@ import java.sql.Statement;
 import java.util.Properties;
 
 /**
- * info.victorchu.calcite quickstart.
- * <a href="https://calcite.apache.org/docs/index.html"> info.victorchu.calcite background 中的例子 </a>
+ * calcite quickstart.
+ * <a href="https://calcite.apache.org/docs/index.html"> calcite background 中的例子 </a>
  * @date 2021/12/20 3:54 下午
  * @author victorchu
  */

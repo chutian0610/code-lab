@@ -5,7 +5,7 @@ import java.util.Objects;
 
 /**
  * 公司部门
- * 代码参考 apache info.victorchu.calcite [org.apache.info.victorchu.calcite.test.schemata.hr.Department].
+ * 代码参考 apache calcite [org.apache.calcite.test.schemata.hr.Department].
  * @date 2021/12/20 3:49 下午
  * @author victorchu
  */
