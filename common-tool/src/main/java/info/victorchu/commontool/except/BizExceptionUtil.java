@@ -5,6 +5,8 @@ import java.util.Optional;
 import static info.victorchu.commontool.utils.ExceptionUtils.getThrowables;
 
 /**
+ * BizExceptionUtil.
+ * enhance info.victorchu.commontool.utils.ExceptionUtils
  * @Description:
  * @Date:2022/12/2 10:42
  * @Author:victorchutian
