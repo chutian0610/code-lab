@@ -1,8 +1,6 @@
 package info.victorchu.compiler.simpleregex;
 
-import info.victorchu.compiler.simpleregex.ast.RegexNode;
-import info.victorchu.compiler.simpleregex.ast.RegexParser;
-import info.victorchu.compiler.simpleregex.util.RegexNodePrintVisitor;
+import info.victorchu.compiler.util.RegexNodePrintVisitor;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

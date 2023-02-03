@@ -1,4 +1,4 @@
-package info.victorchu.compiler.simpleregex.automata;
+package info.victorchu.compiler.automata;
 
 /**
  * 代表 自动机的状态.

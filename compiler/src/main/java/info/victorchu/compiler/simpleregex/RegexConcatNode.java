@@ -1,4 +1,4 @@
-package info.victorchu.compiler.simpleregex.ast;
+package info.victorchu.compiler.simpleregex;
 
 /**
  * 连接节点.
