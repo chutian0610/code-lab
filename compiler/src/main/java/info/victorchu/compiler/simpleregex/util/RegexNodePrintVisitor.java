@@ -1,10 +1,5 @@
-package info.victorchu.compiler.util;
+package info.victorchu.compiler.simpleregex.util;
 
-import info.victorchu.compiler.simpleregex.RegexCharNode;
-import info.victorchu.compiler.simpleregex.RegexConcatNode;
-import info.victorchu.compiler.simpleregex.RegexNodeVisitor;
-import info.victorchu.compiler.simpleregex.RegexOrNode;
-import info.victorchu.compiler.simpleregex.RegexRepeatNode;
 import info.victorchu.compiler.simpleregex.ast.*;
 
 /**

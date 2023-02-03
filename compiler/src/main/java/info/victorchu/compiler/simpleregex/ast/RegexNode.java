@@ -1,4 +1,4 @@
-package info.victorchu.compiler.simpleregex;
+package info.victorchu.compiler.simpleregex.ast;
 
 /**
  * Regex AST Node 的抽象父类

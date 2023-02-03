@@ -1,4 +1,4 @@
-package info.victorchu.compiler.automata;
+package info.victorchu.compiler.simpleregex.automata;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package info.victorchu.compiler.simpleregex;
+package info.victorchu.compiler.simpleregex.ast;
 
 /**
  * 可重复节点.
