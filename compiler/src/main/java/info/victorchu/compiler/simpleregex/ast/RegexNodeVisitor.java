@@ -5,16 +5,18 @@ package info.victorchu.compiler.simpleregex.ast;
  * @date 2022/2/11 5:17 下午
  * @author victorchutian
  */
-public interface RegexNodeVisitor<T> {
+public interface RegexNodeVisitor<T,C> {
 
     // --------------- 基于 RegexNode 具体类型分发 ------------------------
 
-    T visit(RegexCharNode node);
-    T visit(RegexConcatNode node);
-    T visit(RegexOrNode node);
-    T visit(RegexRepeatNode node);
+    T visitCharNode(RegexCharNode node, C context);
+    T visitConcatNode(RegexConcatNode node,C context);
+    T visitOrNode(RegexOrNode node,C context);
+    T visitRepeatNode(RegexRepeatNode node,C context);
 
-    default T  visit(RegexNode node){
-        return node.accept(this);
+    // 泛型入口
+    default T process(RegexNode node,C context){
+        return node.accept(this,context);
     }
+
 }

@@ -31,10 +31,9 @@ public class RegexOrNode extends RegexNode{
         super(NodeType.REGEX_OR);
     }
     @Override
-    public <T> T accept(RegexNodeVisitor<T> visitor){
-        return visitor.visit(this);
+    public <T,C> T accept(RegexNodeVisitor<T,C> visitor,C context){
+        return visitor.visitOrNode(this,context);
     }
-
 
     /**
      * builder for  RegexOrNode

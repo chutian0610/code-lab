@@ -48,6 +48,6 @@ public abstract class RegexNode {
      * @param visitor 访问者
      * @return 返回 T
      */
-    public abstract <T> T accept(RegexNodeVisitor<T> visitor);
+    public abstract <T,C> T accept(RegexNodeVisitor<T,C> visitor,C context);
 }
 

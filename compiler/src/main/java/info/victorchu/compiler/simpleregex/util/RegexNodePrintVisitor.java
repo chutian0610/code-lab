@@ -6,14 +6,14 @@ import info.victorchu.compiler.simpleregex.ast.*;
  * print regex node tree in terminal
  * @author victorchu
  */
-public class RegexNodePrintVisitor implements RegexNodeVisitor<Object> {
+public class RegexNodePrintVisitor implements RegexNodeVisitor<Object,Void> {
     private Integer depth =0;
     private String tab = "    ";
     private String prefix0 = "+---";
     StringBuilder stringBuilder = new StringBuilder();
 
     @Override
-    public Object visit(RegexCharNode node) {
+    public Object visitCharNode(RegexCharNode node,Void context) {
         for (int i=0;i<depth;i++) {
             stringBuilder.append(tab);
         }
@@ -22,44 +22,45 @@ public class RegexNodePrintVisitor implements RegexNodeVisitor<Object> {
     }
 
     @Override
-    public Object visit(RegexConcatNode node) {
+    public Object visitConcatNode(RegexConcatNode node,Void context) {
         for (int i=0;i<depth;i++) {
             stringBuilder.append(tab);
         }
         stringBuilder.append(prefix0+"Node[Concat]").append("\n");
         depth++;
-        visit(node.getLeft());
-        visit(node.getRight());
+        process(node.getLeft(),context);
+        process(node.getRight(),context);
         depth--;
         return null;
     }
 
     @Override
-    public Object visit(RegexOrNode node) {
+    public Object visitOrNode(RegexOrNode node,Void context) {
         for (int i=0;i<depth;i++) {
             stringBuilder.append(tab);
         }
         stringBuilder.append(prefix0+"Node[Or]").append("\n");
         depth++;
-        visit(node.getLeft());
-        visit(node.getRight());
+        process(node.getLeft(),context);
+        process(node.getRight(),context);
         depth--;
         return null;
     }
 
     @Override
-    public Object visit(RegexRepeatNode node) {
+    public Object visitRepeatNode(RegexRepeatNode node,Void context) {
         for (int i=0;i<depth;i++) {
             stringBuilder.append(tab);
         }
         stringBuilder.append(prefix0+"Node[Repeat]").append("\n");
         depth++;
-        visit(node.getInnerNode());
+        process(node.getInnerNode(),context);
         depth--;
         return null;
     }
 
-    public String build(){
+    public String build(RegexNode node){
+        this.process(node,null);
         return stringBuilder.toString();
     }
 }

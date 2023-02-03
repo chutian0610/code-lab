@@ -12,7 +12,6 @@ class RegexParserTest {
     void parse() throws IOException {
         RegexNode regexNode= RegexParser.parse("ab*c|bc");
         RegexNodePrintVisitor visitor = new RegexNodePrintVisitor();
-        regexNode.accept(visitor);
-        System.out.println(visitor.build());
+        System.out.println(visitor.build(regexNode));
     }
 }
