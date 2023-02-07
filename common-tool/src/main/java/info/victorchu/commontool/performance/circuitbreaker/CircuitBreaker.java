@@ -1,6 +1,8 @@
 package info.victorchu.commontool.performance.circuitbreaker;
 
-/**
+/** 熔断器(和微服务的熔断器不同).
+ *  isTripped -> true, 触发熔断
+ *  isTripped -> false, 不触发熔断
  * @author victorchu
  * @date 2022/10/11 20:23
  */
