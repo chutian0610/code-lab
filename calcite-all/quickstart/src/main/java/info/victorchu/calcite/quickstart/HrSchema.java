@@ -27,7 +27,7 @@ public class HrSchema {
     public final Department[] depts = {
             new Department(10, "Sales", Arrays.asList(emps[0], emps[2]),
                     new Location(-122, 38)),
-            new Department(30, "Marketing", ImmutableList.of(), new Location(0, 52)),
+            new Department(30, "Marketing", ImmutableList.<Employee>of(), new Location(0, 52)),
             new Department(40, "HR", Collections.singletonList(emps[1]), null),
     };
 

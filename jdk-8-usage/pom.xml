@@ -12,7 +12,6 @@
   <groupId>info.victorchu.demo.jdk8</groupId>
   <name>jdk-usage</name>
   <description>JDK相关代码</description>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -23,7 +22,6 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.3.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

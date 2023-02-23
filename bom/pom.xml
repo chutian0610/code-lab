@@ -10,12 +10,141 @@
   <packaging>pom</packaging>
 
   <name>bom</name>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <JAVA_11_HOME>/Users/didi/.sdkman/candidates/java/11.0.2-open</JAVA_11_HOME>
-    <JAVA_8_HOME>/Users/didi/.sdkman/candidates/java/ora-1.8.0_311</JAVA_8_HOME>
+
+    <jackson.version>2.12.4</jackson.version>
+    <junit.version>5.3.2</junit.version>
+    <lombok.version>1.18.22</lombok.version>
+    <jsr305.version>3.0.2</jsr305.version>
+    <slf4j.version>1.7.30</slf4j.version>
+    <logback.version>1.2.3</logback.version>
+    <gson.version>2.9.0</gson.version>
+    <antlr4.version>4.9.3</antlr4.version>
+    <commons-io.version>2.11.0</commons-io.version>
+    <guava.version>29.0-jre</guava.version>
+    <commons-collections4.version>4.4</commons-collections4.version>
+    <spring.version>5.2.4.RELEASE</spring.version>
+    <calcite.version>1.28.0</calcite.version>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <!-- Slf4j 依赖 -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <!-- logback 依赖 -->
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>${jsr305.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-parameter-names</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+
+      <!--	Java 8 Date/time	-->
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jsr310</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+
+      <!--	Java 8 Datatypes	-->
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jdk8</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>${gson.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.antlr</groupId>
+        <artifactId>antlr4</artifactId>
+        <version>${antlr4.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${commons-io.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>${commons-collections4.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${guava.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.calcite</groupId>
+        <artifactId>calcite-core</artifactId>
+        <version>${calcite.version}</version>
+      </dependency>
+
+
+
+
+
+
+      <dependency>
+        <groupId>info.victorchu.mermaidjs</groupId>
+        <artifactId>mermaidjs-java</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>info.victorchu.calcite</groupId>
+        <artifactId>calcite-util</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -38,7 +167,31 @@
 <!--            <jvm>${JAVA_8_HOME}/bin/java</jvm>-->
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>properties-maven-plugin</artifactId>
+          <version>1.1.0</version>
+        </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>initialize</phase>
+            <goals>
+              <goal>read-project-properties</goal>
+            </goals>
+            <configuration>
+              <files>
+                <file>${user.dir}/etc/jdk.properties</file>
+              </files>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 </project>

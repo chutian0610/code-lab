@@ -12,14 +12,12 @@ java 8 & java 11.
 
 由于使用了jdk11,maven版本是3.6.3(需要大于3.5.0)。
 
-jdk versions path managed in module bom.
+jdk versions path managed in etc/jdk.properties.
 
-```xml
-<properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <JAVA_11_HOME>/Users/xxx/.sdkman/candidates/java/11.0.2-open</JAVA_11_HOME>
-    <JAVA_8_HOME>/Users/xxx/.sdkman/candidates/java/ora-1.8.0_311</JAVA_8_HOME>
-  </properties>
+```properties
+JAVA_8_HOME=/Users/didi/.sdkman/candidates/java/8.0.332-zulu
+JAVA_11_HOME=/Users/didi/.sdkman/candidates/java/11.0.18-zulu
+JAVA_17_HOME=/Users/didi/.sdkman/candidates/java/17.0.6-zulu
 ```
 
 编译和test插件配置
