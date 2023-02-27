@@ -127,12 +127,13 @@
         <artifactId>calcite-core</artifactId>
         <version>${calcite.version}</version>
       </dependency>
-
-
-
-
-
-
+      <!-- https://mvnrepository.com/artifact/com.google.inject/guice -->
+      <dependency>
+        <groupId>com.google.inject</groupId>
+        <artifactId>guice</artifactId>
+        <version>5.1.0</version>
+      </dependency>
+      <!-- mine -->
       <dependency>
         <groupId>info.victorchu.mermaidjs</groupId>
         <artifactId>mermaidjs-java</artifactId>
