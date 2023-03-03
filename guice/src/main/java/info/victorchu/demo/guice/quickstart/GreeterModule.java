@@ -5,6 +5,9 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
 
+/**
+ * @author victorchu
+ */
 public class GreeterModule extends AbstractModule {
 
     @Provides

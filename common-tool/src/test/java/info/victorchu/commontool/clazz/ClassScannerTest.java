@@ -14,7 +14,7 @@ class ClassScannerTest {
 
     @Test
     public  void testScan4Package() throws IOException {
-        List<String> list=  ClassScanner.scanForPackage("info.victorchu.commontool.utils.clazz",true);
+        List<String> list=  ClassScanner.scanForPackage("info.victorchu.commontool.utils",true);
         Assertions.assertTrue(list.size()>0);
 
     }
