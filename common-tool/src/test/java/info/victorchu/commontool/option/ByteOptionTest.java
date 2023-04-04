@@ -3,8 +3,6 @@ package info.victorchu.commontool.option;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ByteOptionTest {
 
     @Test
@@ -16,9 +14,9 @@ class ByteOptionTest {
 
         byteOption.disableOption(ByteOption.Option.OPTION_2);
 
-        Assertions.assertTrue(byteOption.enable(ByteOption.Option.OPTION_1));
-        Assertions.assertTrue(byteOption.enable(ByteOption.Option.OPTION_3));
-        Assertions.assertFalse(byteOption.enable(ByteOption.Option.OPTION_2));
+        Assertions.assertTrue(byteOption.isEnable(ByteOption.Option.OPTION_1));
+        Assertions.assertTrue(byteOption.isEnable(ByteOption.Option.OPTION_3));
+        Assertions.assertFalse(byteOption.isEnable(ByteOption.Option.OPTION_2));
 
     }
 }

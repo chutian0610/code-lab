@@ -44,7 +44,7 @@ public class ByteOption {
         op = (byte) (op & (option.value^ALL));
     }
 
-    public boolean enable(Option option){
+    public boolean isEnable(Option option){
         return option.value == (op & option.value);
     }
 
