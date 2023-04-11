@@ -18,11 +18,11 @@ public class KeyOfObject {
         return fieldMap;
     }
 
-    public void addField(String key,Object field) {
-        if(fieldMap.containsKey(key)){
+    public void addField(String fieldName,Object field) {
+        if(fieldMap.containsKey(fieldName)){
             throw new IllegalArgumentException();
         }
-        this.fieldMap.put(key,fieldMap);
+        this.fieldMap.put(fieldName,field);
     }
 
     @Override
