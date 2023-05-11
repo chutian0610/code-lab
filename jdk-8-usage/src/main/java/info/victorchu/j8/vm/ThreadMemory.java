@@ -31,7 +31,10 @@ public class ThreadMemory {
                     byte[] bytes = new byte[size * 500];
                     Arrays.fill(bytes, (byte) 42);
                     actual += bytes.length;
+                    bytes = null;
                 }
+                // add jvm option -XX:+PrintGCDetails
+                System.gc();
                 long end = threadMXBean.getThreadAllocatedBytes(threadId);
                 System.out.printf("thread %s end: allocated=%s delta=%s actual=%s %n", threadId, end, end - start, actual);
             }).start();
