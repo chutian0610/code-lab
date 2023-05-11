@@ -7,6 +7,7 @@ import java.lang.management.ManagementFactory;
 import java.util.Arrays;
 
 /**
+ * 监控线程的内存分配
  * @author victorchu
  * @date 2023/5/10 20:42
  */
