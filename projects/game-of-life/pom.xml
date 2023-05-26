@@ -45,6 +45,10 @@
           <jvm>${JAVA_8_HOME}/bin/java</jvm>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
+      </plugin>
     </plugins>
   </build>
 </project>

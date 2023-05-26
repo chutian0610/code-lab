@@ -3,10 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <groupId>info.victorchu</groupId>
-    <artifactId>bom</artifactId>
+    <groupId>info.victorchu.calcite</groupId>
+    <artifactId>calcite-bom</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <relativePath>../../bom/pom.xml</relativePath>
+    <relativePath>../calcite-bom/pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>info.victorchu.calcite</groupId>
@@ -61,6 +61,10 @@
         <configuration>
           <jvm>${JAVA_8_HOME}/bin/java</jvm>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

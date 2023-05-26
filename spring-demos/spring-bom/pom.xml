@@ -3,12 +3,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>info.victorchu</groupId>
-        <artifactId>bom</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath>../../bom/pom.xml</relativePath>
-    </parent>
+
     <groupId>info.victorchu.spring.demos</groupId>
     <artifactId>bom</artifactId>
     <packaging>pom</packaging>
@@ -27,9 +22,6 @@
 
     <dependencyManagement>
         <dependencies>
-
-
-
             <!-- boms must on the bottom-->
             <!--https://www.baeldung.com/spring-boot-dependency-management-custom-parent -->
             <dependency>
@@ -45,6 +37,47 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>2.6.7</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                    <configuration>
+                        <verbose>true</verbose>
+                        <fork>true</fork>
+                        <!--          <executable>${JAVA_8_HOME}/bin/javac</executable>-->
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M5</version>
+                    <configuration>
+                        <!--            <jvm>${JAVA_8_HOME}/bin/java</jvm>-->
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>properties-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>read-project-properties</goal>
+                            </goals>
+                            <configuration>
+                                <files>
+                                    <file>${user.dir}/etc/jdk.properties</file>
+                                </files>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
                 <plugin>
                     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
                     <groupId>org.springframework.boot</groupId>

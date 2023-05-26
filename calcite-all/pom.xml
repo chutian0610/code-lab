@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>calcite-bom</module>
         <module>quickstart</module>
         <module>calcite-util</module>
     </modules>
