@@ -1,4 +1,4 @@
-package info.victorchu.games.gameoflife;
+package info.victorchu.gameoflife;
 
 public class GameControlTask implements Runnable {
 

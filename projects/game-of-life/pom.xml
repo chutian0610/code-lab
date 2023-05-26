@@ -7,10 +7,10 @@
     <groupId>info.victorchu</groupId>
     <artifactId>bom</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <relativePath>../bom/pom.xml</relativePath>
+    <relativePath>../../bom/pom.xml</relativePath>
   </parent>
-  <artifactId>game-all</artifactId>
-  <groupId>info.victorchu.game</groupId>
+  <artifactId>gameoflife</artifactId>
+  <groupId>info.victorchu.gameoflife</groupId>
   <name>game-all</name>
 
   <properties>

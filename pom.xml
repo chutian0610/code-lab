@@ -13,11 +13,14 @@
         <module>calcite-all</module>
         <module>common-tool</module>
         <module>compiler</module>
-        <module>games</module>
-        <module>jdk-usage</module>
-        <module>projects/mermaidjs-java</module>
         <module>java-modules</module>
         <module>guice</module>
+        <module>jdk-usage</module>
+
+
+        <module>projects/game-of-life</module>
+        <module>projects/mermaidjs-java</module>
+
     </modules>
 
 
