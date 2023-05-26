@@ -6,7 +6,9 @@
 
 ### jdk version
 
-java 8 & java 11.
+- java 8
+- java 11
+- java 17
 
 ### maven 版本
 

@@ -103,7 +103,6 @@ java9 给java平台带来了模块系统(JPMS)。在JPMS的介绍文档中，都
 
 ```shell
 # 执行前先构建 mvn clean package
-$ cd javamodulesdemo
 $ java --module-path entitymodule/target/entitymodule-1.0-SNAPSHOT.jar:daomodule/target/daomodule-1.0-SNAPSHOT.jar:userdaomodule/target/userdaomodule-1.0-SNAPSHOT.jar:appmodule/target/appmodule-1.0-SNAPSHOT.jar  --module info.victorchu.demo.javamodule.appmodule/info.victorchu.demo.javamodule.appmodule.Application
 ```
 

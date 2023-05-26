@@ -6,10 +6,10 @@
         <groupId>info.victorchu</groupId>
         <artifactId>bom</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../bom/pom.xml</relativePath>
+        <relativePath>../../bom/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>info.victorchu.demo.jdk11</groupId>
+    <groupId>info.victorchu.jdk.jdk11</groupId>
     <artifactId>jdk-11-usage</artifactId>
 
     <name>jdk-11-usage</name>

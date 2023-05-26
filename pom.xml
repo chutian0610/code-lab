@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <groupId>info.victorchu</groupId>
-    <artifactId>root</artifactId>
+    <artifactId>codelab</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
@@ -14,13 +14,10 @@
         <module>common-tool</module>
         <module>compiler</module>
         <module>games</module>
-        <module>jdk-8-usage</module>
-        <module>mermaidjs-java</module>
-        <module>mybatis</module>
-
-        <module>jdk-11-usage</module>
-
-        <module>javamoduleswithmavendemo</module>
+        <module>jdk-usage</module>
+        <module>projects/mermaidjs-java</module>
+        <module>java-modules</module>
+        <module>guice</module>
     </modules>
 
 
