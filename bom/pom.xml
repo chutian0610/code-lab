@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -26,6 +27,7 @@
     <commons-collections4.version>4.4</commons-collections4.version>
     <spring.version>5.2.4.RELEASE</spring.version>
     <calcite.version>1.28.0</calcite.version>
+    <cglib.version>3.3.0</cglib.version>
   </properties>
 
   <dependencyManagement>
@@ -133,6 +135,13 @@
         <artifactId>guice</artifactId>
         <version>5.1.0</version>
       </dependency>
+      <!-- https://mvnrepository.com/artifact/cglib/cglib -->
+      <dependency>
+        <groupId>cglib</groupId>
+        <artifactId>cglib</artifactId>
+        <version>${cglib.version}</version>
+      </dependency>
+
       <!-- mine -->
       <dependency>
         <groupId>info.victorchu.mermaidjs</groupId>
@@ -148,24 +157,25 @@
   </dependencyManagement>
 
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to
+      parent pom) -->
       <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
-        <configuration>
-          <verbose>true</verbose>
-          <fork>true</fork>
-<!--          <executable>${JAVA_8_HOME}/bin/javac</executable>-->
-        </configuration>
-      </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.0</version>
+          <configuration>
+            <verbose>true</verbose>
+            <fork>true</fork>
+            <!--          <executable>${JAVA_8_HOME}/bin/javac</executable>-->
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.0.0-M5</version>
           <configuration>
-<!--            <jvm>${JAVA_8_HOME}/bin/java</jvm>-->
+            <!--            <jvm>${JAVA_8_HOME}/bin/java</jvm>-->
           </configuration>
         </plugin>
         <plugin>

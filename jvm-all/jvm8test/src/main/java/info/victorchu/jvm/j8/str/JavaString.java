@@ -1,4 +1,4 @@
-package info.victorchu.jvm.j8;
+package info.victorchu.jvm.j8.str;
 
 /**
  * <pre>
@@ -17,9 +17,9 @@ public class JavaString {
         String str4 = baseFinalStr + "01";
         String str5 = new String("baseStr01").intern();
 
-        System.out.println(str1 == str2);// #3
-        System.out.println(str1 == str3);// #4
-        System.out.println(str1 == str4);// #5
-        System.out.println(str1 == str5);// #6
+        System.out.println(str1 == str2);
+        System.out.println(str1 == str3);
+        System.out.println(str1 == str4);
+        System.out.println(str1 == str5);
     }
 }
