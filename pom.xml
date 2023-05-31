@@ -16,6 +16,7 @@
         <module>java-modules</module>
         <module>guice</module>
         <module>jdk-usage</module>
+        <module>jvm-all</module>
         <module>projects/game-of-life</module>
         <module>projects/mermaidjs-java</module>
         <module>spring-demos</module>
