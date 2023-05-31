@@ -7,8 +7,6 @@ import org.apache.calcite.sql.SqlNode;
 import org.apache.calcite.sql.parser.SqlParser;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @author victorchu
  * @date 2022/7/9 9:20 下午
@@ -27,6 +25,8 @@ class CalciteQuickTest {
         SqlParser parser = SqlParser.create(sql, config);
         //构建parse tree
         SqlNode node = parser.parseQuery();
+        log.info(node.toString());
+
         SqlNodeTreePrintVisitor visitor = new SqlNodeTreePrintVisitor();
         node.accept(visitor);
     }

@@ -3,12 +3,10 @@ package info.victorchu.webflux.quickstart.r2dbc;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.query.ReactiveQueryByExampleExecutor;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.data.repository.reactive.ReactiveSortingRepository;
 import reactor.core.publisher.Flux;
 
 public interface CustomerRepository extends
-        ReactiveCrudRepository<Customer, Long>, // 基本CRUD
         ReactiveQueryByExampleExecutor<Customer> , // 查询 Example
         ReactiveSortingRepository<Customer,Long>  // 分页
 {

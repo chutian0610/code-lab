@@ -4,9 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.calcite.sql.*;
 import org.apache.calcite.sql.util.SqlBasicVisitor;
 
-import java.util.List;
-import java.util.Optional;
-
 /**
  * @author victorchu
  * @date 2022/7/14 11:32

@@ -79,9 +79,9 @@ public class ClassScanner {
         String pathInfo = path.substring(0,index);
         pathInfo = pathInfo.substring(pathInfo.indexOf(File.separator));
         String packgeInfo = path.substring(index+2);
-
+        JarFile jar = null;
         try {
-            JarFile jar = new JarFile(pathInfo);
+            jar = new JarFile(pathInfo);
             List<JarEntry> list = Collections.list(jar.entries());
             for (JarEntry jarEntry:list){
                 String name = jarEntry.getName();
@@ -108,6 +108,14 @@ public class ClassScanner {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }finally{
+            if(jar !=null){
+                try {
+                    jar.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return classNames;
     }
