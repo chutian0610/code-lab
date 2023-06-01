@@ -1,8 +1,11 @@
-package info.victorchu.jvm.j8.str;
+package info.victorchu.jvm.j8.mem;
 
 /**
+ * 查看字节码中
+ * 1. JVM对String的存放位置，StringTable和堆中
+ * 2. JVM中”+“的处理
  * <pre>
- * cd jvm-all/jvm8test/target/classes/info/victorchu/jvm/j8
+ * cd jvm-all/jvm8test/target/classes/info/victorchu/jvm/j8/mem
  * javap -verbose JavaString
  * </pre>
  */

@@ -189,7 +189,7 @@
               </goals>
               <configuration>
                 <files>
-                  <file>${user.dir}/etc/jdk.properties</file>
+                  <file>${user.dir}/jdk.properties</file>
                 </files>
               </configuration>
             </execution>
