@@ -1,6 +1,7 @@
 package info.victorchu.jvm.j8.mem;
 
 public class VMStack {
+    
     private static int increaseByTen(int c){
         return c + 10;
     }
