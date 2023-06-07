@@ -6,10 +6,44 @@
     "configurations": [
         {
             "type": "java",
+            "name": "JavaStringAdd02",
+            "request": "launch",
+            "mainClass": "info.victorchu.jvm.j8.mem.JavaStringAdd02",
+            "projectName": "jvm8test"
+        },
+        {
+            "type": "java",
+            "name": "JavaStringIntern01",
+            "request": "launch",
+            "mainClass": "info.victorchu.jvm.j8.mem.JavaStringIntern01",
+            "projectName": "jvm8test"
+        },
+        {
+            "type": "java",
+            "name": "JavaString",
+            "request": "launch",
+            "mainClass": "info.victorchu.jvm.j8.mem.JavaString",
+            "projectName": "jvm8test"
+        },
+        {
+            "type": "java",
+            "name": "JavaStringAdd",
+            "request": "launch",
+            "mainClass": "info.victorchu.jvm.j8.mem.JavaStringAdd",
+            "projectName": "jvm8test"
+        },
+        {
+            "type": "java",
+            "name": "JavaStringFinal",
+            "request": "launch",
+            "mainClass": "info.victorchu.jvm.j8.mem.JavaStringFinal",
+            "projectName": "jvm8test"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
-            // "vmArgs": "-Darg1=60000 -Darg2=120000"
         },
         {
             "type": "java",
@@ -18,9 +52,6 @@
             "mainClass": "info.victorchu.jvm.j8.oom.JavaVMStackOOM",
             "projectName": "jvm8test",
             "vmArgs": "-Xss20M"
-
-        },
-    
-       
+        }
     ]
 }
