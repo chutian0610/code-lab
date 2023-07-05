@@ -85,3 +85,4 @@ jdk.properties
 /etc/jdk.properties
 
 .vscode
+.vscode/
