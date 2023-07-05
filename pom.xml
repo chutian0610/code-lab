@@ -20,6 +20,7 @@
         <module>projects/game-of-life</module>
         <module>projects/mermaidjs-java</module>
         <module>spring-demos</module>
+        <module>jvm-tools</module>
 
     </modules>
 
