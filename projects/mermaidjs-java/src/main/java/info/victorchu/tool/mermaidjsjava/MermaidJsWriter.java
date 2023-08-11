@@ -22,11 +22,13 @@ public class MermaidJsWriter {
         StringBuilder sb = new StringBuilder();
         sb.append("<html>").append(new_line)
                 .append("  <body>").append(new_line)
-                .append("    <script src=\"").append(mermaidJsConfig.getCdn()).append("\"></script>").append(new_line)
-                .append("    <script> mermaid.initialize({ startOnLoad: true }); </script>").append(new_line);
-        sb.append("    <div class=\"mermaid\">").append(new_line);
+                .append("    <script type=\"module\">").append(new_line)
+                .append("       import mermaid from '").append(mermaidJsConfig.getCdn()).append("';").append(new_line)
+                .append("       mermaid.initialize({ startOnLoad: true });").append(new_line)
+                .append("    </script>").append(new_line);
+        sb.append("    <pre class=\"mermaid\">").append(new_line);
         sb.append(graph.drawGraph()).append(new_line);
-        sb.append("    </div>").append(new_line);
+        sb.append("    </pre>").append(new_line);
         sb.append("  </body>").append(new_line);
         sb.append("</html>");
         return sb.toString();
