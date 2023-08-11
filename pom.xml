@@ -8,9 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-
         <module>bom</module>
-        <module>calcite-all</module>
         <module>common-tool</module>
         <module>compiler</module>
         <module>java-modules</module>
@@ -21,9 +19,7 @@
         <module>projects/mermaidjs-java</module>
         <module>spring-demos</module>
         <module>jvm-tools</module>
-
     </modules>
-
 
 
 </project>
