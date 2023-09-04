@@ -2,8 +2,8 @@ package info.victorchu.toy.compiler.simpleregex.util;
 
 /**
  * pair with two unmodified elements
- * @param <L>
- * @param <R>
+ * @param <L> type of left element
+ * @param <R> type of right element
  * @author victorchu
  */
 public class Pair <L,R>{
@@ -11,13 +11,13 @@ public class Pair <L,R>{
         return left;
     }
 
-    private L left;
+    private final L left;
 
     public R getRight() {
         return right;
     }
 
-    private R right;
+    private final R right;
 
     public static <L,R> Pair<L,R> of(L left,R right){
         return new Pair<>(left,right);
