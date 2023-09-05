@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * 元组的实现
  * @author victorchu
- * @date 2022/8/10 23:25
+
  */
 public class TupleImpl implements Tuple {
 

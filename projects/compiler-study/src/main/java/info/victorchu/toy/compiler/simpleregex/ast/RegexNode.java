@@ -2,29 +2,34 @@ package info.victorchu.toy.compiler.simpleregex.ast;
 
 /**
  * Regex AST Node 的抽象父类
- * @date 2022/2/11 5:17 下午
+ *
  * @author victorchutian
  */
-public abstract class RegexNode {
+public abstract class RegexNode
+{
 
     protected NodeType nodeType;
 
-    public RegexNode(NodeType nodeType) {
+    public RegexNode(NodeType nodeType)
+    {
         this.nodeType = nodeType;
     }
 
-    public NodeType getNodeType() {
+    public NodeType getNodeType()
+    {
         return nodeType;
     }
 
-    public void setNodeType(NodeType nodeType) {
+    public void setNodeType(NodeType nodeType)
+    {
         this.nodeType = nodeType;
     }
 
     /**
      * 节点类型
      */
-    public static enum NodeType{
+    public static enum NodeType
+    {
         /**
          * s|t 或
          */
@@ -45,9 +50,10 @@ public abstract class RegexNode {
 
     /**
      * 访问者模式, 子类实现具体的 accept 方法
+     *
      * @param visitor 访问者
      * @return 返回 T
      */
-    public abstract <T,C> T accept(RegexNodeVisitor<T,C> visitor,C context);
+    public abstract <T, C> T accept(RegexNodeVisitor<T, C> visitor, C context);
 }
 

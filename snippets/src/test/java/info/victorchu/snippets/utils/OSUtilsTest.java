@@ -7,7 +7,7 @@ import static info.victorchu.snippets.utils.OSUtils.getOSname;
 
 /**
  * @author victorchu
- * @date 2022/8/5 21:55
+
  */
 class OSUtilsTest {
 

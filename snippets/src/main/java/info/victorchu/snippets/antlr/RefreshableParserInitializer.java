@@ -1,11 +1,11 @@
-package info.victorchu.snippets.antlr;
-
 /**
  * fix antlr memory leak
- * @see <a href="https://github.com/antlr/antlr4/issues/499"> Memory Leak </a>
+ *
  * @author victorchu
- * @date 2022/8/8 11:29
+ * @see <a href="https://github.com/antlr/antlr4/issues/499"> Memory Leak </a>
  */
+package info.victorchu.snippets.antlr;
+
 import lombok.SneakyThrows;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.Parser;
@@ -24,17 +24,21 @@ import java.util.function.BiConsumer;
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Objects.requireNonNull;
 
-public class RefreshableParserInitializer<L extends Lexer,P extends Parser> implements BiConsumer<L , P > {
-    private final AtomicReference<ParserAndLexerATNCaches<L,P>> caches = new AtomicReference<>();
+public class RefreshableParserInitializer<L extends Lexer, P extends Parser>
+        implements BiConsumer<L, P>
+{
+    private final AtomicReference<ParserAndLexerATNCaches<L, P>> caches = new AtomicReference<>();
 
-    public RefreshableParserInitializer() {
+    public RefreshableParserInitializer()
+    {
         Type superClass = this.getClass().getGenericSuperclass();
-        lexer = (Class<?>)((ParameterizedType)superClass).getActualTypeArguments()[0];
-        parser = (Class<?>)((ParameterizedType)superClass).getActualTypeArguments()[1];
+        lexer = (Class<?>) ((ParameterizedType) superClass).getActualTypeArguments()[0];
+        parser = (Class<?>) ((ParameterizedType) superClass).getActualTypeArguments()[1];
         refresh();
     }
 
-    public void refresh() {
+    public void refresh()
+    {
         caches.set(buildATNCache());
     }
 
@@ -42,30 +46,34 @@ public class RefreshableParserInitializer<L extends Lexer,P extends Parser> impl
     private final Class<?> lexer;
     private final Class<?> parser;
 
-    @SneakyThrows({SecurityException.class, NoSuchFieldException.class,IllegalAccessException.class})
-    private static ATN getATNField(Class<?> clazz)  {
+    @SneakyThrows({SecurityException.class, NoSuchFieldException.class, IllegalAccessException.class})
+    private static ATN getATNField(Class<?> clazz)
+    {
         Field field = clazz.getDeclaredField("_ATN");
         field.setAccessible(true);
-        return (ATN)field.get(null);
+        return (ATN) field.get(null);
     }
 
-    private ParserAndLexerATNCaches<L,P> buildATNCache(){
-        ATN lexerATN =getATNField(lexer);
+    private ParserAndLexerATNCaches<L, P> buildATNCache()
+    {
+        ATN lexerATN = getATNField(lexer);
         ATN parserATN = getATNField(parser);
-        return new ParserAndLexerATNCaches(new AntlrATNCacheFields(lexerATN),new AntlrATNCacheFields(parserATN));
+        return new ParserAndLexerATNCaches(new AntlrATNCacheFields(lexerATN), new AntlrATNCacheFields(parserATN));
     }
     // ================= 泛型处理 =====================
 
     @Override
-    public void accept(L l, P p) {
-        ParserAndLexerATNCaches<L,P> cache =caches.get();
+    public void accept(L l, P p)
+    {
+        ParserAndLexerATNCaches<L, P> cache = caches.get();
         cache.lexer.configureLexer(l);
         cache.parser.configureParser(p);
     }
 
-    private static final class ParserAndLexerATNCaches<L extends Lexer,P extends Parser>
+    private static final class ParserAndLexerATNCaches<L extends Lexer, P extends Parser>
     {
-        public ParserAndLexerATNCaches(AntlrATNCacheFields lexer, AntlrATNCacheFields parser) {
+        public ParserAndLexerATNCaches(AntlrATNCacheFields lexer, AntlrATNCacheFields parser)
+        {
             this.lexer = lexer;
             this.parser = parser;
         }
@@ -73,6 +81,7 @@ public class RefreshableParserInitializer<L extends Lexer,P extends Parser> impl
         public final AntlrATNCacheFields lexer;
         public final AntlrATNCacheFields parser;
     }
+
     public static final class AntlrATNCacheFields
     {
         private final ATN atn;

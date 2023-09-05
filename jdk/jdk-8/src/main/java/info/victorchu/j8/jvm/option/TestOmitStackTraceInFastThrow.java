@@ -11,7 +11,7 @@ package info.victorchu.j8.jvm.option;
  *   如果我们配置了-XX:-OmitStackTraceInFastThrow，再次运行，就不会看到Fast Throw优化后抛出的异常，全是包含了详细异常栈的异常信息。
  * </pre>
  * @author victorchu
- * @date 2022/8/15 19:57
+
  */
 public class TestOmitStackTraceInFastThrow {
     public static void main(String[] args) {

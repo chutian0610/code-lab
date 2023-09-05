@@ -4,7 +4,7 @@ package info.victorchu.snippets.performance.circuitbreaker;
  *  isTripped -> true, 触发熔断
  *  isTripped -> false, 不触发熔断
  * @author victorchu
- * @date 2022/10/11 20:23
+
  */
 public interface CircuitBreaker {
     /**

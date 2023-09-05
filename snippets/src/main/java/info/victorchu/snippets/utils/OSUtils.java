@@ -4,7 +4,7 @@ package info.victorchu.snippets.utils;
  * 操作系统工具类
  * @see <a href="http://lopica.sourceforge.net/os.html">os</a>
  * @author victorchu
- * @date 2022/8/5 21:54
+
  */
 public class OSUtils {
     private static String OS = System.getProperty("os.name").toLowerCase();

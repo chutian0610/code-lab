@@ -4,7 +4,7 @@ import java.util.concurrent.Future;
 
 /**
  * @author victorchu
- * @date 2022/8/5 22:24
+
  */
 public interface Task extends Future<Object> {
 

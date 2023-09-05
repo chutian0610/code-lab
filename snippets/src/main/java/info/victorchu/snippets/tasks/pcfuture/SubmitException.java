@@ -3,7 +3,7 @@ package info.victorchu.snippets.tasks.pcfuture;
 /**
  * 表示任务提交异常
  * @author victorchu
- * @date 2022/8/8 14:11
+
  */
 public class SubmitException extends Exception{
     public SubmitException() {

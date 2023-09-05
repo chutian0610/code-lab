@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author victorchu
- * @date 2022/8/10 23:29
+
  */
 class TupleTest {
     public static TupleType tripletTupleType = TupleType.DefaultFactory.create(

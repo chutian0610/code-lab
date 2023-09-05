@@ -2,7 +2,7 @@ package info.victorchu.snippets.struct.tuple;
 
 /**
  * @author victorchu
- * @date 2022/8/10 23:26
+
  */
 public class TupleTypeImpl implements TupleType {
 

@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @author victorchu
- * @date 2022/10/11 20:37
+
  */
 @Data
 public class CircuitBreakerConfig {

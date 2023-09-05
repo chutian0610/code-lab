@@ -4,7 +4,7 @@ package info.victorchu.snippets.handler;
  * 简单的handler.
  * 实现类只需要实现innerProcess方法。
  * @author victorchu
- * @date 2022/9/14 14:39
+
  */
 public abstract class AbstractSimpleHandler implements Handler<HandlerContext,SimpleHandlerChain>{
 

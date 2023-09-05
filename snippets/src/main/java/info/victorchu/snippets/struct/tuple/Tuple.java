@@ -3,7 +3,7 @@ package info.victorchu.snippets.struct.tuple;
 /**
  * 元组接口.
  * @author victorchu
- * @date 2022/8/10 23:24
+
  */
 public interface Tuple {
 

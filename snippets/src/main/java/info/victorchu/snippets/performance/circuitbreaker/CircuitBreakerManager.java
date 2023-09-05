@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * @author victorchu
- * @date 2022/10/11 20:38
+
  */
 public class CircuitBreakerManager {
     private CircuitBreakerConfig circuitBreakerConfig;

@@ -7,7 +7,7 @@ import java.lang.management.MemoryMXBean;
 
 /**
  * @author victorchu
- * @date 2022/10/11 20:36
+
  */
 @Slf4j
 public class MemoryCircuitBreaker implements CircuitBreaker{
