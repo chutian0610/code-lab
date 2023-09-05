@@ -10,10 +10,10 @@ import java.util.Optional;
  *
  * @author victorchu
  */
-public class RegexNodePrintVisitor
-        implements RegexNodeVisitor<Object, Pair<RegexNodePrintVisitor.PrintStackContext, Boolean>>
+public class RegexExpressionTreePrinter
+        implements RegexExpressionVisitor<Object, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean>>
 {
-    public String build(RegexNode node)
+    public String build(RegexExpression node)
     {
         PrintStackContext context = new PrintStackContext();
         this.process(node, Pair.of(context, false));
@@ -21,7 +21,7 @@ public class RegexNodePrintVisitor
     }
 
     @Override
-    public Object visitCharNode(RegexCharNode node, Pair<RegexNodePrintVisitor.PrintStackContext, Boolean> context)
+    public Object visitCharNode(CharExpression node, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean> context)
     {
         context.getLeft().push(node, context.getRight());
         context.getLeft().sb.append(context.getLeft().peek().get().toString());
@@ -31,18 +31,7 @@ public class RegexNodePrintVisitor
     }
 
     @Override
-    public Object visitConcatNode(RegexConcatNode node, Pair<RegexNodePrintVisitor.PrintStackContext, Boolean> context)
-    {
-        context.getLeft().push(node, context.getRight());
-        context.getLeft().sb.append(context.getLeft().peek().get().toString());
-        process(node.getLeft(), Pair.of(context.getLeft(), false));
-        process(node.getRight(), Pair.of(context.getLeft(), true));
-        context.getLeft().pop();
-        return null;
-    }
-
-    @Override
-    public Object visitOrNode(RegexOrNode node, Pair<RegexNodePrintVisitor.PrintStackContext, Boolean> context)
+    public Object visitConcatNode(ConcatExpression node, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean> context)
     {
         context.getLeft().push(node, context.getRight());
         context.getLeft().sb.append(context.getLeft().peek().get().toString());
@@ -53,7 +42,18 @@ public class RegexNodePrintVisitor
     }
 
     @Override
-    public Object visitRepeatNode(RegexRepeatNode node, Pair<RegexNodePrintVisitor.PrintStackContext, Boolean> context)
+    public Object visitOrNode(OrExpression node, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean> context)
+    {
+        context.getLeft().push(node, context.getRight());
+        context.getLeft().sb.append(context.getLeft().peek().get().toString());
+        process(node.getLeft(), Pair.of(context.getLeft(), false));
+        process(node.getRight(), Pair.of(context.getLeft(), true));
+        context.getLeft().pop();
+        return null;
+    }
+
+    @Override
+    public Object visitRepeatNode(RepeatExpression node, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean> context)
     {
         context.getLeft().push(node, context.getRight());
         context.getLeft().sb.append(context.getLeft().peek().get().toString());
@@ -74,7 +74,7 @@ public class RegexNodePrintVisitor
             sb = new StringBuilder();
         }
 
-        public void push(RegexNode node, boolean last)
+        public void push(RegexExpression node, boolean last)
         {
             StackItem wrapper;
             if (stack.isEmpty()) {
@@ -102,29 +102,29 @@ public class RegexNodePrintVisitor
 
     public static class StackItem
     {
-        public static StackItem of(RegexNode node, boolean last, StackItem parent)
+        public static StackItem of(RegexExpression node, boolean last, StackItem parent)
         {
             return new StackItem(node, last, parent);
         }
 
-        public static StackItem root(RegexNode node)
+        public static StackItem root(RegexExpression node)
         {
             return new StackItem(node, false, null);
         }
 
-        private final RegexNode node;
+        private final RegexExpression node;
         private final boolean last;
 
         private final StackItem parent;
 
-        private StackItem(RegexNode node, boolean last, StackItem parent)
+        private StackItem(RegexExpression node, boolean last, StackItem parent)
         {
             this.node = node;
             this.parent = parent;
             this.last = last;
         }
 
-        public RegexNode getNode()
+        public RegexExpression getNode()
         {
             return node;
         }
@@ -148,9 +148,9 @@ public class RegexNodePrintVisitor
         public String toString()
         {
             if (parent == null) {
-                return RegexNodeFormatter.formatter.process(node, null) + "\n";
+                return RegexExpressionFormatter.formatter.process(node, null) + "\n";
             }
-            String nodeStr = RegexNodeFormatter.formatter.process(node, null) + "\n";
+            String nodeStr = RegexExpressionFormatter.formatter.process(node, null) + "\n";
             StackItem cursor = this;
             if (cursor.last) {
                 nodeStr = "└──" + nodeStr;
@@ -172,33 +172,33 @@ public class RegexNodePrintVisitor
         }
     }
 
-    public static class RegexNodeFormatter
-            implements RegexNodeVisitor<String, Void>
+    public static class RegexExpressionFormatter
+            implements RegexExpressionVisitor<String, Void>
     {
-        public static RegexNodeFormatter formatter = new RegexNodeFormatter();
+        public static RegexExpressionFormatter formatter = new RegexExpressionFormatter();
 
         @Override
-        public String visitCharNode(RegexCharNode node, Void context)
+        public String visitCharNode(CharExpression node, Void context)
         {
-            return "Node[Char](" + node.getCharacter() + ")";
+            return "[Char] : " + node.getCharacter();
         }
 
         @Override
-        public String visitConcatNode(RegexConcatNode node, Void context)
+        public String visitConcatNode(ConcatExpression node, Void context)
         {
-            return "Node[Concat]";
+            return "[Concat]";
         }
 
         @Override
-        public String visitOrNode(RegexOrNode node, Void context)
+        public String visitOrNode(OrExpression node, Void context)
         {
-            return "Node[Or]";
+            return "[Or]";
         }
 
         @Override
-        public String visitRepeatNode(RegexRepeatNode node, Void context)
+        public String visitRepeatNode(RepeatExpression node, Void context)
         {
-            return "Node[Repeat]";
+            return "[Repeat]";
         }
     }
 }

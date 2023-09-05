@@ -1,14 +1,14 @@
 package info.victorchu.toy.compiler.simpleregex.ast;
 
 /**
- * 字符节点
+ * 字符 expression.
  *
  * @author victorchutian
  */
-public class RegexCharNode
-        extends RegexNode
+public class CharExpression
+        extends RegexExpression
 {
-    public RegexCharNode()
+    public CharExpression()
     {
         super(NodeType.REGEXP_CHAR);
     }
@@ -26,7 +26,7 @@ public class RegexCharNode
     }
 
     @Override
-    public <T, C> T accept(RegexNodeVisitor<T, C> visitor, C context)
+    public <T, C> T accept(RegexExpressionVisitor<T, C> visitor, C context)
     {
         return visitor.visitCharNode(this, context);
     }
@@ -53,9 +53,9 @@ public class RegexCharNode
             return this;
         }
 
-        public RegexCharNode build()
+        public CharExpression build()
         {
-            RegexCharNode regexCharNode = new RegexCharNode();
+            CharExpression regexCharNode = new CharExpression();
             regexCharNode.setCharacter(character);
             return regexCharNode;
         }

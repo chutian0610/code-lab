@@ -5,28 +5,28 @@ package info.victorchu.toy.compiler.simpleregex.ast;
  *
  * @author victorchutian
  */
-public class RegexRepeatNode
-        extends RegexNode
+public class RepeatExpression
+        extends RegexExpression
 {
-    public RegexRepeatNode()
+    public RepeatExpression()
     {
         super(NodeType.REGEXP_REPEAT);
     }
 
-    private RegexNode innerNode;
+    private RegexExpression innerNode;
 
-    public RegexNode getInnerNode()
+    public RegexExpression getInnerNode()
     {
         return innerNode;
     }
 
-    public void setInnerNode(RegexNode innerNode)
+    public void setInnerNode(RegexExpression innerNode)
     {
         this.innerNode = innerNode;
     }
 
     @Override
-    public <T, C> T accept(RegexNodeVisitor<T, C> visitor, C context)
+    public <T, C> T accept(RegexExpressionVisitor<T, C> visitor, C context)
     {
         return visitor.visitRepeatNode(this, context);
     }
@@ -36,7 +36,7 @@ public class RegexRepeatNode
      */
     public static final class RegexRepeatNodeBuilder
     {
-        private RegexNode innerNode;
+        private RegexExpression innerNode;
 
         private RegexRepeatNodeBuilder()
         {
@@ -47,15 +47,15 @@ public class RegexRepeatNode
             return new RegexRepeatNodeBuilder();
         }
 
-        public RegexRepeatNodeBuilder withInnerNode(RegexNode innerNode)
+        public RegexRepeatNodeBuilder withInnerNode(RegexExpression innerNode)
         {
             this.innerNode = innerNode;
             return this;
         }
 
-        public RegexRepeatNode build()
+        public RepeatExpression build()
         {
-            RegexRepeatNode regexRepeatNode = new RegexRepeatNode();
+            RepeatExpression regexRepeatNode = new RepeatExpression();
             regexRepeatNode.setInnerNode(innerNode);
             return regexRepeatNode;
         }

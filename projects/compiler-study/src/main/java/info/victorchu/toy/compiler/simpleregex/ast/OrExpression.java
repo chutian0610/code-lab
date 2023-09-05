@@ -5,40 +5,40 @@ package info.victorchu.toy.compiler.simpleregex.ast;
  *
  * @author victorchutian
  */
-public class RegexOrNode
-        extends RegexNode
+public class OrExpression
+        extends RegexExpression
 {
 
-    private RegexNode left;
-    private RegexNode right;
+    private RegexExpression left;
+    private RegexExpression right;
 
-    public RegexNode getLeft()
+    public RegexExpression getLeft()
     {
         return left;
     }
 
-    public void setLeft(RegexNode left)
+    public void setLeft(RegexExpression left)
     {
         this.left = left;
     }
 
-    public RegexNode getRight()
+    public RegexExpression getRight()
     {
         return right;
     }
 
-    public void setRight(RegexNode right)
+    public void setRight(RegexExpression right)
     {
         this.right = right;
     }
 
-    public RegexOrNode()
+    public OrExpression()
     {
         super(NodeType.REGEX_OR);
     }
 
     @Override
-    public <T, C> T accept(RegexNodeVisitor<T, C> visitor, C context)
+    public <T, C> T accept(RegexExpressionVisitor<T, C> visitor, C context)
     {
         return visitor.visitOrNode(this, context);
     }
@@ -48,8 +48,8 @@ public class RegexOrNode
      */
     public static final class RegexOrNodeBuilder
     {
-        private RegexNode left;
-        private RegexNode right;
+        private RegexExpression left;
+        private RegexExpression right;
 
         private RegexOrNodeBuilder()
         {
@@ -60,21 +60,21 @@ public class RegexOrNode
             return new RegexOrNodeBuilder();
         }
 
-        public RegexOrNodeBuilder withLeft(RegexNode left)
+        public RegexOrNodeBuilder withLeft(RegexExpression left)
         {
             this.left = left;
             return this;
         }
 
-        public RegexOrNodeBuilder withRight(RegexNode right)
+        public RegexOrNodeBuilder withRight(RegexExpression right)
         {
             this.right = right;
             return this;
         }
 
-        public RegexOrNode build()
+        public OrExpression build()
         {
-            RegexOrNode regexOrNode = new RegexOrNode();
+            OrExpression regexOrNode = new OrExpression();
             regexOrNode.setLeft(left);
             regexOrNode.setRight(right);
             return regexOrNode;

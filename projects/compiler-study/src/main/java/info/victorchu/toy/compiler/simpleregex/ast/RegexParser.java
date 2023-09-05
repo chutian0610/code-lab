@@ -35,7 +35,7 @@ public class RegexParser
      * @param regexStr 正则表达式字符串
      * @return
      */
-    public static RegexNode parse(String regexStr)
+    public static RegexExpression parse(String regexStr)
     {
         return new RegexParser(regexStr).parseRegex();
     }
@@ -111,44 +111,44 @@ public class RegexParser
      *
      * @return
      */
-    private RegexNode parseRegex()
+    private RegexExpression parseRegex()
     {
-        RegexNode regexNode = parseUnionExp();
+        RegexExpression regexExpression = parseUnionExp();
         if (matchChar('|')) {
-            return RegexOrNode.RegexOrNodeBuilder.aRegexOrNode()
-                    .withLeft(regexNode)
+            return OrExpression.RegexOrNodeBuilder.aRegexOrNode()
+                    .withLeft(regexExpression)
                     .withRight(parseUnionExp())
                     .build();
         }
-        return regexNode;
+        return regexExpression;
     }
 
-    private RegexNode parseUnionExp()
+    private RegexExpression parseUnionExp()
     {
-        RegexNode regexNode = parseConcatExp();
+        RegexExpression regexExpression = parseConcatExp();
         if (notEnd() && !peek("|)")) {
-            return RegexConcatNode.RegexConcatNodeBuilder.aRegexConcatNode()
-                    .withLeft(regexNode)
+            return ConcatExpression.RegexConcatNodeBuilder.aRegexConcatNode()
+                    .withLeft(regexExpression)
                     .withRight(parseUnionExp())
                     .build();
         }
-        return regexNode;
+        return regexExpression;
     }
 
-    private RegexNode parseConcatExp()
+    private RegexExpression parseConcatExp()
     {
-        RegexNode regexNode = parseRepeatExp();
+        RegexExpression regexExpression = parseRepeatExp();
         if (matchChar('*')) {
-            return RegexRepeatNode.RegexRepeatNodeBuilder.aRegexRepeatNode()
-                    .withInnerNode(regexNode).build();
+            return RepeatExpression.RegexRepeatNodeBuilder.aRegexRepeatNode()
+                    .withInnerNode(regexExpression).build();
         }
-        return regexNode;
+        return regexExpression;
     }
 
-    private RegexNode parseRepeatExp()
+    private RegexExpression parseRepeatExp()
     {
         if (matchChar('(')) {
-            RegexNode regex = parseRegex();
+            RegexExpression regex = parseRegex();
             if (matchChar(')')) {
                 return regex;
             }
@@ -161,10 +161,10 @@ public class RegexParser
         }
     }
 
-    private RegexNode parseCharExp()
+    private RegexExpression parseCharExp()
     {
         matchChar('\\');
-        return RegexCharNode.RegexCharNodeBuilder.aRegexCharNode()
+        return CharExpression.RegexCharNodeBuilder.aRegexCharNode()
                 .withCharacter(next())
                 .build();
     }

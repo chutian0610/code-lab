@@ -5,12 +5,12 @@ package info.victorchu.toy.compiler.simpleregex.ast;
  *
  * @author victorchutian
  */
-public abstract class RegexNode
+public abstract class RegexExpression
 {
 
     protected NodeType nodeType;
 
-    public RegexNode(NodeType nodeType)
+    public RegexExpression(NodeType nodeType)
     {
         this.nodeType = nodeType;
     }
@@ -54,6 +54,6 @@ public abstract class RegexNode
      * @param visitor 访问者
      * @return 返回 T
      */
-    public abstract <T, C> T accept(RegexNodeVisitor<T, C> visitor, C context);
+    public abstract <T, C> T accept(RegexExpressionVisitor<T, C> visitor, C context);
 }
 

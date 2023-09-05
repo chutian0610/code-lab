@@ -1,44 +1,44 @@
 package info.victorchu.toy.compiler.simpleregex.ast;
 
 /**
- * 连接节点.
+ * concat expression.
  *
  * @author victorchutian
  */
-public class RegexConcatNode
-        extends RegexNode
+public class ConcatExpression
+        extends RegexExpression
 {
 
-    private RegexNode left;
-    private RegexNode right;
+    private RegexExpression left;
+    private RegexExpression right;
 
-    public RegexNode getLeft()
+    public RegexExpression getLeft()
     {
         return left;
     }
 
-    public void setLeft(RegexNode left)
+    public void setLeft(RegexExpression left)
     {
         this.left = left;
     }
 
-    public RegexNode getRight()
+    public RegexExpression getRight()
     {
         return right;
     }
 
-    public void setRight(RegexNode right)
+    public void setRight(RegexExpression right)
     {
         this.right = right;
     }
 
-    public RegexConcatNode()
+    public ConcatExpression()
     {
         super(NodeType.REGEX_CONCAT);
     }
 
     @Override
-    public <T, C> T accept(RegexNodeVisitor<T, C> visitor, C context)
+    public <T, C> T accept(RegexExpressionVisitor<T, C> visitor, C context)
     {
         return visitor.visitConcatNode(this, context);
     }
@@ -48,8 +48,8 @@ public class RegexConcatNode
      */
     public static final class RegexConcatNodeBuilder
     {
-        private RegexNode left;
-        private RegexNode right;
+        private RegexExpression left;
+        private RegexExpression right;
 
         private RegexConcatNodeBuilder()
         {
@@ -60,21 +60,21 @@ public class RegexConcatNode
             return new RegexConcatNodeBuilder();
         }
 
-        public RegexConcatNodeBuilder withLeft(RegexNode left)
+        public RegexConcatNodeBuilder withLeft(RegexExpression left)
         {
             this.left = left;
             return this;
         }
 
-        public RegexConcatNodeBuilder withRight(RegexNode right)
+        public RegexConcatNodeBuilder withRight(RegexExpression right)
         {
             this.right = right;
             return this;
         }
 
-        public RegexConcatNode build()
+        public ConcatExpression build()
         {
-            RegexConcatNode regexConcatNode = new RegexConcatNode();
+            ConcatExpression regexConcatNode = new ConcatExpression();
             regexConcatNode.setLeft(left);
             regexConcatNode.setRight(right);
             return regexConcatNode;
