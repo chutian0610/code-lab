@@ -13,16 +13,16 @@ public class RepeatExpression
         super(NodeType.REGEXP_REPEAT);
     }
 
-    private RegexExpression innerNode;
+    private RegexExpression inner;
 
-    public RegexExpression getInnerNode()
+    public RegexExpression getInner()
     {
-        return innerNode;
+        return inner;
     }
 
-    public void setInnerNode(RegexExpression innerNode)
+    public void setInner(RegexExpression inner)
     {
-        this.innerNode = innerNode;
+        this.inner = inner;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class RepeatExpression
         public RepeatExpression build()
         {
             RepeatExpression regexRepeatNode = new RepeatExpression();
-            regexRepeatNode.setInnerNode(innerNode);
+            regexRepeatNode.setInner(innerNode);
             return regexRepeatNode;
         }
     }

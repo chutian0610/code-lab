@@ -57,7 +57,7 @@ public class RegexExpressionTreePrinter
     {
         context.getLeft().push(node, context.getRight());
         context.getLeft().sb.append(context.getLeft().peek().get().toString());
-        process(node.getInnerNode(), Pair.of(context.getLeft(), true));
+        process(node.getInner(), Pair.of(context.getLeft(), true));
         context.getLeft().pop();
         return null;
     }
