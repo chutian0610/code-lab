@@ -1,7 +1,7 @@
 package info.victorchu.toy.compiler.simpleregex.ast;
 
 /**
- * 或节点.
+ * or expression.
  *
  * @author victorchutian
  */

@@ -1,7 +1,7 @@
 package info.victorchu.toy.compiler.simpleregex.ast;
 
 /**
- * 可重复节点.
+ * 重复 expression.
  *
  * @author victorchutian
  */

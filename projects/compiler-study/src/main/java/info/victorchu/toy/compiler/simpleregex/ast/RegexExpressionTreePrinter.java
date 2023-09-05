@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Optional;
 
 /**
- * print regex node tree in terminal
+ * print regex expression tree
  *
  * @author victorchu
  */

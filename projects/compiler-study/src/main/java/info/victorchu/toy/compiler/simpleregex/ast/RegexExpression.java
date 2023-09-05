@@ -1,7 +1,7 @@
 package info.victorchu.toy.compiler.simpleregex.ast;
 
 /**
- * Regex AST Node 的抽象父类
+ * Regex expression 的抽象父类
  *
  * @author victorchutian
  */
