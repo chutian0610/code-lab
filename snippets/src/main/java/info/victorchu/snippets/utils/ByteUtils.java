@@ -11,6 +11,7 @@ public class ByteUtils
     /**
      *  byte 转16进制String
      * @param bytes
+     *
      * @return
      */
     private static String bytesToHexFun(byte[] bytes)
