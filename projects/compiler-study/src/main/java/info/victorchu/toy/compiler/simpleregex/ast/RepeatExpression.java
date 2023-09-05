@@ -28,7 +28,7 @@ public class RepeatExpression
     @Override
     public <T, C> T accept(RegexExpressionVisitor<T, C> visitor, C context)
     {
-        return visitor.visitRepeatNode(this, context);
+        return visitor.visitRepeat(this, context);
     }
 
     /**

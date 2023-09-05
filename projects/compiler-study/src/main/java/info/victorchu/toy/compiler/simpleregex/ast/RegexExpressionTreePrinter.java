@@ -21,7 +21,7 @@ public class RegexExpressionTreePrinter
     }
 
     @Override
-    public Object visitCharNode(CharExpression node, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean> context)
+    public Object visitChar(CharExpression node, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean> context)
     {
         context.getLeft().push(node, context.getRight());
         context.getLeft().sb.append(context.getLeft().peek().get().toString());
@@ -31,18 +31,7 @@ public class RegexExpressionTreePrinter
     }
 
     @Override
-    public Object visitConcatNode(ConcatExpression node, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean> context)
-    {
-        context.getLeft().push(node, context.getRight());
-        context.getLeft().sb.append(context.getLeft().peek().get().toString());
-        process(node.getLeft(), Pair.of(context.getLeft(), false));
-        process(node.getRight(), Pair.of(context.getLeft(), true));
-        context.getLeft().pop();
-        return null;
-    }
-
-    @Override
-    public Object visitOrNode(OrExpression node, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean> context)
+    public Object visitConcat(ConcatExpression node, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean> context)
     {
         context.getLeft().push(node, context.getRight());
         context.getLeft().sb.append(context.getLeft().peek().get().toString());
@@ -53,7 +42,18 @@ public class RegexExpressionTreePrinter
     }
 
     @Override
-    public Object visitRepeatNode(RepeatExpression node, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean> context)
+    public Object visitOr(OrExpression node, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean> context)
+    {
+        context.getLeft().push(node, context.getRight());
+        context.getLeft().sb.append(context.getLeft().peek().get().toString());
+        process(node.getLeft(), Pair.of(context.getLeft(), false));
+        process(node.getRight(), Pair.of(context.getLeft(), true));
+        context.getLeft().pop();
+        return null;
+    }
+
+    @Override
+    public Object visitRepeat(RepeatExpression node, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean> context)
     {
         context.getLeft().push(node, context.getRight());
         context.getLeft().sb.append(context.getLeft().peek().get().toString());
@@ -178,25 +178,25 @@ public class RegexExpressionTreePrinter
         public static RegexExpressionFormatter formatter = new RegexExpressionFormatter();
 
         @Override
-        public String visitCharNode(CharExpression node, Void context)
+        public String visitChar(CharExpression node, Void context)
         {
             return "[Char] : " + node.getCharacter();
         }
 
         @Override
-        public String visitConcatNode(ConcatExpression node, Void context)
+        public String visitConcat(ConcatExpression node, Void context)
         {
             return "[Concat]";
         }
 
         @Override
-        public String visitOrNode(OrExpression node, Void context)
+        public String visitOr(OrExpression node, Void context)
         {
             return "[Or]";
         }
 
         @Override
-        public String visitRepeatNode(RepeatExpression node, Void context)
+        public String visitRepeat(RepeatExpression node, Void context)
         {
             return "[Repeat]";
         }

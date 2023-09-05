@@ -40,7 +40,7 @@ public class ConcatExpression
     @Override
     public <T, C> T accept(RegexExpressionVisitor<T, C> visitor, C context)
     {
-        return visitor.visitConcatNode(this, context);
+        return visitor.visitConcat(this, context);
     }
 
     /**

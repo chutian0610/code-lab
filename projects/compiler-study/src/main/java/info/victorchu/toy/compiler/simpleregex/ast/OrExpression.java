@@ -40,7 +40,7 @@ public class OrExpression
     @Override
     public <T, C> T accept(RegexExpressionVisitor<T, C> visitor, C context)
     {
-        return visitor.visitOrNode(this, context);
+        return visitor.visitOr(this, context);
     }
 
     /**

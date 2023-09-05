@@ -28,7 +28,7 @@ public class CharExpression
     @Override
     public <T, C> T accept(RegexExpressionVisitor<T, C> visitor, C context)
     {
-        return visitor.visitCharNode(this, context);
+        return visitor.visitChar(this, context);
     }
 
     /**
