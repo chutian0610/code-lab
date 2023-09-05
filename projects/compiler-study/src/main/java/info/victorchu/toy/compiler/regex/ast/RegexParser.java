@@ -1,4 +1,4 @@
-package info.victorchu.toy.compiler.simpleregex.ast;
+package info.victorchu.toy.compiler.regex.ast;
 
 /**
  * 简单正则表达式parser.

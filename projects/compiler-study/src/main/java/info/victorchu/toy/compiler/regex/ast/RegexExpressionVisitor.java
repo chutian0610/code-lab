@@ -1,4 +1,4 @@
-package info.victorchu.toy.compiler.simpleregex.ast;
+package info.victorchu.toy.compiler.regex.ast;
 
 /**
  * RegexNode 的抽象访问者

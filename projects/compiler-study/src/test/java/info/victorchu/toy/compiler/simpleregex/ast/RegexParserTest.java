@@ -1,8 +1,8 @@
 package info.victorchu.toy.compiler.simpleregex.ast;
 
-import info.victorchu.toy.compiler.simpleregex.ast.RegexExpression;
-import info.victorchu.toy.compiler.simpleregex.ast.RegexParser;
-import info.victorchu.toy.compiler.simpleregex.ast.RegexExpressionTreePrinter;
+import info.victorchu.toy.compiler.regex.ast.RegexExpression;
+import info.victorchu.toy.compiler.regex.ast.RegexParser;
+import info.victorchu.toy.compiler.regex.ast.RegexExpressionTreePrinter;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

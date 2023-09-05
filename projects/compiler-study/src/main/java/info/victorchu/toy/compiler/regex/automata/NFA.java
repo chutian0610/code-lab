@@ -1,11 +1,11 @@
-package info.victorchu.toy.compiler.simpleregex.automata;
+package info.victorchu.toy.compiler.regex.automata;
 
-import info.victorchu.toy.compiler.simpleregex.ast.CharExpression;
-import info.victorchu.toy.compiler.simpleregex.ast.ConcatExpression;
-import info.victorchu.toy.compiler.simpleregex.ast.OrExpression;
-import info.victorchu.toy.compiler.simpleregex.ast.RegexExpression;
-import info.victorchu.toy.compiler.simpleregex.ast.RegexExpressionVisitor;
-import info.victorchu.toy.compiler.simpleregex.ast.RepeatExpression;
+import info.victorchu.toy.compiler.regex.ast.ConcatExpression;
+import info.victorchu.toy.compiler.regex.ast.OrExpression;
+import info.victorchu.toy.compiler.regex.ast.RegexExpression;
+import info.victorchu.toy.compiler.regex.ast.RegexExpressionVisitor;
+import info.victorchu.toy.compiler.regex.ast.RepeatExpression;
+import info.victorchu.toy.compiler.regex.ast.CharExpression;
 
 import java.util.HashSet;
 import java.util.Set;

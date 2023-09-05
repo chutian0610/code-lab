@@ -1,11 +1,11 @@
-package info.victorchu.toy.compiler.simpleregex.ast;
+package info.victorchu.toy.compiler.regex.ast;
 
 /**
- * concat expression.
+ * or expression.
  *
  * @author victorchutian
  */
-public class ConcatExpression
+public class OrExpression
         extends RegexExpression
 {
 
@@ -32,53 +32,52 @@ public class ConcatExpression
         this.right = right;
     }
 
-    public ConcatExpression()
+    public OrExpression()
     {
-        super(NodeType.REGEX_CONCAT);
+        super(NodeType.REGEX_OR);
     }
 
     @Override
     public <T, C> T accept(RegexExpressionVisitor<T, C> visitor, C context)
     {
-        return visitor.visitConcat(this, context);
+        return visitor.visitOr(this, context);
     }
 
     /**
-     * builder for  RegexConcatNode
+     * builder for  RegexOrNode
      */
-    public static final class RegexConcatNodeBuilder
+    public static final class RegexOrNodeBuilder
     {
         private RegexExpression left;
         private RegexExpression right;
 
-        private RegexConcatNodeBuilder()
+        private RegexOrNodeBuilder()
         {
         }
 
-        public static RegexConcatNodeBuilder aRegexConcatNode()
+        public static RegexOrNodeBuilder aRegexOrNode()
         {
-            return new RegexConcatNodeBuilder();
+            return new RegexOrNodeBuilder();
         }
 
-        public RegexConcatNodeBuilder withLeft(RegexExpression left)
+        public RegexOrNodeBuilder withLeft(RegexExpression left)
         {
             this.left = left;
             return this;
         }
 
-        public RegexConcatNodeBuilder withRight(RegexExpression right)
+        public RegexOrNodeBuilder withRight(RegexExpression right)
         {
             this.right = right;
             return this;
         }
 
-        public ConcatExpression build()
+        public OrExpression build()
         {
-            ConcatExpression regexConcatNode = new ConcatExpression();
-            regexConcatNode.setLeft(left);
-            regexConcatNode.setRight(right);
-            return regexConcatNode;
+            OrExpression regexOrNode = new OrExpression();
+            regexOrNode.setLeft(left);
+            regexOrNode.setRight(right);
+            return regexOrNode;
         }
     }
 }
-

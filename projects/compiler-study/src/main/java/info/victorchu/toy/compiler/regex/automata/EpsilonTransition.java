@@ -1,4 +1,4 @@
-package info.victorchu.toy.compiler.simpleregex.automata;
+package info.victorchu.toy.compiler.regex.automata;
 
 /**
  * @author victorchu

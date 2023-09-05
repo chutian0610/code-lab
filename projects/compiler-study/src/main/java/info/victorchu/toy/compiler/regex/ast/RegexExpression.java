@@ -1,4 +1,4 @@
-package info.victorchu.toy.compiler.simpleregex.ast;
+package info.victorchu.toy.compiler.regex.ast;
 
 /**
  * Regex expression 的抽象父类

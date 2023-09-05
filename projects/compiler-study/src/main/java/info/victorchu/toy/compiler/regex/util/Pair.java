@@ -1,4 +1,4 @@
-package info.victorchu.toy.compiler.simpleregex.util;
+package info.victorchu.toy.compiler.regex.util;
 
 /**
  * pair with two unmodified elements

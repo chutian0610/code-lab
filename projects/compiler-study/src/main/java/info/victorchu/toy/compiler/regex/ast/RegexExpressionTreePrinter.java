@@ -1,6 +1,6 @@
-package info.victorchu.toy.compiler.simpleregex.ast;
+package info.victorchu.toy.compiler.regex.ast;
 
-import info.victorchu.toy.compiler.simpleregex.util.Pair;
+import info.victorchu.toy.compiler.regex.util.Pair;
 
 import java.util.LinkedList;
 import java.util.Optional;
