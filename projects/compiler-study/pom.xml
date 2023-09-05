@@ -39,10 +39,6 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>info.victorchu.tool</groupId>
-      <artifactId>mermaidjs-java</artifactId>
-    </dependency>
   </dependencies>
   <build>
     <plugins>

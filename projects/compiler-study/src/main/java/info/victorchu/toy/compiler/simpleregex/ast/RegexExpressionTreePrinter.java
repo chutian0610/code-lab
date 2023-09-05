@@ -13,10 +13,12 @@ import java.util.Optional;
 public class RegexExpressionTreePrinter
         implements RegexExpressionVisitor<Object, Pair<RegexExpressionTreePrinter.PrintStackContext, Boolean>>
 {
-    public String build(RegexExpression node)
+    private static final RegexExpressionTreePrinter INSTANCE = new RegexExpressionTreePrinter();
+
+    public static String print(RegexExpression node)
     {
         PrintStackContext context = new PrintStackContext();
-        this.process(node, Pair.of(context, false));
+        INSTANCE.process(node, Pair.of(context, false));
         return context.sb.toString();
     }
 
