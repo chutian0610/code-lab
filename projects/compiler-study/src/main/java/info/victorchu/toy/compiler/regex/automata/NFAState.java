@@ -1,12 +1,19 @@
 package info.victorchu.toy.compiler.regex.automata;
 
+import info.victorchu.toy.compiler.regex.util.Pair;
+import info.victorchu.toy.compiler.regex.util.Tuple3;
+
 import javax.annotation.Nonnull;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * NFA 状态，在State上封装了 Transition 映射.
@@ -26,26 +33,27 @@ public class NFAState
     }
 
     @Nonnull
-    public Set<NFAState> getTargetsOfTransition(Transition transition)
+    public List<NFAState> getTargetsOfTransitionSort(Transition transition)
     {
-        return transitions.getOrDefault(transition, new HashSet<>(0));
+        return transitions.getOrDefault(transition, new HashSet<>(0)).stream().sorted(Comparator.comparing(NFAState::getId)).collect(Collectors.toList());
     }
 
     @Nonnull
-    public Set<Transition> getAllTransition()
+    public List<Transition> getAllTransitionWithSort()
     {
-        return transitions.keySet();
+        return transitions.keySet().stream()
+                .map(x -> {
+                    Long weight = transitions.get(x).stream().reduce(0L, (y, z) -> y + z.getId(), Long::sum);
+                    Long count = transitions.get(x).stream().reduce(0L, (y, z) -> y + 1, Long::sum);
+                    return Tuple3.of(x, count, weight);
+                })
+                .sorted(((Comparator<Tuple3<Transition, Long, Long>>) (o1, o2) -> o2.getT2().compareTo(o1.getT2())).thenComparing((o1, o2) -> o2.getT3().compareTo(o1.getT3())))
+                .map(Tuple3::getT1).collect(Collectors.toList());
     }
 
-    public NFAState(boolean accept)
+    public NFAState(boolean accept, Supplier<Integer> stateIdSupplier)
     {
-        this.state = new State(accept);
-        transitions = new HashMap<>();
-    }
-
-    public NFAState()
-    {
-        this.state = new State(false);
+        this.state = new State(accept, stateIdSupplier);
         transitions = new HashMap<>();
     }
 

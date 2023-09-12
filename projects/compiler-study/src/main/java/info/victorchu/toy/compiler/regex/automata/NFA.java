@@ -8,6 +8,7 @@ import info.victorchu.toy.compiler.regex.ast.RepeatExpression;
 import info.victorchu.toy.compiler.regex.ast.CharExpression;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,13 +18,14 @@ import java.util.Set;
  */
 public class NFA
 {
-    public static final NFABuilder BUILDER = new NFABuilder();
+    private static final NFABuilder BUILDER = new NFABuilder();
 
     public NFA(NFAState start, NFAState end)
     {
         this.start = start;
         this.end = end;
     }
+
 
     public NFAState start;
     public NFAState end;
@@ -46,16 +48,18 @@ public class NFA
 
     public static NFA buildNFA(RegexExpression regexExpression)
     {
-        return BUILDER.buildNFA(regexExpression);
+        SubNFA subNFA = BUILDER.build(regexExpression, new Context());
+        subNFA.end.setAccept(true);
+        return new NFA(subNFA.start, subNFA.end);
     }
 
-    public void printState(NFAState cursor, StringBuilder sb, Set<Integer> markSet)
+    private void printState(NFAState cursor, StringBuilder sb, Set<Integer> markSet)
     {
         if (cursor != null && !markSet.contains(cursor.getId())) {
             markSet.add(cursor.getId());
-            Set<Transition> transitionSet = cursor.getAllTransition();
-            for (Transition transition : transitionSet) {
-                Set<NFAState> stateSet = cursor.getTargetsOfTransition(transition);
+            List<Transition> transitions = cursor.getAllTransitionWithSort();
+            for (Transition transition : transitions) {
+                List<NFAState> stateSet = cursor.getTargetsOfTransitionSort(transition);
                 for (NFAState state : stateSet) {
                     sb.append(cursor).append("-->|").append(transition).append("|").append(state).append("\n");
                     printState(state, sb, markSet);
@@ -64,6 +68,9 @@ public class NFA
         }
     }
 
+    /**
+     * NFA Sub Graph
+     */
     private static class SubNFA
     {
         public SubNFA(NFAState start, NFAState end, Transition inTransition)
@@ -72,28 +79,30 @@ public class NFA
             this.end = end;
             this.inTransition = inTransition;
         }
-
         public NFAState start;
-
         public Transition inTransition;
         public NFAState end;
     }
 
+    /**
+     * NFA Builder.
+     * build NFA From Regex Expression.
+     */
     private static class NFABuilder
-            implements RegexExpressionVisitor<SubNFA, Void>
+            implements RegexExpressionVisitor<SubNFA, Context>
     {
 
         @Override
-        public SubNFA visitChar(CharExpression node, Void context)
+        public SubNFA visitChar(CharExpression node, Context context)
         {
-            NFAState start = new NFAState();
-            NFAState charState = new NFAState();
+            NFAState start = createNFAState(context);
+            NFAState charState = createNFAState(context);
             start.addTransition(Transition.character(node.getCharacter()), charState);
             return new SubNFA(start, charState, Transition.epsilon());
         }
 
         @Override
-        public SubNFA visitConcat(ConcatExpression node, Void context)
+        public SubNFA visitConcat(ConcatExpression node, Context context)
         {
             SubNFA subNFALeft = process(node.getLeft(), context);
             SubNFA subNFARight = process(node.getRight(), context);
@@ -102,38 +111,41 @@ public class NFA
         }
 
         @Override
-        public SubNFA visitOr(OrExpression node, Void context)
+        public SubNFA visitOr(OrExpression node, Context context)
         {
-            NFAState begin = new NFAState();
+            NFAState begin = createNFAState(context);
             SubNFA subNFALeft = process(node.getLeft(), context);
             begin.addTransition(subNFALeft.inTransition, subNFALeft.start);
             SubNFA subNFARight = process(node.getRight(), context);
             begin.addTransition(subNFARight.inTransition, subNFARight.start);
-            NFAState end = new NFAState();
+            NFAState end = createNFAState(context);
             subNFALeft.end.addTransition(Transition.epsilon(), end);
             subNFARight.end.addTransition(Transition.epsilon(), end);
             return new SubNFA(begin, end, Transition.epsilon());
         }
 
         @Override
-        public SubNFA visitRepeat(RepeatExpression node, Void context)
+        public SubNFA visitRepeat(RepeatExpression node, Context context)
         {
-            NFAState begin = new NFAState();
+            NFAState begin = createNFAState(context);
 
             SubNFA subNFA = process(node.getInner(), context);
             begin.addTransition(subNFA.inTransition, subNFA.start);
-            NFAState end = new NFAState();
+            NFAState end = createNFAState(context);
             begin.addTransition(Transition.epsilon(), end);
             subNFA.end.addTransition(Transition.epsilon(), end);
 
             return new SubNFA(begin, end, Transition.epsilon());
         }
 
-        public NFA buildNFA(RegexExpression node)
+        public NFAState createNFAState(Context context)
         {
-            SubNFA subNFA = process(node, null);
-            subNFA.end.setAccept(true);
-            return new NFA(subNFA.start, subNFA.end);
+            return new NFAState(false, context::getNextID);
+        }
+
+        public SubNFA build(RegexExpression node, Context context)
+        {
+            return process(node, context);
         }
     }
 }

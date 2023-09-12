@@ -16,7 +16,6 @@
         <module>codelab-bom</module>
         <module>snippets/</module>
 
-        <module>projects/mermaidjs-java</module>
         <module>projects/compiler-study</module>
         <module>projects/gameoflife</module>
         <module>projects/charlene</module>

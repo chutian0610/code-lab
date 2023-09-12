@@ -1,6 +1,7 @@
 package info.victorchu.toy.compiler.regex.automata;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
 
 /**
  * 代表 自动机的状态.
@@ -10,10 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class State
 {
     /**
-     * state id generator
-     */
-    private static final AtomicInteger NEXT_ID = new AtomicInteger(0);
-    /**
      * 是否是可接受状态
      */
     private boolean accept;
@@ -22,9 +19,9 @@ public class State
      */
     private final int id;
 
-    public State(boolean accept)
+    public State(boolean accept, Supplier<Integer> stateIdSupplier)
     {
-        this.id = NEXT_ID.getAndIncrement();
+        this.id = stateIdSupplier.get();
         this.accept = accept;
     }
 
