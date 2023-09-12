@@ -1,7 +1,6 @@
 package info.victorchu.toy.compiler.regex.automata;
 
 import info.victorchu.toy.compiler.regex.util.Pair;
-import info.victorchu.toy.compiler.regex.util.Tuple3;
 
 import javax.annotation.Nonnull;
 
@@ -41,14 +40,10 @@ public class NFAState
     @Nonnull
     public List<Transition> getAllTransitionWithSort()
     {
-        return transitions.keySet().stream()
-                .map(x -> {
-                    Long weight = transitions.get(x).stream().reduce(0L, (y, z) -> y + z.getId(), Long::sum);
-                    Long count = transitions.get(x).stream().reduce(0L, (y, z) -> y + 1, Long::sum);
-                    return Tuple3.of(x, count, weight);
-                })
-                .sorted(((Comparator<Tuple3<Transition, Long, Long>>) (o1, o2) -> o2.getT2().compareTo(o1.getT2())).thenComparing((o1, o2) -> o2.getT3().compareTo(o1.getT3())))
-                .map(Tuple3::getT1).collect(Collectors.toList());
+        return transitions.keySet().stream().map(x -> {
+            Integer weight = transitions.get(x).stream().map(NFAState::getId).min(Comparator.naturalOrder()).orElse(0);
+            return Pair.of(x, weight);
+        }).sorted((o1, o2) -> o2.getRight().compareTo(o1.getRight())).map(Pair::getLeft).collect(Collectors.toList());
     }
 
     public NFAState(boolean accept, Supplier<Integer> stateIdSupplier)

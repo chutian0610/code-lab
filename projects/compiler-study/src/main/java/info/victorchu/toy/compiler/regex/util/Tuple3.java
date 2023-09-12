@@ -17,7 +17,6 @@ public class Tuple3<T1, T2, T3>
     {
         return new Tuple3<>(t1, t2, t3);
     }
-
     public T1 getT1()
     {
         return _1;

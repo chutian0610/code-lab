@@ -53,6 +53,7 @@ public class NFA
         return new NFA(subNFA.start, subNFA.end);
     }
 
+
     private void printState(NFAState cursor, StringBuilder sb, Set<Integer> markSet)
     {
         if (cursor != null && !markSet.contains(cursor.getId())) {
