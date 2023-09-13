@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -38,6 +37,14 @@ public class NFAState
     }
 
     @Nonnull
+    public List<Transition> getAllTransitionExceptEpsilon()
+    {
+        return transitions.keySet().stream()
+                .filter(t -> !t.equals(EpsilonTransition.INSTANCE))
+                .collect(Collectors.toList());
+    }
+
+    @Nonnull
     public List<Transition> getAllTransitionWithSort()
     {
         return transitions.keySet().stream().map(x -> {
@@ -46,10 +53,11 @@ public class NFAState
         }).sorted((o1, o2) -> o2.getRight().compareTo(o1.getRight())).map(Pair::getLeft).collect(Collectors.toList());
     }
 
-    public NFAState(boolean accept, Supplier<Integer> stateIdSupplier)
+    public NFAState(Context context)
     {
-        this.state = new State(accept, stateIdSupplier);
+        this.state = new State(false, context::getNextNFAID);
         transitions = new HashMap<>();
+        context.registerNFAState(this);
     }
 
     public int getId()
@@ -72,10 +80,10 @@ public class NFAState
     {
 
         if (state.isAccept()) {
-            return String.format("s_%d((%d))", state.getId(), state.getId());
+            return String.format("ns_%d((%d))", state.getId(), state.getId());
         }
         else {
-            return String.format("s_%d(%d)", state.getId(), state.getId());
+            return String.format("ns_%d(%d)", state.getId(), state.getId());
         }
     }
 
