@@ -102,6 +102,9 @@ public class RegexExpressionTreePrinter
         }
     }
 
+    /**
+     * 栈中的元素
+     */
     public static class StackItem
     {
         public static StackItem of(RegexExpression node, boolean last, StackItem parent)
@@ -117,6 +120,9 @@ public class RegexExpressionTreePrinter
         private final RegexExpression node;
         private final boolean last;
 
+        /**
+         * 父元素 reference
+         */
         private final StackItem parent;
 
         private StackItem(RegexExpression node, boolean last, StackItem parent)
