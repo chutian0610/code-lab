@@ -34,9 +34,9 @@ public class NFA
     private final NFAState start;
 
     // ================================ NFA to DFA =============================================
-    private Set<NFAState> findEpsilonClosure(NFAState start)
+    private Set<NFAState> computeEpsilonClosure(NFAState start)
     {
-        return findEpsilonClosure(start, new HashSet<>());
+        return dfsComputeEpsilonClosure(start, new HashSet<>());
     }
 
     /**
@@ -46,7 +46,7 @@ public class NFA
      * @param marked
      * @return
      */
-    private static Set<NFAState> findEpsilonClosure(NFAState start, Set<NFAState> marked)
+    private static Set<NFAState> dfsComputeEpsilonClosure(NFAState start, Set<NFAState> marked)
     {
         Set<NFAState> result = new HashSet<>();
         if (!marked.contains(start)) {
@@ -61,7 +61,7 @@ public class NFA
                     result.add(s);
                     marked.add(s);
                     // 记录下一级节点的 ϵ 闭包
-                    return findEpsilonClosure(s, marked);
+                    return dfsComputeEpsilonClosure(s, marked);
                 }).forEach(result::addAll);
         return result;
     }
@@ -73,7 +73,7 @@ public class NFA
      */
     public DFA toDFA()
     {
-        Set<NFAState> startSet = findEpsilonClosure(this.start);
+        Set<NFAState> startSet = computeEpsilonClosure(this.start);
         DFAState start = createDFAState(startSet);
         return new DFA(start, context);
     }
@@ -126,7 +126,7 @@ public class NFA
             List<NFAState> next = s.getTargetsOfTransitionSort(transition);
             if (!next.isEmpty()) {
                 next.forEach(x -> {
-                    res.addAll(findEpsilonClosure(x));
+                    res.addAll(computeEpsilonClosure(x));
                 });
             }
         }
