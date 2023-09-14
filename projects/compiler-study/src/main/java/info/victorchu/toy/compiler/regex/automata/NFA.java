@@ -53,7 +53,7 @@ public class NFA
             // 记录当前节点
             result.add(start);
         }
-        start.getTargetsOfTransitionSort(EpsilonTransition.INSTANCE)
+        start.getSortedToStatesOfTransition(EpsilonTransition.INSTANCE)
                 .stream()
                 // 记录未标记节点
                 .filter(s -> !marked.contains(s))
@@ -105,9 +105,15 @@ public class NFA
         return start;
     }
 
+    /**
+     * 查找DFA转移表
+     *
+     * @param nfaSet
+     * @return
+     */
     private Map<Transition, Set<NFAState>> findDFAMoveTable(Set<NFAState> nfaSet)
     {
-        // 获取对当前状态集有效的字符集
+        // 获取对当前状态集有效的字符集(排除 epsilon)
         Set<Transition> transitionSet = nfaSet.stream()
                 .map(NFAState::getAllTransitionExceptEpsilon)
                 .flatMap(Collection::stream)
@@ -119,11 +125,17 @@ public class NFA
         return res;
     }
 
+    /**
+     * 查找NFA集合应用某个转换的结果集
+     * @param nfaSet
+     * @param transition
+     * @return
+     */
     private Set<NFAState> findDFAMoveSet(Set<NFAState> nfaSet, Transition transition)
     {
         Set<NFAState> res = new HashSet<>();
         for (NFAState s : nfaSet) {
-            List<NFAState> next = s.getTargetsOfTransitionSort(transition);
+            List<NFAState> next = s.getSortedToStatesOfTransition(transition);
             if (!next.isEmpty()) {
                 next.forEach(x -> {
                     res.addAll(computeEpsilonClosure(x));
@@ -155,9 +167,9 @@ public class NFA
     {
         if (cursor != null && !markSet.contains(cursor.getId())) {
             markSet.add(cursor.getId());
-            List<Transition> transitions = cursor.getAllTransitionWithSort();
+            List<Transition> transitions = cursor.getSortedAllTransition();
             for (Transition transition : transitions) {
-                List<NFAState> stateSet = cursor.getTargetsOfTransitionSort(transition);
+                List<NFAState> stateSet = cursor.getSortedToStatesOfTransition(transition);
                 for (NFAState state : stateSet) {
                     sb.append(cursor).append("-->|").append(transition).append("|").append(state).append("\n");
                     printState(state, sb, markSet);

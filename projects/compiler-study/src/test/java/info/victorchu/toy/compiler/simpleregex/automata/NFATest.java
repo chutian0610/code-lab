@@ -113,7 +113,7 @@ class NFATest
         log.info("\n================== NFA ================\n{}======================================", nfa);
         DFA dfa = nfa.toDFA();
         log.info("\n================== DFA ================\n{}======================================", dfa);
-        log.info("\n================== NFA -> DFA ================\n{}===============================", dfa.printMapping());
+        log.info(dfa.printMapping());
         Assertions.assertEquals("ds_0(0)-->|'a'|ds_1(1)\n" +
                 "ds_1(1)-->|'b'|ds_2((2))\n", dfa.toString());
     }
@@ -128,7 +128,7 @@ class NFATest
         log.info("\n================== NFA ================\n{}======================================", nfa);
         DFA dfa = nfa.toDFA();
         log.info("\n================== DFA ================\n{}======================================", dfa);
-        log.info("\n================== NFA -> DFA ================\n{}===============================", dfa.printMapping());
+        log.info(dfa.printMapping());
         Assertions.assertEquals("ds_0(0)-->|'b'|ds_2((2))\n" +
                 "ds_0(0)-->|'a'|ds_1((1))\n", dfa.toString());
     }
@@ -143,11 +143,15 @@ class NFATest
         log.info("\n================== NFA ================\n{}======================================", nfa);
         DFA dfa = nfa.toDFA();
         log.info("\n================== DFA ================\n{}======================================", dfa);
-        log.info("\n================== NFA -> DFA ================\n{}===============================", dfa.printMapping());
-        Assertions.assertEquals("ds_0(0)-->|'b'|ds_3((3))\n" +
+        log.info(dfa.printMapping());
+        Assertions.assertEquals("ds_0(0)-->|'b'|ds_2((2))\n" +
                 "ds_0(0)-->|'a'|ds_1(1)\n" +
                 "ds_1(1)-->|'b'|ds_2((2))\n" +
                 "ds_1(1)-->|'a'|ds_1(1)\n", dfa.toString());
+        Assertions.assertEquals("\n<<<<<<<<<<<< NFA -> DFA >>>>>>>>>>>>>\n" +
+                "ds_0<==>(ns_1,ns_3,ns_4,ns_0)\n" +
+                "ds_2<==>(ns_5)\n" +
+                "ds_1<==>(ns_1,ns_2,ns_3,ns_4)\n", dfa.printMapping());
     }
 
     @Test
@@ -160,7 +164,7 @@ class NFATest
         log.info("\n================== NFA ================\n{}======================================", nfa);
         DFA dfa = nfa.toDFA();
         log.info("\n================== DFA ================\n{}======================================", dfa);
-        log.info("\n================== NFA -> DFA ================\n{}===============================", dfa.printMapping());
+        log.info(dfa.printMapping());
         Assertions.assertEquals("ds_0(0)-->|'b'|ds_4(4)\n" +
                 "ds_4(4)-->|'b'|ds_4(4)\n" +
                 "ds_4(4)-->|'a'|ds_1(1)\n" +

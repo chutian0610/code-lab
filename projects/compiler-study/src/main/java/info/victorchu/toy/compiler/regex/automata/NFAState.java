@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -21,31 +22,55 @@ import java.util.stream.Collectors;
  */
 public class NFAState
 {
-    private final State state;
+    /**
+     * 是否是可接受状态
+     */
+    private boolean accept;
+    /**
+     * state id ( must unique )
+     */
+    private final int id;
     private final Map<Transition, Set<NFAState>> transitions;
 
-    public void addTransition(Transition transition, NFAState target)
+    /**
+     * 增加转换
+     *
+     * @param transition 转换
+     * @param to 转换后的NFA状态
+     */
+    public void addTransition(Transition transition, NFAState to)
     {
         Set<NFAState> stateSet = transitions.computeIfAbsent(transition, k -> new HashSet<>());
-        stateSet.add(target);
+        stateSet.add(to);
     }
 
+    /**
+     * 获取转换对应的所有NFA 状态
+     * @param transition 转换
+     * @return
+     */
     @Nonnull
-    public List<NFAState> getTargetsOfTransitionSort(Transition transition)
+    public List<NFAState> getSortedToStatesOfTransition(Transition transition)
     {
         return transitions.getOrDefault(transition, new HashSet<>(0)).stream().sorted(Comparator.comparing(NFAState::getId)).collect(Collectors.toList());
     }
 
+    /**
+     * 获取所有转换(排查Epsilon转换)
+     * @return
+     */
     @Nonnull
     public List<Transition> getAllTransitionExceptEpsilon()
     {
-        return transitions.keySet().stream()
-                .filter(t -> !t.equals(EpsilonTransition.INSTANCE))
-                .collect(Collectors.toList());
+        return transitions.keySet().stream().filter(t -> !t.equals(EpsilonTransition.INSTANCE)).collect(Collectors.toList());
     }
 
+    /**
+     * 获取所有转换(排序后)
+     * @return
+     */
     @Nonnull
-    public List<Transition> getAllTransitionWithSort()
+    public List<Transition> getSortedAllTransition()
     {
         return transitions.keySet().stream().map(x -> {
             Integer weight = transitions.get(x).stream().map(NFAState::getId).min(Comparator.naturalOrder()).orElse(0);
@@ -53,37 +78,49 @@ public class NFAState
         }).sorted((o1, o2) -> o2.getRight().compareTo(o1.getRight())).map(Pair::getLeft).collect(Collectors.toList());
     }
 
-    public NFAState(Context context)
+    public NFAState(Supplier<Integer> id)
     {
-        this.state = new State(false, context::getNextNFAID);
+        this.id = id.get();
+        this.accept = false;
         transitions = new HashMap<>();
-        context.registerNFAState(this);
     }
 
+    /**
+     * 获取NFA 状态ID
+     * @return id
+     */
     public int getId()
     {
-        return state.getId();
+        return id;
     }
 
+    /**
+     * 是否是可接受状态
+     * @return isAccept
+     */
     public boolean isAccept()
     {
-        return state.isAccept();
+        return accept;
     }
 
+    /**
+     * 设置NFA状态是否可接受
+     * @param accept 是否可接受
+     */
     public void setAccept(boolean accept)
     {
-        state.setAccept(accept);
+        this.accept = accept;
     }
 
     @Override
     public String toString()
     {
 
-        if (state.isAccept()) {
-            return String.format("ns_%d((%d))", state.getId(), state.getId());
+        if (isAccept()) {
+            return String.format("ns_%d((%d))", getId(), getId());
         }
         else {
-            return String.format("ns_%d(%d)", state.getId(), state.getId());
+            return String.format("ns_%d(%d)", getId(), getId());
         }
     }
 
@@ -97,12 +134,12 @@ public class NFAState
             return false;
         }
         NFAState nfaState = (NFAState) o;
-        return Objects.equals(state, nfaState.state);
+        return Objects.equals(id, nfaState.id);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(state);
+        return Objects.hash(id);
     }
 }

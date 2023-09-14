@@ -4,7 +4,6 @@ import info.victorchu.toy.compiler.regex.util.Pair;
 
 import javax.annotation.Nonnull;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -21,24 +20,45 @@ import java.util.stream.Collectors;
  */
 public class DFAState
 {
-    private final State state;
+    protected boolean accept;
+    /**
+     * state id ( must unique )
+     */
+    protected final int id;
 
     /**
      * DFA的状态变更是确定的
      */
-    private final Map<Transition, DFAState> transitions;
+    protected final Map<Transition, DFAState> transitions;
+
+    private final Set<DFAState> dfaSets;
 
     /**
      * DFA 对应 NFA 状态集合
      */
-    private final Set<NFAState> nfaSets;
+    protected final Set<NFAState> nfaSets;
 
-    public DFAState(Context context, Set<NFAState> nfaSets, boolean isAccept)
+    public DFAState(Supplier<Integer> id, Set<NFAState> nfaSets, boolean isAccept)
     {
-        this.state = new State(isAccept, context::getNextDFAID);
+        this.id = id.get();
+        this.accept = isAccept;
         this.nfaSets = nfaSets;
         this.transitions = new HashMap<>();
-        context.registerDFAState(this);
+        this.dfaSets = new HashSet<>(0);
+    }
+
+    public DFAState(Supplier<Integer> id, Set<NFAState> nfaSets, boolean isAccept, Set<DFAState> dfaStateSet)
+    {
+        this.id = id.get();
+        this.accept = isAccept;
+        this.nfaSets = nfaSets;
+        this.transitions = new HashMap<>();
+        this.dfaSets = dfaStateSet;
+    }
+
+    public boolean isMinimizationDFA()
+    {
+        return !dfaSets.isEmpty();
     }
 
     public void addTransition(Transition transition, DFAState target)
@@ -52,13 +72,19 @@ public class DFAState
     }
 
     @Nonnull
-    public Optional<DFAState> getTargetOfTransition(Transition transition)
+    public Optional<DFAState> getToStateOfTransition(Transition transition)
     {
         return Optional.ofNullable(transitions.get(transition));
     }
 
     @Nonnull
-    public List<Transition> getAllTransitionWithSort()
+    public Set<Transition> getAllTransition()
+    {
+        return transitions.keySet();
+    }
+
+    @Nonnull
+    public List<Transition> getSortedAllTransition()
     {
         return transitions.keySet().stream().map(x -> {
             Integer weight = transitions.get(x).getId();
@@ -66,25 +92,48 @@ public class DFAState
         }).sorted((o1, o2) -> o2.getRight().compareTo(o1.getRight())).map(Pair::getLeft).collect(Collectors.toList());
     }
 
+    @Nonnull
+    public Set<DFAState> getToStates()
+    {
+        return new HashSet<>(transitions.values());
+    }
+
     public boolean isAccept()
     {
-        return state.isAccept();
+        return accept;
     }
 
     public void setAccept(boolean accept)
     {
-        state.setAccept(accept);
+        this.accept = accept;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    @Nonnull
+    public Set<DFAState> getMappedDFAStates()
+    {
+        return dfaSets;
+    }
+
+    @Nonnull
+    public Set<NFAState> getMappedNFAStates()
+    {
+        return nfaSets;
     }
 
     @Override
     public String toString()
     {
 
-        if (state.isAccept()) {
-            return String.format("ds_%d((%d))", state.getId(), state.getId());
+        if (isAccept()) {
+            return String.format("%ss_%d((%d))", isMinimizationDFA() ? "m" : "d", getId(), getId());
         }
         else {
-            return String.format("ds_%d(%d)", state.getId(), state.getId());
+            return String.format("%ss_%d(%d)", isMinimizationDFA() ? "m" : "d", getId(), getId());
         }
     }
 
@@ -98,22 +147,13 @@ public class DFAState
             return false;
         }
         DFAState dfaState = (DFAState) o;
-        return Objects.equals(state, dfaState.state);
+        return Objects.equals(id, dfaState.id);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(state);
+        return Objects.hash(id);
     }
 
-    public int getId()
-    {
-        return state.getId();
-    }
-
-    public Set<NFAState> getNfaSets()
-    {
-        return nfaSets;
-    }
 }
