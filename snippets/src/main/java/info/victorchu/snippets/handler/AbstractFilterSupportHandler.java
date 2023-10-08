@@ -1,8 +1,12 @@
 package info.victorchu.snippets.handler;
 
 /**
+ * <pre>
+ * -> filter pre  -> filter pre  -> |
+ *                                  |handler
+ * <- filter post <- fliter post <- |
+ * </pre>
  * @author victorchu
-
  */
 public abstract class AbstractFilterSupportHandler implements Handler<HandlerContext, FilterSupportHandlerChain>{
 
