@@ -17,9 +17,9 @@
 jdk versions path managed in etc/jdk.properties.例如:
 
 ```properties
-JAVA_8_HOME=/Users/didi/.sdkman/candidates/java/8.0.332-zulu
-JAVA_11_HOME=/Users/didi/.sdkman/candidates/java/11.0.18-zulu
-JAVA_17_HOME=/Users/didi/.sdkman/candidates/java/17.0.6-zulu
+JAVA_8_HOME=/Users/xxx/.sdkman/candidates/java/8.0.332-zulu
+JAVA_11_HOME=/Users/xxx/.sdkman/candidates/java/11.0.18-zulu
+JAVA_17_HOME=/Users/xxx/.sdkman/candidates/java/17.0.6-zulu
 ```
 
 编译和test插件配置
