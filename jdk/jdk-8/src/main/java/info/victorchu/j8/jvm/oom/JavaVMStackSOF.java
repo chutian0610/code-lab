@@ -1,13 +1,14 @@
 package info.victorchu.j8.jvm.oom;
 
 /**
+ * 测试 stackoverflow
  * VM option: -Xss256k
  */
 public class JavaVMStackSOF {
     private int stackLength =1 ;
 
     public  void stackLength(){
-        stackLength ++;
+        ++ stackLength;
         stackLength();
     }
 

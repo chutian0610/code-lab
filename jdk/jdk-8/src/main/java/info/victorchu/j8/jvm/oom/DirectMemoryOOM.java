@@ -1,11 +1,8 @@
 package info.victorchu.j8.jvm.oom;
 
-import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
-
-import sun.misc.Unsafe;
 
 /**
  * VM Option: -Xmx10M -XX:MaxDirectMemorySize=10M

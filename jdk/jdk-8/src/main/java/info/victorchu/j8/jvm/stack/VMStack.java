@@ -11,6 +11,5 @@ public class VMStack {
         b = 2;
         c = increaseByTen(a, b);
         c = c*(a+b);
-        
     }
 }
