@@ -14,7 +14,7 @@
 
 由于使用了jdk11,maven版本是3.6.3(需要大于3.5.0)。
 
-jdk versions path managed in etc/jdk.properties.例如:
+jdk versions path managed in jdk.properties.例如:
 
 ```properties
 JAVA_8_HOME=/Users/xxx/.sdkman/candidates/java/8.0.332-zulu
