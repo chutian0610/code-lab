@@ -29,6 +29,7 @@
     <calcite.version>1.28.0</calcite.version>
     <cglib.version>3.3.0</cglib.version>
     <asm.version>8.0.1</asm.version>
+      <jol.version>0.17</jol.version>
   </properties>
 
   <dependencyManagement>
@@ -154,6 +155,13 @@
         <artifactId>cglib</artifactId>
         <version>${cglib.version}</version>
       </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>${jol.version}</version>
+        </dependency>
+
     </dependencies>
   </dependencyManagement>
 </project>
