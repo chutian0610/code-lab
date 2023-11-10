@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>info.victorchu.demos.guice</groupId>
-    <artifactId>guice-all</artifactId>
+    <groupId>info.victorchu.codelab</groupId>
+    <artifactId>codelab-root</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
+    <relativePath>../../pom.xml</relativePath>
   </parent>
   <artifactId>guice-quickstart</artifactId>
   <groupId>info.victorchu.demos.guice</groupId>
@@ -19,11 +19,22 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>info.victorchu.codelab</groupId>
+        <artifactId>codelab-bom</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>com.google.inject</groupId>
       <artifactId>guice</artifactId>
-      <version>5.1.0</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>

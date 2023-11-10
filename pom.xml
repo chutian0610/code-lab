@@ -19,10 +19,10 @@
         <module>projects/gameoflife</module>
         <module>projects/charlene</module>
 
-        <module>demos/guice-all</module>
+        <module>demos/guice-quickstart</module>
         <module>demos/java-modules</module>
-        <module>demos/spring-all</module>
-        <module>demos/jol-all</module>
+        <module>spring-all</module>
+        <module>demos/jol-quickstart</module>
 
         <module>jdk/jdk-8</module>
         <module>jdk/jdk-11</module>
