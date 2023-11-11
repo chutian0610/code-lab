@@ -28,7 +28,7 @@
     <spring.version>5.2.4.RELEASE</spring.version>
     <calcite.version>1.28.0</calcite.version>
     <cglib.version>3.3.0</cglib.version>
-    <asm.version>8.0.1</asm.version>
+      <asm.version>9.6</asm.version>
       <jol.version>0.17</jol.version>
   </properties>
 
@@ -39,6 +39,11 @@
         <artifactId>asm</artifactId>
         <version>${asm.version}</version>
       </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-tree</artifactId>
+            <version>${asm.version}</version>
+        </dependency>
 
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
