@@ -35,6 +35,7 @@ public class Application
         if (args.length > 0) {
             VirtualMachine vm = VirtualMachine.attach(args[0]);
             vm.loadAgent(args[1]); // agent.jar path
+            vm.detach();
         }
         else {
             // run app
