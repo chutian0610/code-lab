@@ -6,7 +6,7 @@ import org.openjdk.jol.vm.VM;
 /**
  * @author victorchu
  */
-public class JolSimple01
+public class JolSimple
 {
     public static void main(String[] args) {
         System.out.println(VM.current().details());
