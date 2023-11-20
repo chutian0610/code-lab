@@ -74,6 +74,6 @@ public class MemoryUtil {
     }
 
     static boolean skipObject(Set<Integer> visited, Object obj) {
-        return !visited.add(obj.hashCode());
+        return !visited.add(System.identityHashCode(obj));
     }
 }
