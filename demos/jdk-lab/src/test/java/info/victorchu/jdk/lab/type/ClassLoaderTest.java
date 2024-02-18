@@ -1,4 +1,4 @@
-package info.victorchu.j8.type;
+package info.victorchu.jdk.lab.type;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package info.victorchu.j8.type;
+package info.victorchu.jdk.lab.type;
 
 import info.victorchu.jdk.lab.usage.type.util.PrimitiveTypeResolver;
 import org.junit.jupiter.api.Test;

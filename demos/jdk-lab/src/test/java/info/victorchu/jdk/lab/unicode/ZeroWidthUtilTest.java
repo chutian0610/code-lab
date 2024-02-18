@@ -1,4 +1,4 @@
-package info.victorchu.j8.unicode;
+package info.victorchu.jdk.lab.unicode;
 
 import info.victorchu.jdk.lab.usage.unicode.ZeroWidthUtil;
 import org.junit.jupiter.api.Test;

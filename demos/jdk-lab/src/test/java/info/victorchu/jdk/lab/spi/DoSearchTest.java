@@ -1,4 +1,4 @@
-package info.victorchu.j8.spi;
+package info.victorchu.jdk.lab.spi;
 
 import info.victorchu.jdk.lab.usage.spi.DoSearch;
 import org.junit.jupiter.api.Assertions;

@@ -1,4 +1,4 @@
-package info.victorchu.j8.stream;
+package info.victorchu.jdk.lab.stream;
 
 
 import org.junit.jupiter.api.Assertions;
