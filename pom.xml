@@ -9,8 +9,8 @@
     <packaging>pom</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
     <modules>
         <module>codelab-bom</module>
@@ -23,9 +23,7 @@
         <module>demos/java-modules</module>
         <module>demos/jol-quickstart</module>
         <module>demos/java-instrumentation</module>
-
-        <module>jdk/jdk-8</module>
-        <module>jdk/jdk-11</module>
+        <module>demos/jdk-lab</module>
 
         <module>spring-all</module>
 
@@ -50,33 +48,12 @@
                     <configuration>
                         <verbose>true</verbose>
                         <fork>true</fork>
-                        <!--          <executable>${JAVA_8_HOME}/bin/javac</executable>-->
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M5</version>
-                    <configuration>
-                        <!--            <jvm>${JAVA_8_HOME}/bin/java</jvm>-->
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>properties-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <phase>initialize</phase>
-                            <goals>
-                                <goal>read-project-properties</goal>
-                            </goals>
-                            <configuration>
-                                <files>
-                                    <file>${user.dir}/jdk.properties</file>
-                                </files>
-                            </configuration>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->

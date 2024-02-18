@@ -50,33 +50,12 @@
                     <configuration>
                         <verbose>true</verbose>
                         <fork>true</fork>
-                        <!--          <executable>${JAVA_8_HOME}/bin/javac</executable>-->
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M5</version>
-                    <configuration>
-                        <!--            <jvm>${JAVA_8_HOME}/bin/java</jvm>-->
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>properties-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <phase>initialize</phase>
-                            <goals>
-                                <goal>read-project-properties</goal>
-                            </goals>
-                            <configuration>
-                                <files>
-                                    <file>${user.dir}/jdk.properties</file>
-                                </files>
-                            </configuration>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
