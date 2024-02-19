@@ -1,16 +1,26 @@
 package info.victorchu.jdk.lab.usage.proxy;
 
-import sun.misc.ProxyGenerator;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class ProxyClassGenerator {
 
-    public static void generateClass(){
+    public static void generateClass()
+            throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException
+    {
         Subject realSubject = new RealSubject();
-        byte[] classFile = ProxyGenerator.generateProxyClass("$Proxy0",
-                RealSubject.class.getInterfaces());
+
+        // jdk 11 之后，ProxyGenerator是final，无法直接引用
+        // byte[] classFile = ProxyGenerator.generateProxyClass("$Proxy0",
+        // RealSubject.class.getInterfaces());
+
+        Class cl = Class.forName("java.lang.reflect.ProxyGenerator");
+        Method m = cl.getDeclaredMethod("generateProxyClass", String.class, Class[].class);
+        m.setAccessible(true);
+        byte[] classFile = (byte[]) m.invoke(null, "$Proxy0", RealSubject.class.getInterfaces());
+
         String path= System.getProperty("user.dir");
 
         FileOutputStream out = null;
@@ -31,7 +41,9 @@ public class ProxyClassGenerator {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+            throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, IllegalAccessException
+    {
         generateClass();
     }
 }
