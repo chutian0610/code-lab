@@ -1,5 +1,10 @@
 package info.victorchu.jdk.lab.simd;
 
+/**
+ * -XX:+UnlockDiagnosticVMOptions
+ * -XX:CompileCommand="print info.victorchu.jdk.lab.simd.VectorizationMicroBenchmark::square"
+ * -XX:PrintAssemblyOptions=intel
+ */
 public class VectorizationMicroBenchmark
 {
     private static void square(float[] a)
