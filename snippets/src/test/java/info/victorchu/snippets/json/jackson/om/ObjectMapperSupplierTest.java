@@ -83,12 +83,12 @@ class ObjectMapperSupplierTest {
         user.setDesc("common");
         String result = new String(serializer.serialize(user));
         log.info("generate:{}",result);
-        String less = "{\"@class\":\"info.victorchu.fluentjson.jackson.om.ObjectMapperSupplierTest$User\",\"id\":\"1\",\"name\":\"test\"}";
+        String less = "{\"@class\":\"info.victorchu.snippets.json.jackson.om.ObjectMapperSupplierTest$User\",\"id\":\"1\",\"name\":\"test\"}";
         log.info("check with less fields:{}",less);
         assertThrows(JacksonJsonSerializerException.class, () -> {
             User lessUser = serializer.deserialize(less.getBytes(),User.class);
             log.info("check with less fields,result:{}",lessUser);
-            String more = "{\"@class\":\"info.victorchu.fluentjson.jackson.om.ObjectMapperSupplierTest$User\",\"id\":\"1\",\"name\":\"test\",\"desc\":\"common\",\"desc1\":\"common\"}";
+            String more = "{\"@class\":\"info.victorchu.snippets.json.jackson.om.ObjectMapperSupplierTest$User\",\"id\":\"1\",\"name\":\"test\",\"desc\":\"common\",\"desc1\":\"common\"}";
             log.info("check with more fields:{}",more);
             User moreUser = serializer.deserialize(more.getBytes(),User.class);
             log.info("check with more fields,result:{}",moreUser);
@@ -168,11 +168,11 @@ class ObjectMapperSupplierTest {
         superUser.setDesc("common");
         String result = new String(serializer.serialize(superUser));
         log.info("generate:{}",result);
-        String less = "{\"@class\":\"info.victorchu.fluentjson.jackson.om.ObjectMapperSupplierTest$SuperUser\",\"id\":\"1\",\"name\":\"test\",\"isSuper\":null}";
+        String less = "{\"@class\":\"info.victorchu.snippets.json.jackson.om.ObjectMapperSupplierTest$SuperUser\",\"id\":\"1\",\"name\":\"test\",\"isSuper\":null}";
         log.info("check with less fields:{}",less);
         User lessUser = serializer.deserialize(less.getBytes(),User.class);
         log.info("check with less fields,result:{}",lessUser);
-        String more = "{\"@class\":\"info.victorchu.fluentjson.jackson.om.ObjectMapperSupplierTest$SuperUser\",\"id\":\"1\",\"name\":\"test\",\"desc\":\"common\",\"isSuper\":null,\"desc2\":\"common\"}";
+        String more = "{\"@class\":\"info.victorchu.snippets.json.jackson.om.ObjectMapperSupplierTest$SuperUser\",\"id\":\"1\",\"name\":\"test\",\"desc\":\"common\",\"isSuper\":null,\"desc2\":\"common\"}";
         log.info("check with more fields:{}",more);
         User moreUser = serializer.deserialize(more.getBytes(),User.class);
         log.info("check with more fields,result:{}",moreUser);
@@ -210,11 +210,11 @@ class ObjectMapperSupplierTest {
         assertThrows(JacksonJsonSerializerException.class, () -> {
             String result = new String(serializer.serialize(superUser));
             log.info("generate:{}", result);
-            String less = "{\"@class\":\"info.victorchu.fluentjson.jackson.om.ObjectMapperSupplierTest$SuperUser\",\"id\":\"1\",\"name\":\"test\",\"isSuper\":null,\"time1\":[\"java.util.Date\",1646992908232],\"time2\":{\"year\":2022,\"month\":\"MARCH\",\"nano\":237000000,\"monthValue\":3,\"dayOfMonth\":11,\"hour\":18,\"minute\":1,\"second\":48,\"dayOfYear\":70,\"dayOfWeek\":\"FRIDAY\",\"chronology\":{\"@class\":\"java.time.chrono.IsoChronology\",\"id\":\"ISO\",\"calendarType\":\"iso8601\"}}}";
+            String less = "{\"@class\":\"info.victorchu.snippets.json.jackson.om.ObjectMapperSupplierTest$SuperUser\",\"id\":\"1\",\"name\":\"test\",\"isSuper\":null,\"time1\":[\"java.util.Date\",1646992908232],\"time2\":{\"year\":2022,\"month\":\"MARCH\",\"nano\":237000000,\"monthValue\":3,\"dayOfMonth\":11,\"hour\":18,\"minute\":1,\"second\":48,\"dayOfYear\":70,\"dayOfWeek\":\"FRIDAY\",\"chronology\":{\"@class\":\"java.time.chrono.IsoChronology\",\"id\":\"ISO\",\"calendarType\":\"iso8601\"}}}";
             log.info("check with less fields:{}", less);
             User lessUser = serializer.deserialize(less.getBytes(), User.class);
             log.info("check with less fields,result:{}", lessUser);
-            String more = "{\"@class\":\"info.victorchu.fluentjson.jackson.om.ObjectMapperSupplierTest$SuperUser\",\"id\":\"1\",\"name\":\"test\",\"desc\":\"common\",\"desc2\":\"common\",\"isSuper\":null,\"time1\":[\"java.util.Date\",1646992908232],\"time2\":{\"year\":2022,\"month\":\"MARCH\",\"nano\":237000000,\"monthValue\":3,\"dayOfMonth\":11,\"hour\":18,\"minute\":1,\"second\":48,\"dayOfYear\":70,\"dayOfWeek\":\"FRIDAY\",\"chronology\":{\"@class\":\"java.time.chrono.IsoChronology\",\"id\":\"ISO\",\"calendarType\":\"iso8601\"}}}";
+            String more = "{\"@class\":\"info.victorchu.snippets.json.jackson.om.ObjectMapperSupplierTest$SuperUser\",\"id\":\"1\",\"name\":\"test\",\"desc\":\"common\",\"desc2\":\"common\",\"isSuper\":null,\"time1\":[\"java.util.Date\",1646992908232],\"time2\":{\"year\":2022,\"month\":\"MARCH\",\"nano\":237000000,\"monthValue\":3,\"dayOfMonth\":11,\"hour\":18,\"minute\":1,\"second\":48,\"dayOfYear\":70,\"dayOfWeek\":\"FRIDAY\",\"chronology\":{\"@class\":\"java.time.chrono.IsoChronology\",\"id\":\"ISO\",\"calendarType\":\"iso8601\"}}}";
             log.info("check with more fields:{}", more);
             User moreUser = serializer.deserialize(more.getBytes(), User.class);
             log.info("check with more fields,result:{}", moreUser);
@@ -233,11 +233,11 @@ class ObjectMapperSupplierTest {
         superUser.setTime2(LocalDateTime.now());
         String result = new String(serializer.serialize(superUser));
         log.info("generate:{}",result);
-        String less = "{\"@class\":\"info.victorchu.fluentjson.jackson.om.ObjectMapperSupplierTest$SuperUser\",\"id\":\"1\",\"name\":\"test\",\"isSuper\":null,\"time1\":[\"java.util.Date\",1646992734766],\"time2\":[2022,3,11,17,58,54,782000000]}";
+        String less = "{\"@class\":\"info.victorchu.snippets.json.jackson.om.ObjectMapperSupplierTest$SuperUser\",\"id\":\"1\",\"name\":\"test\",\"isSuper\":null,\"time1\":[\"java.util.Date\",1646992734766],\"time2\":[2022,3,11,17,58,54,782000000]}";
         log.info("check with less fields:{}",less);
         User lessUser = serializer.deserialize(less.getBytes(),User.class);
         log.info("check with less fields,result:{}",lessUser);
-        String more = "{\"@class\":\"info.victorchu.fluentjson.jackson.om.ObjectMapperSupplierTest$SuperUser\",\"id\":\"1\",\"name\":\"test\",\"desc\":\"common\",\"desc1\":\"common\",\"isSuper\":null,\"time1\":[\"java.util.Date\",1646992734766],\"time2\":[2022,3,11,17,58,54,782000000]}";
+        String more = "{\"@class\":\"info.victorchu.snippets.json.jackson.om.ObjectMapperSupplierTest$SuperUser\",\"id\":\"1\",\"name\":\"test\",\"desc\":\"common\",\"desc1\":\"common\",\"isSuper\":null,\"time1\":[\"java.util.Date\",1646992734766],\"time2\":[2022,3,11,17,58,54,782000000]}";
         log.info("check with more fields:{}",more);
         User moreUser = serializer.deserialize(more.getBytes(),User.class);
         log.info("check with more fields,result:{}",moreUser);

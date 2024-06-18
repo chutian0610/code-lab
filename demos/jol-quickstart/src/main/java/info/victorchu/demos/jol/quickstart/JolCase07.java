@@ -1,7 +1,7 @@
 package info.victorchu.demos.jol.quickstart;
 
+import jdk.internal.vm.annotation.Contended;
 import org.openjdk.jol.info.ClassLayout;
-import sun.misc.Contended;
 
 /**
  * 设置jvm参数为 -XX:-RestrictContended 
@@ -21,13 +21,13 @@ public class JolCase07 {
 
     public static class B extends A {
         int e;
-        @sun.misc.Contended("first")
+        @Contended("first")
         int f;
-        @sun.misc.Contended("first")
+        @Contended("first")
         int g;
-        @sun.misc.Contended("last")
+        @Contended("last")
         int i;
-        @sun.misc.Contended("last")
+        @Contended("last")
         int k;
     }
 }

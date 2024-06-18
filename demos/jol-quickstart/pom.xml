@@ -15,8 +15,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source1>1.8</maven.compiler.source1>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source1>17</maven.compiler.source1>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
@@ -49,8 +49,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <verbose>true</verbose>
-                    <fork>true</fork>
+                    <compilerArgs>
+                        <arg>-verbose</arg>
+                        <arg>--add-exports </arg>
+                        <arg>java.base/jdk.internal.vm.annotation=ALL-UNNAMED</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
