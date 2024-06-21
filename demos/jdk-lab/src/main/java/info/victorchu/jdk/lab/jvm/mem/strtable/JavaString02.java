@@ -1,4 +1,4 @@
-package info.victorchu.jdk.lab.jvm.mem;
+package info.victorchu.jdk.lab.jvm.mem.strtable;
 
 public class JavaString02 {
     public static void main(String[] args) {

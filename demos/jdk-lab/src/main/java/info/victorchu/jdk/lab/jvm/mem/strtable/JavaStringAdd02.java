@@ -1,4 +1,4 @@
-package info.victorchu.jdk.lab.jvm.mem;
+package info.victorchu.jdk.lab.jvm.mem.strtable;
 
 public class JavaStringAdd02 {
     
