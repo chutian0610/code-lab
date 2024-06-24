@@ -14,7 +14,7 @@
     </properties>
     <modules>
         <module>codelab-bom</module>
-        <module>snippets/</module>
+        <module>snippets/java-snippets</module>
 
         <module>projects/gameoflife</module>
         <module>projects/charlene</module>
