@@ -22,6 +22,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--tools-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.30</version>
+            </dependency>
             <!-- boms must on the bottom-->
             <!--https://www.baeldung.com/spring-boot-dependency-management-custom-parent -->
             <dependency>
