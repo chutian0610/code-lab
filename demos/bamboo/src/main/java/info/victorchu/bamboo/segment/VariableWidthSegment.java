@@ -45,7 +45,7 @@ public class VariableWidthSegment
         this.initialBufferOutputSize = min(expectedBytes, SizeCalculator.MAX_ARRAY_SIZE);
         this.sizeCalculator = sizeCalculator;
         this.bufferSizeCalculator = bufferSizeCalculator;
-        buffer = Buffers.allocate(initialBufferOutputSize, bufferSizeCalculator);
+        buffer = Buffers.allocate(initialBufferOutputSize);
     }
 
     @Override

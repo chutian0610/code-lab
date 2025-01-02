@@ -37,12 +37,7 @@ import static sun.misc.Unsafe.ARRAY_SHORT_BASE_OFFSET;
 public class Buffer
         implements RetainedSizeAware
 {
-    public static Buffer EMPTY_BUFFER(){
-        return new Buffer(DefaultBufferSizeCalculator.INSTANCE);
-    }
-    public static Buffer EMPTY_BUFFER(SizeCalculator sizeCalculator){
-        return new Buffer(sizeCalculator);
-    }
+    public static final Buffer EMPTY_BUFFER = new Buffer();
     private static final ByteBuffer EMPTY_BYTE_BUFFER = ByteBuffer.allocate(0);
 
     private static final int INSTANCE_SIZE = instanceSize(Buffer.class);
@@ -51,18 +46,16 @@ public class Buffer
     private final int size;
     private final long retainedSize;
     private int hash;
-    private SizeCalculator sizeCalculator;
 
-    private Buffer(SizeCalculator sizeCalculator)
+    private Buffer()
     {
         this.base = new byte[0];
         this.baseOffset = 0;
         this.size = 0;
         this.retainedSize = INSTANCE_SIZE;
-        this.sizeCalculator = sizeCalculator;
     }
 
-    Buffer(byte[] base, SizeCalculator sizeCalculator)
+    Buffer(byte[] base)
     {
         requireNonNull(base, "base is null");
         if (base.length == 0) {
@@ -72,10 +65,9 @@ public class Buffer
         this.baseOffset = 0;
         this.size = base.length;
         this.retainedSize = INSTANCE_SIZE + sizeOf(base);
-        this.sizeCalculator = sizeCalculator;
     }
 
-    Buffer(byte[] base, int offset, int length, SizeCalculator sizeCalculator)
+    Buffer(byte[] base, int offset, int length)
     {
         requireNonNull(base, "base is null");
         if (base.length == 0) {
@@ -87,13 +79,12 @@ public class Buffer
         this.baseOffset = offset;
         this.size = length;
         this.retainedSize = INSTANCE_SIZE + sizeOf(base);
-        this.sizeCalculator = sizeCalculator;
     }
 
     /* subBuffer constructor
      * subBuffer retainedSize same as origin Buffer
      */
-    Buffer(byte[] base, int offset, int length, SizeCalculator sizeCalculator, long retainedSize)
+    Buffer(byte[] base, int offset, int length, long retainedSize)
     {
         requireNonNull(base, "base is null");
         if (base.length == 0) {
@@ -105,7 +96,6 @@ public class Buffer
         this.baseOffset = offset;
         this.size = length;
         this.retainedSize = retainedSize;
-        this.sizeCalculator = sizeCalculator;
     }
 
     private static String identityToString(Object o)
@@ -562,13 +552,14 @@ public class Buffer
         else {
             newCapacity = length();
         }
-        newCapacity = sizeCalculator.calculateNewArraySize(newCapacity, minWritableBytes);
+        newCapacity = DefaultBufferSizeCalculator.
+                INSTANCE.calculateNewArraySize(newCapacity, minWritableBytes);
         byte[] bytes = byteArray();
         int offset = byteArrayOffset();
         byte[] copy = Arrays.copyOfRange(bytes, offset, offset + newCapacity);
         // 确保新数组的未初始化部分被设置为零，防止旧的数据泄露。
         Arrays.fill(copy, length(), bytes.length - offset, (byte) 0);
-        return new Buffer(copy, sizeCalculator);
+        return new Buffer(copy);
     }
 
     public Buffer slice(int index, int length)
@@ -578,27 +569,27 @@ public class Buffer
         }
         checkFromIndexSize(index, length, length());
         if (length == 0) {
-            return Buffer.EMPTY_BUFFER(sizeCalculator);
+            return Buffer.EMPTY_BUFFER;
         }
 
-        return new Buffer(base, baseOffset + index, length, sizeCalculator, retainedSize);
+        return new Buffer(base, baseOffset + index, length, retainedSize);
     }
 
     public Buffer copy()
     {
         if (size == 0) {
-            return Buffer.EMPTY_BUFFER(sizeCalculator);
+            return Buffer.EMPTY_BUFFER;
         }
-        return new Buffer(Arrays.copyOfRange(base, baseOffset, baseOffset + size), sizeCalculator);
+        return new Buffer(Arrays.copyOfRange(base, baseOffset, baseOffset + size));
     }
 
     public Buffer copy(int index, int length)
     {
         checkFromIndexSize(index, length, size);
         if (length == 0) {
-            return Buffer.EMPTY_BUFFER(sizeCalculator);
+            return Buffer.EMPTY_BUFFER;
         }
-        return new Buffer(Arrays.copyOfRange(base, baseOffset + index, baseOffset + index + length), sizeCalculator);
+        return new Buffer(Arrays.copyOfRange(base, baseOffset + index, baseOffset + index + length));
     }
 
     public int compareTo(Buffer that)
