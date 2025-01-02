@@ -24,7 +24,7 @@
         <module>demos/jol-quickstart</module>
         <module>demos/java-instrumentation</module>
         <module>demos/jdk-lab</module>
-        <module>demos/bamboo</module>
+        <module>demos/colum-storage</module>
 
         <module>spring-all</module>
 
