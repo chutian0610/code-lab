@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 import static info.victorchu.jdk.lab.usage.socket.Constant.HOST;
 import static info.victorchu.jdk.lab.usage.socket.Constant.PORT;
 
-public class Client
+public class EchoClient
 {
     public static void main(String[] args)
     {
