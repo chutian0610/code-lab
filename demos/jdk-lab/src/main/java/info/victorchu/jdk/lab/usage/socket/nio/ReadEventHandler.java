@@ -57,7 +57,7 @@ public class ReadEventHandler implements EventHandler {
 
         String message = new String(bytes);
         message = message.stripTrailing();
-        System.out.println("Received : " + message);
+        System.out.println("["+Thread.currentThread().getName()+"] Received : " + message);
         if ("bye".equalsIgnoreCase(message)) {
             System.out.println("客户端断开连接: " + socketChannel.getRemoteAddress());
             socketChannel.write(ByteBuffer.wrap("bye\n".getBytes()));

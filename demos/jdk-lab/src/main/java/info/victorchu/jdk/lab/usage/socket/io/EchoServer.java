@@ -6,21 +6,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static info.victorchu.jdk.lab.usage.socket.Constant.PORT;
 
 public class EchoServer
         implements Runnable
 {
-
-    private final ExecutorService pool;
-
-    public EchoServer()
-    {
-        pool = Executors.newFixedThreadPool(4);
-    }
 
     public static void main(String[] args)
     {
@@ -31,31 +22,22 @@ public class EchoServer
     public void run()
     {
         try (ServerSocket ss = new ServerSocket(PORT)) {
+            Handler handler = new Handler();
             while (true) {
-                pool.execute(new Handler(ss.accept()));
+                Socket socket = ss.accept();
+                handler.handle(socket);
             }
         }
         catch (IOException e) {
             // ignored
             e.printStackTrace();
         }
-        finally {
-            pool.shutdown();
-        }
     }
 
     static class Handler
-            implements Runnable
     {
-        final Socket socket;
 
-        Handler(Socket socket)
-        {
-            this.socket = socket;
-        }
-
-        @Override
-        public void run()
+        public void handle(Socket socket)
         {
             long lastHeartbeat = System.currentTimeMillis();
             long heartbeatInterval = 5000; // 心跳包间隔5秒
