@@ -57,15 +57,14 @@ public class Dispatcher {
                         EventHandler handler =
                                 registeredHandlers.get(SelectionKey.OP_READ);
                         handler.handleEvent(handle);
-                        handleIterator.remove();
                     }
 
                     if (handle.isWritable()) {
                         EventHandler handler =
                                 registeredHandlers.get(SelectionKey.OP_WRITE);
                         handler.handleEvent(handle);
-                        handleIterator.remove();
                     }
+                    handleIterator.remove();
                 }
             }
         } catch (Exception e) {

@@ -6,13 +6,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static info.victorchu.jdk.lab.usage.socket.Constant.PORT;
 
 public class EchoServer
         implements Runnable
 {
-
     public static void main(String[] args)
     {
         new EchoServer().run();
@@ -21,11 +22,10 @@ public class EchoServer
     @Override
     public void run()
     {
+        Handler handler = new Handler();
         try (ServerSocket ss = new ServerSocket(PORT)) {
-            Handler handler = new Handler();
             while (true) {
-                Socket socket = ss.accept();
-                handler.handle(socket);
+                handler.handle(ss.accept());
             }
         }
         catch (IOException e) {
@@ -50,7 +50,7 @@ public class EchoServer
                     if (in.ready()) {
                         message = in.readLine();
                         lastHeartbeat = System.currentTimeMillis();
-                        System.out.println("Received: " + message);
+                        System.out.println("["+Thread.currentThread().getName()+"] Received: " + message);
 
                         // 处理心跳包
                         if ("heartbeat".equalsIgnoreCase(message)) {
