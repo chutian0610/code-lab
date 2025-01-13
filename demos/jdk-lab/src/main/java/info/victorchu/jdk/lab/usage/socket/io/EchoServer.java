@@ -50,7 +50,7 @@ public class EchoServer
                     if (in.ready()) {
                         message = in.readLine();
                         lastHeartbeat = System.currentTimeMillis();
-                        System.out.println("["+Thread.currentThread().getName()+"] Received: " + message);
+                        System.out.println("["+Thread.currentThread()+"] Received: " + message);
 
                         // 处理心跳包
                         if ("heartbeat".equalsIgnoreCase(message)) {

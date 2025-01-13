@@ -1,4 +1,4 @@
-package info.victorchu.jdk.lab.usage.socket;
+package info.victorchu.jdk.lab.usage.socket.nio;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

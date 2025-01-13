@@ -34,11 +34,11 @@ public class ProactorInitiator
         final AsynchronousServerSocketChannel listener =
                 AsynchronousServerSocketChannel.open().bind(
                         new InetSocketAddress(port));
-//        AcceptCompletionHandler acceptCompletionHandler =
-//                new AcceptCompletionHandler(listener);
-//
-//        SessionState state = new SessionState();
-//        listener.accept(state, acceptCompletionHandler);
+        AcceptCompletionHandler acceptCompletionHandler =
+                new AcceptCompletionHandler(listener);
+
+        SessionState state = new SessionState();
+        listener.accept(state, acceptCompletionHandler);
     }
 
 
