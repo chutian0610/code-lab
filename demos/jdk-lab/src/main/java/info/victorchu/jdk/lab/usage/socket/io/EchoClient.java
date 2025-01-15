@@ -14,48 +14,117 @@ import static info.victorchu.jdk.lab.usage.socket.Constant.PORT;
 
 public class EchoClient
 {
-    public static void main(String[] args)
+    private volatile Socket socket;
+    private volatile PrintWriter sOut;
+    private volatile BufferedReader sIn;
+    private ExecutorService executor;
+
+    public EchoClient()
+            throws IOException
     {
-        System.out.println("[Client] Started");
-        try (Socket socket = new Socket(HOST, PORT);
-                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                Scanner scanner = new Scanner(System.in);
-                ExecutorService executorService = Executors.newSingleThreadExecutor()) {
-            System.out.println("[Client] 已连接到服务器");
-            executorService.submit(() -> {
-                try {
-                    while (true) {
-                        if (Thread.currentThread().isInterrupted()){
-                            break;
-                        }
-                        out.println("heartbeat");
-                        String response = in.readLine();
-                        if (!"heartbeat_ack".equalsIgnoreCase(response)) {
-                            System.out.println("心跳包回复异常: "+response);
-                            break;
-                        }
-                        Thread.sleep(5000); // 心跳包间隔5秒
+        executor = Executors.newSingleThreadExecutor();
+        createConnection();
+        enableHealthCheck();
+    }
+
+    public void enableHealthCheck()
+    {
+        executor.submit(() -> {
+            try {
+                while (true) {
+                    if (Thread.currentThread().isInterrupted()) {
+                        break;
                     }
-                } catch (IOException | InterruptedException e) {
-                    e.printStackTrace();
-                }
-            });
-            String userInput;
-            while (true) {
-                System.out.print("Request: ");
-                userInput = scanner.nextLine();
-                out.println(userInput);
-
-                String response = in.readLine();
-                System.out.println("Response: "+response);
-
-                if ("bye".equalsIgnoreCase(userInput)) {
-                    break;
+                    String response = communicate("heartbeat");
+                    if (!"heartbeat_ack".equalsIgnoreCase(response)) {
+                        System.out.println("心跳包回复异常: " + response);
+                        break;
+                    }
+                    Thread.sleep(5000); // 心跳包间隔5秒
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            catch (IOException e) {
+                try {
+                    // reconnect
+                    createConnection();
+                }
+                catch (IOException ex) {
+                    // 重连失败
+                    throw new RuntimeException(ex);
+                }
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public synchronized void createConnection()
+            throws IOException
+    {
+        socket = new Socket(HOST, PORT);
+        sOut = new PrintWriter(socket.getOutputStream(), true);
+        sIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        socket.setKeepAlive(true);
+    }
+
+    public String handle(String userInput)
+            throws IOException
+    {
+        sOut.println(userInput);
+        return sIn.readLine();
+    }
+
+    public synchronized String communicate(String userInput)
+            throws IOException
+    {
+        try {
+            return handle(userInput);
+        }
+        catch (IOException e) {
+            try {
+                createConnection();
+                //retry
+                return handle(userInput);
+            }
+            catch (IOException ex) {
+                throw ex;
+            }
+        }
+    }
+
+    public void close()
+    {
+        System.out.println("[Client] Closed");
+        try {
+            sIn.close();
+            sOut.close();
+            socket.close();
+            executor.shutdown();
+        }
+        catch (IOException e) {
+
+        }
+    }
+
+    public static void main(String[] args)
+            throws IOException
+    {
+        System.out.println("[Client] Started");
+        Scanner scanner = new Scanner(System.in);
+        EchoClient client = new EchoClient();
+        while (true) {
+            System.out.print("Request: ");
+            String userInput = scanner.nextLine();
+            if ("bye".equalsIgnoreCase(userInput)) {
+                System.out.println("Bye ~");
+                client.close();
+                scanner.close();
+                break;
+            }
+            String resp = client.communicate(userInput);
+            System.out.println("Response: " + resp);
+
         }
     }
 }
