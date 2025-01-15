@@ -14,6 +14,13 @@ import static info.victorchu.jdk.lab.usage.socket.Constant.PORT;
 public class EchoServer
         implements Runnable
 {
+    private final ExecutorService executor;
+
+    public EchoServer()
+    {
+        this.executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    }
+
     public static void main(String[] args)
     {
         new EchoServer().run();
@@ -22,10 +29,18 @@ public class EchoServer
     @Override
     public void run()
     {
-        Handler handler = new Handler();
+
         try (ServerSocket ss = new ServerSocket(PORT)) {
             while (true) {
-                handler.handle(ss.accept());
+                executor.submit(() -> {
+                    Handler handler = new Handler();
+                    try {
+                        handler.handle(ss.accept());
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
             }
         }
         catch (IOException e) {
