@@ -1,4 +1,4 @@
-package info.victorchu.snippets.concurrency;
+package info.victorchu.snippets.concurrency.semaphore;
 
 import javax.annotation.concurrent.ThreadSafe;
 
