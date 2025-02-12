@@ -1,4 +1,4 @@
-package info.victorchu.snippets.concurrency.threadpool;
+package info.victorchu.snippets.concurrency.threadpool.eager;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.RejectedExecutionException;
