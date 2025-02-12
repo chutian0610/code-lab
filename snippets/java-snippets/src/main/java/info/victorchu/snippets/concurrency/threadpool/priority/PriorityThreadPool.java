@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.RunnableFuture;
 import java.util.concurrent.ThreadFactory;
@@ -42,5 +43,35 @@ public class PriorityThreadPool
     protected <T> RunnableFuture<T> newTaskFor(Callable<T> callable)
     {
         return new PriorityFutureTask<T>(callable);
+    }
+
+    public Future<?> submit(Runnable task)
+    {
+        throw new UnsupportedOperationException();
+    }
+
+    public <T> Future<T> submit(Runnable task, T result)
+    {
+        throw new UnsupportedOperationException();
+    }
+
+    public <T> Future<T> submit(Callable<T> task)
+    {
+        throw new UnsupportedOperationException();
+    }
+
+    public Future<?> submit(PriorityRunnableTask task)
+    {
+        return super.submit(task);
+    }
+
+    public <T> Future<T> submit(PriorityRunnableTask task, T result)
+    {
+        return super.submit(task, result);
+    }
+
+    public <T> Future<T> submit(PriorityCallableTask<T> task)
+    {
+        return super.submit(task);
     }
 }
