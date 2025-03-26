@@ -1,12 +1,6 @@
 package info.victorchu.jdk.lab.usage.socket.aio;
 
-import info.victorchu.jdk.lab.usage.socket.Constant;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.charset.StandardCharsets;
