@@ -5,7 +5,7 @@ import java.nio.channels.AsynchronousServerSocketChannel;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
 
-public class AcceptCompletionHandler implements CompletionHandler<AsynchronousSocketChannel, SessionState> {
+public class AcceptCompletionHandler implements CompletionHandler<AsynchronousSocketChannel, Void> {
     private final AsynchronousServerSocketChannel listener;
 
     public AcceptCompletionHandler(AsynchronousServerSocketChannel listener) {
@@ -13,19 +13,18 @@ public class AcceptCompletionHandler implements CompletionHandler<AsynchronousSo
     }
 
     @Override
-    public void completed(AsynchronousSocketChannel socketChannel, SessionState sessionState) {
-        // accept the next connection
-        SessionState newSessionState = new SessionState();
-        listener.accept(newSessionState, this);
-
+    public void completed(AsynchronousSocketChannel socketChannel, Void sessionState) {
         // handle this connection
         ByteBuffer inputBuffer = ByteBuffer.allocate(2048);
-        ReadCompletionHandler readCompletionHandler = new ReadCompletionHandler(socketChannel, inputBuffer);
-        socketChannel.read(inputBuffer, sessionState, readCompletionHandler);
+        ReadCompletionHandler readCompletionHandler = new ReadCompletionHandler(socketChannel);
+        socketChannel.read(inputBuffer, inputBuffer, readCompletionHandler);
+
+        // Accept the next connection
+        listener.accept(null, this);
     }
 
     @Override
-    public void failed(Throwable exc, SessionState sessionState) {
+    public void failed(Throwable exc,  Void sessionState) {
         // Handle connection failure...
     }
 

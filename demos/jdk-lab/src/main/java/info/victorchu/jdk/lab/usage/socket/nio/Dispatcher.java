@@ -7,11 +7,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Supplier;
 
 public class Dispatcher {
 
-    private Map<Integer, EventHandler> registeredHandlers =
-            new ConcurrentHashMap<Integer, EventHandler>();
+    private Map<Integer, Supplier<EventHandler>> registeredHandlers =
+            new ConcurrentHashMap<Integer, Supplier<EventHandler>>();
     private Selector demultiplexer;
 
     public Dispatcher() throws Exception {
@@ -23,7 +24,7 @@ public class Dispatcher {
     }
 
     public void registerEventHandler(
-            int eventType, EventHandler eventHandler) {
+            int eventType, Supplier<EventHandler> eventHandler) {
         registeredHandlers.put(eventType, eventHandler);
     }
 
@@ -46,25 +47,26 @@ public class Dispatcher {
 
                 while (handleIterator.hasNext()) {
                     SelectionKey handle = handleIterator.next();
+                    handleIterator.remove();
 
                     if (handle.isAcceptable()) {
                         EventHandler handler =
-                                registeredHandlers.get(SelectionKey.OP_ACCEPT);
+                                registeredHandlers.get(SelectionKey.OP_ACCEPT).get();
                         handler.handleEvent(handle);
+                        continue;
                     }
 
                     if (handle.isReadable()) {
                         EventHandler handler =
-                                registeredHandlers.get(SelectionKey.OP_READ);
+                                registeredHandlers.get(SelectionKey.OP_READ).get();
                         handler.handleEvent(handle);
+                        continue;
                     }
-
                     if (handle.isWritable()) {
                         EventHandler handler =
-                                registeredHandlers.get(SelectionKey.OP_WRITE);
+                                registeredHandlers.get(SelectionKey.OP_WRITE).get();
                         handler.handleEvent(handle);
                     }
-                    handleIterator.remove();
                 }
             }
         } catch (Exception e) {

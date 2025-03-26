@@ -18,15 +18,15 @@ public class ReactorInitiator
         dispatcher.registerChannel(SelectionKey.OP_ACCEPT, server);
 
         dispatcher.registerEventHandler(
-                SelectionKey.OP_ACCEPT, new AcceptEventHandler(
+                SelectionKey.OP_ACCEPT,()-> new AcceptEventHandler(
                         dispatcher.getDemultiplexer()));
 
         dispatcher.registerEventHandler(
-                SelectionKey.OP_READ, new ReadEventHandler(
+                SelectionKey.OP_READ, ()-> new ReadEventHandler(
                         dispatcher.getDemultiplexer()));
 
         dispatcher.registerEventHandler(
-                SelectionKey.OP_WRITE, new WriteEventHandler(
+                SelectionKey.OP_WRITE, ()-> new WriteEventHandler(
                         dispatcher.getDemultiplexer()));
 
         dispatcher.run();

@@ -37,8 +37,7 @@ public class ProactorInitiator
         AcceptCompletionHandler acceptCompletionHandler =
                 new AcceptCompletionHandler(listener);
 
-        SessionState state = new SessionState();
-        listener.accept(state, acceptCompletionHandler);
+        listener.accept(null, acceptCompletionHandler);
     }
 
 

@@ -1,40 +1,44 @@
 package info.victorchu.jdk.lab.usage.socket.aio;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
 
-public class ReadCompletionHandler implements CompletionHandler<Integer, SessionState> {
+public class ReadCompletionHandler implements CompletionHandler<Integer, ByteBuffer> {
     private final AsynchronousSocketChannel socketChannel;
-    private final ByteBuffer inputBuffer;
 
-    public ReadCompletionHandler(AsynchronousSocketChannel socketChannel, ByteBuffer inputBuffer) {
+    public ReadCompletionHandler(AsynchronousSocketChannel socketChannel) {
         this.socketChannel = socketChannel;
-        this.inputBuffer = inputBuffer;
     }
 
     @Override
-    public void completed(Integer bytesRead, SessionState sessionState) {
+    public void completed(Integer bytesRead, ByteBuffer attachment) {
+        if (bytesRead == -1) {
+            try {
+                socketChannel.close();
+                System.out.println("客户端断开连接");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+        attachment.flip();
+        byte[] data = new byte[attachment.remaining()];
+        attachment.get(data);;
 
-        byte[] buffer = new byte[bytesRead];
-        inputBuffer.rewind();
-        // Rewind the input buffer to read from the beginning
-
-        inputBuffer.get(buffer);
-        String message = new String(buffer);
+        String message = new String(data);
 
         System.out.println("["+Thread.currentThread()+"] Received message from client : " + message);
 
+        ByteBuffer outputBuffer = ByteBuffer.wrap(data);
         // Echo the message back to client
         WriteCompletionHandler writeCompletionHandler = new WriteCompletionHandler(socketChannel);
-
-        ByteBuffer outputBuffer = ByteBuffer.wrap(buffer);
-
-        socketChannel.write(outputBuffer, sessionState, writeCompletionHandler);
+        socketChannel.write(outputBuffer,outputBuffer, writeCompletionHandler);
     }
 
     @Override
-    public void failed(Throwable exc, SessionState attachment) {
+    public void failed(Throwable exc, ByteBuffer attachment) {
         // Handle read failure.....
     }
 
