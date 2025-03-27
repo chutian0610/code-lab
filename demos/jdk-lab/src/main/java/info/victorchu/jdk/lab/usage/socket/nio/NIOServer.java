@@ -6,7 +6,7 @@ import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.ServerSocketChannel;
 
-public class ReactorInitiator
+public class NIOServer
 {
     public void initiateReactiveServer(int port) throws Exception {
 
@@ -35,7 +35,7 @@ public class ReactorInitiator
 
     public static void main(String[] args) throws Exception {
         System.out.println("Starting NIO server at port : " + Constant.PORT);
-        new ReactorInitiator().
+        new NIOServer().
                 initiateReactiveServer(Constant.PORT);
     }
 

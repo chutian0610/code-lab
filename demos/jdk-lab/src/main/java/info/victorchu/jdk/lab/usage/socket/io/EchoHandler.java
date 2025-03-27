@@ -17,8 +17,6 @@ public class EchoHandler
 
     public void handle()
     {
-        long lastHeartbeat = System.currentTimeMillis();
-        long heartbeatInterval = 5000; // 心跳包间隔5秒
         try (
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
@@ -27,7 +25,6 @@ public class EchoHandler
             while (true) {
                 if (in.ready()) {
                     message = in.readLine();
-                    lastHeartbeat = System.currentTimeMillis();
                     System.out.println("[" + Thread.currentThread() + "] Received: " + message);
 
                     // 处理心跳包
@@ -42,13 +39,6 @@ public class EchoHandler
                     // 退出条件
                     if ("bye".equalsIgnoreCase(message)) {
                         System.out.println("客户端断开连接: " + socket.getInetAddress());
-                        break;
-                    }
-                }
-                else {
-                    long currentTime = System.currentTimeMillis();
-                    if (currentTime - lastHeartbeat > 2 * heartbeatInterval) {
-                        System.out.println("心跳包超时，断开连接: " + socket.getInetAddress());
                         break;
                     }
                 }

@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.AsynchronousServerSocketChannel;
 
-public class ProactorInitiator
+public class AIOServer
 {
     public static void main(String[] args) {
         try {
             System.out.println("Async server listening on port : " +
                     Constant.PORT);
-            new ProactorInitiator().initiateProactiveServer(
+            new AIOServer().initiateProactiveServer(
                     Constant.PORT);
         } catch (IOException e) {
             e.printStackTrace();

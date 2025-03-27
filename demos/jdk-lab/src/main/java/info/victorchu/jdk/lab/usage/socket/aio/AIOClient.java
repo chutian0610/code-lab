@@ -6,7 +6,8 @@ import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class Client {
+public class AIOClient
+{
     public static void main(String[] args) {
         try (AsynchronousSocketChannel channel = AsynchronousSocketChannel.open();
                 Scanner scanner = new Scanner(System.in)) {

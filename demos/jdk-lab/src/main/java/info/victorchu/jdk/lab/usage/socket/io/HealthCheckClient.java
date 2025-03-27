@@ -12,14 +12,14 @@ import java.util.concurrent.Executors;
 import static info.victorchu.jdk.lab.usage.socket.Constant.HOST;
 import static info.victorchu.jdk.lab.usage.socket.Constant.PORT;
 
-public class EchoClient
+public class HealthCheckClient
 {
     private volatile Socket socket;
     private volatile PrintWriter sOut;
     private volatile BufferedReader sIn;
     private ExecutorService executor;
 
-    public EchoClient()
+    public HealthCheckClient()
             throws IOException
     {
         executor = Executors.newSingleThreadExecutor();
@@ -112,7 +112,7 @@ public class EchoClient
     {
         System.out.println("[Client] Started");
         Scanner scanner = new Scanner(System.in);
-        EchoClient client = new EchoClient();
+        HealthCheckClient client = new HealthCheckClient();
         while (true) {
             System.out.print("Request: ");
             String userInput = scanner.nextLine();

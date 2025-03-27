@@ -1,4 +1,4 @@
-package info.victorchu.jdk.lab.usage.socket.nio;
+package info.victorchu.jdk.lab.usage.socket;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 import static info.victorchu.jdk.lab.usage.socket.Constant.HOST;
 import static info.victorchu.jdk.lab.usage.socket.Constant.PORT;
 
-public class Client {
+public class SimpleClient {
     public static void main(String[] args) {
         System.out.println("[Client] Started");
         try (Socket socket = new Socket(HOST, PORT);

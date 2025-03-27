@@ -8,17 +8,17 @@ import java.util.concurrent.Executors;
 
 import static info.victorchu.jdk.lab.usage.socket.Constant.PORT;
 
-public class EchoServer
+public class SimpleServer
         implements Runnable
 {
     private final ExecutorService executor;
-    public EchoServer()
+    public SimpleServer()
     {
         this.executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     }
     public static void main(String[] args)
     {
-        new EchoServer().run();
+        new SimpleServer().run();
     }
     @Override
     public void run()
