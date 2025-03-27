@@ -15,9 +15,10 @@ public class NIOClient
     private final ByteBuffer sendBuffer=ByteBuffer.allocate(2048);
     private final ByteBuffer receiveBuffer=ByteBuffer.allocate(2048);
     private Selector selector;
+    private SocketChannel socketChannel;
     public NIOClient()throws IOException{
         // 创建SocketChannel
-        SocketChannel socketChannel = SocketChannel.open();
+        socketChannel = SocketChannel.open();
         socketChannel.configureBlocking(false); // 设置为非阻塞模式
 
         // 连接到服务器
@@ -34,6 +35,13 @@ public class NIOClient
         socketChannel.register(selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE);
     }
 
+    public void close()
+            throws IOException
+    {
+        selector.close();
+        socketChannel.close();
+    }
+
     public static void main(String[] args)
             throws IOException
     {
@@ -41,15 +49,22 @@ public class NIOClient
         Thread receiver=new Thread(client::receiveFromUser);
         receiver.start();
         client.talk();
+        receiver.interrupt();
+        client.close();
     }
     private void receiveFromUser() {;
         try(Scanner scanner= new Scanner(System.in)){
             String msg;
             while (true) {
-                msg = scanner.nextLine();
-                if(msg != null){
-                   synchronized(sendBuffer){
-                        sendBuffer.put((msg+"\n").getBytes());
+                if(Thread.currentThread().isInterrupted()){
+                    break;
+                }
+                if(scanner.hasNext()) {
+                    msg = scanner.nextLine();
+                    if (msg != null) {
+                        synchronized (sendBuffer) {
+                            sendBuffer.put((msg + "\n").getBytes());
+                        }
                     }
                 }
             }
@@ -58,6 +73,7 @@ public class NIOClient
         }
     }
     private void talk()throws IOException {
+        out:
         while (true){
             selector.select(); // 阻塞直到有事件发生
             Iterator<SelectionKey> it = selector.selectedKeys().iterator();
@@ -66,7 +82,9 @@ public class NIOClient
                 it.remove();
 
                 if (key.isReadable()) {
-                    receive(key);
+                    if(!receive(key)){
+                        break out;
+                    }
                 }
                 if (key.isWritable()) {
                     send(key);
@@ -91,7 +109,7 @@ public class NIOClient
             sendBuffer.compact();
         }
     }
-    private void receive(SelectionKey key)throws IOException{
+    private boolean receive(SelectionKey key)throws IOException{
         System.out.println("读取...");
         SocketChannel socketChannel=(SocketChannel)key.channel();
         socketChannel.read(receiveBuffer);
@@ -99,9 +117,13 @@ public class NIOClient
         if(receiveBuffer.hasRemaining()) {
             String receiveData = StandardCharsets.UTF_8.decode(receiveBuffer).toString();
             System.out.println("receive server message:" + receiveData);
+            if("bye".equalsIgnoreCase(receiveData.trim())){
+                return false;
+            }
         }
         socketChannel.register(selector,SelectionKey.OP_WRITE);
         receiveBuffer.clear();
+        return true;
     }
 
 }
