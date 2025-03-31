@@ -1,4 +1,4 @@
-package info.victorchu.snippets.io;
+package info.victorchu.snippets.io.file;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
