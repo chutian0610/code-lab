@@ -1,29 +1,30 @@
-package info.victorchu.snippets.utils;
+package info.victorchu.rowstorage.utils;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-/**
- * @author victorchu
- */
 public class ByteUtils
 {
-    private static final char[] HEX_CHAR = {'0', '1', '2', '3', '4', '5',
-            '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+
+    public static byte[] intToBytes(int value)
+    {
+        return ByteBuffer.allocate(4).order(ByteOrder.nativeOrder()).putInt(value).array();
+    }
 
     public static String bytesToHex(byte[] bytes)
     {
         char[] hexChars = new char[bytes.length * 2];
         for (int j = 0; j < bytes.length; j++) {
             int v = bytes[j] & 0xFF;
-            hexChars[j * 2] = HEX_CHAR[v >>> 4];
-            hexChars[j * 2 + 1] = HEX_CHAR[v & 0x0F];
+            hexChars[j * 2] = HEX_ARRAY[v >>> 4];
+            hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
         }
         return new String(hexChars);
     }
 
-    public static byte[] hexToBytes(String s)
+    public static byte[] hexStringToByteArray(String s)
     {
         int len = s.length();
         byte[] data = new byte[len / 2];
@@ -34,45 +35,26 @@ public class ByteUtils
         return data;
     }
 
-    public static byte[] intToBytes(int n)
+    private static int compareUnsignedBytes(byte thisByte, byte thatByte)
     {
-        byte[] b = new byte[4];
-        b[0] = (byte) (n & 0xff);
-        b[1] = (byte) (n >> 8 & 0xff);
-        b[2] = (byte) (n >> 16 & 0xff);
-        b[3] = (byte) (n >> 24 & 0xff);
-        return b;
-    }
-    public static byte[] intToBytes(int value,ByteOrder byteOrder)
-    {
-        return ByteBuffer.allocate(4).order(byteOrder).putInt(value).array();
-    }
-
-    public static int BytesToInt(byte[] bArr)
-    {
-        int result = 0;
-        for (int i = 0; i < bArr.length; i++) {
-            result = (bArr[i] & 0xff) + (result << 8);
-        }
-        return result;
-    }
-    public static long BytesToLong(byte[] bArr)
-    {
-        long result = 0;
-        for (int i = 0; i < bArr.length; i++) {
-            result = ((long) bArr[i] & 0xffL) + (result << 8);
-        }
-        return result;
+        return unsignedByteToInt(thisByte) - unsignedByteToInt(thatByte);
     }
 
     public static int unsignedByteToInt(byte thisByte)
     {
         return thisByte & 0xFF;
     }
+
     public static short unsignedByteToShort(byte value)
     {
         return (short) (value & 0xFF);
     }
+
+    public static int unsignedShortToInt(short value)
+    {
+        return value & 0xFFFF;
+    }
+
     public static byte[] unsignedShortToBytes(short value)
     {
         byte[] bytes = new byte[2];
@@ -80,6 +62,7 @@ public class ByteUtils
         bytes[1] = (byte) (value & 0xFF);       // Lower-order byte
         return bytes;
     }
+
     public static long unsignedIntToLong(int value)
     {
         return value & 0xFFFFFFFFL;
@@ -99,6 +82,7 @@ public class ByteUtils
                     add(BigInteger.valueOf(Integer.toUnsignedLong(lower)));
         }
     }
+
     public static int compareUnsigned(byte[] a, int aFromIndex, int aToIndex, byte[] b, int bFromIndex, int bToIndex)
     {
         Preconditions.checkFromToIndex(aFromIndex, aToIndex, a.length);
@@ -117,6 +101,7 @@ public class ByteUtils
         // One is a prefix of the other, or, they are equal:
         return aLen - bLen;
     }
+
     public static boolean equals(byte[] a, int aFromIndex, int aToIndex, byte[] b, int bFromIndex, int bToIndex)
     {
         Preconditions.checkFromToIndex(aFromIndex, aToIndex, a.length);
@@ -134,4 +119,5 @@ public class ByteUtils
         }
         return true;
     }
+
 }
