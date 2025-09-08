@@ -1,4 +1,4 @@
-package info.victorchu.snippets.tasks;
+package info.victorchu.snippets.tasks.simple;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;

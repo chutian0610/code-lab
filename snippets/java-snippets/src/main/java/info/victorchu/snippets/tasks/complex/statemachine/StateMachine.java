@@ -1,4 +1,4 @@
-package info.victorchu.snippets.statemachine;
+package info.victorchu.snippets.tasks.complex.statemachine;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;

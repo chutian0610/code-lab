@@ -1,4 +1,4 @@
-package info.victorchu.snippets.tasks;
+package info.victorchu.snippets.tasks.simple;
 
 public class TaskContext {
 

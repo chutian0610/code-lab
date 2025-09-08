@@ -1,4 +1,4 @@
-package info.victorchu.snippets.tasks;
+package info.victorchu.snippets.tasks.simple;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -18,9 +18,9 @@ import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static info.victorchu.snippets.tasks.MoreFutures.safeExecute;
-import static info.victorchu.snippets.tasks.TaskFinishReason.ABORTED;
-import static info.victorchu.snippets.tasks.TaskFinishReason.SUCCESS;
+import static info.victorchu.snippets.tasks.simple.MoreFutures.safeExecute;
+import static info.victorchu.snippets.tasks.simple.TaskFinishReason.ABORTED;
+import static info.victorchu.snippets.tasks.simple.TaskFinishReason.SUCCESS;
 
 @Slf4j
 public class Task {
