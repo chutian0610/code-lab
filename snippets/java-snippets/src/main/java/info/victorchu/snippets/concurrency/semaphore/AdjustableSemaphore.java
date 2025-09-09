@@ -45,7 +45,7 @@ final public class AdjustableSemaphore
      *
      * @param newMax
      */
-    synchronized void setMaxPermits(int newMax)
+    public synchronized void setMaxPermits(int newMax)
     {
         if (newMax < 1) {
             throw new IllegalArgumentException("Semaphore size must be at least 1,"
@@ -74,7 +74,7 @@ final public class AdjustableSemaphore
     /**
      * Release a permit back to the semaphore. Make sure not to double-release.
      */
-    void release()
+    public void release()
     {
         this.semaphore.release();
     }
@@ -84,7 +84,7 @@ final public class AdjustableSemaphore
      *
      * @throws InterruptedException if interrupted while waiting for a permit
      */
-    void acquire()
+    public void acquire()
             throws InterruptedException
     {
         this.semaphore.acquire();
