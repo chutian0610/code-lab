@@ -146,7 +146,6 @@ public class ResourceSharedPool {
     private static String getTaskType(int index) {
         String[] types = {
                 "API_CALL",
-                "FILE_PROCESS",
                 "DB_QUERY"
         };
         return types[index % types.length];
@@ -154,8 +153,7 @@ public class ResourceSharedPool {
 
     public static void main(String[] args) throws Exception {
         ResourceGroupManager resourceGroupManager = new ResourceGroupManager(Lists.newArrayList(
-                new ResourceGroup("API_CALL",15,15),
-                new ResourceGroup("FILE_PROCESS",15,15),
+                new ResourceGroup("API_CALL",15,2),
                 new ResourceGroup("DB_QUERY",3,1)
         ));
         // 创建自定义执行器
@@ -163,7 +161,7 @@ public class ResourceSharedPool {
                 new ResourceSharedPool(50, resourceGroupManager, Threads.daemonThreadsNamed("runner-%s"));
 
         // 提交任务
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 15; i++) {
             String taskType = getTaskType(i);
             int priority = (int) (Math.random() * 10);
             int taskId = i;
