@@ -1,7 +1,5 @@
 package info.victorchu.snippets.concurrency.threadpool.priority;
 
-import lombok.SneakyThrows;
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
@@ -47,31 +45,34 @@ public class PriorityThreadPool
 
     public Future<?> submit(Runnable task)
     {
+        if (task == null) {
+            throw new NullPointerException();
+        }
+        if(task instanceof PriorityRunnableTask){
+            return super.submit(task);
+        }
         throw new UnsupportedOperationException();
     }
 
     public <T> Future<T> submit(Runnable task, T result)
     {
+        if (task == null) {
+            throw new NullPointerException();
+        }
+        if(task instanceof PriorityRunnableTask){
+            return super.submit(task,result);
+        }
         throw new UnsupportedOperationException();
     }
 
     public <T> Future<T> submit(Callable<T> task)
     {
+        if (task == null) {
+            throw new NullPointerException();
+        }
+        if(task instanceof PriorityCallableTask){
+            return super.submit(task);
+        }
         throw new UnsupportedOperationException();
-    }
-
-    public Future<?> submit(PriorityRunnableTask task)
-    {
-        return super.submit(task);
-    }
-
-    public <T> Future<T> submit(PriorityRunnableTask task, T result)
-    {
-        return super.submit(task, result);
-    }
-
-    public <T> Future<T> submit(PriorityCallableTask<T> task)
-    {
-        return super.submit(task);
     }
 }
