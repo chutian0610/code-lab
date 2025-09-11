@@ -23,7 +23,6 @@ public class MultiQueueDualSemaphore<E extends ResourceManagedTask> extends Abst
         private final ReentrantLock lock;
 
         final AtomicInteger runningCount = new AtomicInteger(0);
-        final AtomicInteger completedCount = new AtomicInteger(0);
         final AtomicInteger enqueuedCount = new AtomicInteger(0);
 
         TaskScheduler(int enqueueLimit, int runLimit,ReentrantLock lock) {
