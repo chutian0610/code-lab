@@ -6,7 +6,6 @@
  */
 package info.victorchu.snippets.antlr;
 
-import lombok.SneakyThrows;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.atn.ATN;
@@ -15,9 +14,6 @@ import org.antlr.v4.runtime.atn.ParserATNSimulator;
 import org.antlr.v4.runtime.atn.PredictionContextCache;
 import org.antlr.v4.runtime.dfa.DFA;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
 
@@ -27,37 +23,17 @@ import static java.util.Objects.requireNonNull;
 public class RefreshableParserInitializer<L extends Lexer, P extends Parser>
         implements BiConsumer<L, P>
 {
-    private final AtomicReference<ParserAndLexerATNCaches<L, P>> caches = new AtomicReference<>();
+    private final AtomicReference<ParserAndLexerATNCaches<L, P>> caches;
 
     public RefreshableParserInitializer()
     {
-        Type superClass = this.getClass().getGenericSuperclass();
-        lexer = (Class<?>) ((ParameterizedType) superClass).getActualTypeArguments()[0];
-        parser = (Class<?>) ((ParameterizedType) superClass).getActualTypeArguments()[1];
-        refresh();
+        caches = new AtomicReference<>();
     }
 
-    public void refresh()
+    private ParserAndLexerATNCaches<L, P> buildATNCache(L l, P p)
     {
-        caches.set(buildATNCache());
-    }
-
-    // ================= 泛型处理 =====================
-    private final Class<?> lexer;
-    private final Class<?> parser;
-
-    @SneakyThrows({SecurityException.class, NoSuchFieldException.class, IllegalAccessException.class})
-    private static ATN getATNField(Class<?> clazz)
-    {
-        Field field = clazz.getDeclaredField("_ATN");
-        field.setAccessible(true);
-        return (ATN) field.get(null);
-    }
-
-    private ParserAndLexerATNCaches<L, P> buildATNCache()
-    {
-        ATN lexerATN = getATNField(lexer);
-        ATN parserATN = getATNField(parser);
+        ATN lexerATN = l.getATN();
+        ATN parserATN = p.getATN();
         return new ParserAndLexerATNCaches(new AntlrATNCacheFields(lexerATN), new AntlrATNCacheFields(parserATN));
     }
     // ================= 泛型处理 =====================
@@ -65,9 +41,10 @@ public class RefreshableParserInitializer<L extends Lexer, P extends Parser>
     @Override
     public void accept(L l, P p)
     {
-        ParserAndLexerATNCaches<L, P> cache = caches.get();
-        cache.lexer.configureLexer(l);
-        cache.parser.configureParser(p);
+
+        ParserAndLexerATNCaches<L, P> newCache = buildATNCache(l, p);
+        ParserAndLexerATNCaches<L, P> oldCaches = caches.getAndSet(newCache);
+        newCache.config(l,p);
     }
 
     private static final class ParserAndLexerATNCaches<L extends Lexer, P extends Parser>
@@ -80,6 +57,11 @@ public class RefreshableParserInitializer<L extends Lexer, P extends Parser>
 
         public final AntlrATNCacheFields lexer;
         public final AntlrATNCacheFields parser;
+
+        public void config(L l, P p){
+            lexer.configureLexer(l);
+            parser.configureParser(p);
+        }
     }
 
     public static final class AntlrATNCacheFields
