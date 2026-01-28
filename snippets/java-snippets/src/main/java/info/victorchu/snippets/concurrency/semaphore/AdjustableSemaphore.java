@@ -1,8 +1,12 @@
 package info.victorchu.snippets.concurrency.semaphore;
 
+import com.google.common.base.Strings;
+import info.victorchu.snippets.utils.Preconditions;
+
 import javax.annotation.concurrent.ThreadSafe;
 
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * A simple implementation of an adjustable semaphore.
@@ -10,11 +14,7 @@ import java.util.concurrent.Semaphore;
 @ThreadSafe
 final public class AdjustableSemaphore
 {
-
-    /**
-     * semaphore starts at 0 capacity; must be set by setMaxPermits before use
-     */
-    private final ResizeableSemaphore semaphore = new ResizeableSemaphore();
+    private final ResizeableSemaphore semaphore;
 
     /**
      * how many permits are allowed as governed by this semaphore.
@@ -22,12 +22,11 @@ final public class AdjustableSemaphore
      */
     private int maxPermits = 0;
 
-    /**
-     * New instances should be configured with setMaxPermits().
-     */
-    public AdjustableSemaphore()
+    public AdjustableSemaphore(int maxPermits, String name)
     {
-        // no op
+        Preconditions.checkState(!Strings.isNullOrEmpty(name));
+        semaphore = new ResizeableSemaphore(maxPermits, name);
+        this.maxPermits = maxPermits;
     }
 
     /*
@@ -98,17 +97,13 @@ final public class AdjustableSemaphore
     private static final class ResizeableSemaphore
             extends Semaphore
     {
-        /**
-         *
-         */
         private static final long serialVersionUID = 1L;
+        private final String name;
 
-        /**
-         * Create a new semaphore with 0 permits.
-         */
-        ResizeableSemaphore()
+        ResizeableSemaphore(int maxPermits, String name)
         {
-            super(0);
+            super(maxPermits);
+            this.name = name;
         }
 
         @Override
