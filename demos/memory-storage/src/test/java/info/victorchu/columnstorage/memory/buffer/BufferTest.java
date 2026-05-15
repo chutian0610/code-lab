@@ -1,4 +1,4 @@
-package info.victorchu.columnstorage.buffer;
+package info.victorchu.columnstorage.memory.buffer;
 
 import info.victorchu.columnstorage.memory.buffer.Buffer;
 import info.victorchu.columnstorage.memory.buffer.Buffers;
