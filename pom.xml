@@ -16,8 +16,7 @@
         <module>codelab-bom</module>
         <module>snippets/java-snippets</module>
 
-        <module>projects/gameoflife</module>
-        <module>projects/charlene</module>
+        <module>demos/gameoflife</module>
 
         <module>demos/guice-quickstart</module>
         <module>demos/java-modules</module>
