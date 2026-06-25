@@ -9,8 +9,8 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>info.victorchu.java</groupId>
-    <artifactId>snippets</artifactId>
+    <groupId>info.victorchu.snippets</groupId>
+    <artifactId>java-snippets</artifactId>
 
     <name>java-snippets</name>
 
