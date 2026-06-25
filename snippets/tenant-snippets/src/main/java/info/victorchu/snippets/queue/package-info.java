@@ -1,0 +1,1 @@
+package info.victorchu.snippets.queue;
