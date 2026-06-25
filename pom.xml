@@ -15,6 +15,7 @@
     <modules>
         <module>codelab-bom</module>
         <module>snippets/java-snippets</module>
+        <module>snippets/tenant-snippets</module>
 
         <module>demos/gameoflife</module>
 
