@@ -8,8 +8,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 环境要求
 
-- Java 21+（根 pom 与部分 demo）
-- 部分子模块（`snippets/*`）使用 Java 1.8，需注意切换编译器目标
+- Java 21+（根 pom 与大部分 demo）
+- `snippets/*` 使用 Java 1.8（由子模块 pom 自行声明 `<maven.compiler.source/target>`）
+- 切换方式：直接进入子模块目录执行 `mvn package`，子模块自带版本覆盖根 pom，**无需**通过 `-Dmaven.compiler.source=1.8` 命令行参数切换
 - Maven 3.6.3+
 - 仅 macOS（`/.DS_Store` 已被 `.gitignore` 忽略，但 `.iml` 历史文件存在）
 
@@ -51,8 +52,8 @@ BOM（Bill of Materials），集中管理依赖版本。所有子模块通过 `d
 - `gameoflife/`：元胞自动机命令行程序，参数：`行数 列数 死亡概率 帧间隔ms`
 - `guice-quickstart/`：Google Guice 依赖注入示例
 - `java-modules/`：JPMS + Maven 多模块集成（4 个子模块：`app-module`、`dao-module`、`entity-module`、`user-dao-module`），需用 JDK 11
-- `jol-quickstart/`：JOL（Java Object Layout）通过 `-javaagent` 启动，可验证指针压缩 `-XX:-UseCompressedOops`
-- `java-instrumentation/`：JVM Instrumentation API demo，含两个子模块：`app/`（被注入目标）+ `agent/`（premain/agentmain 字节码改写）
+- `jol-quickstart/`：**需 `-javaagent` 启动**，JOL（Java Object Layout）观察对象布局，可验证指针压缩 `-XX:-UseCompressedOops`
+- `java-instrumentation/`：**双模块 + 需 `-javaagent`**，JVM Instrumentation API demo；含 `app/`（被注入目标）+ `agent/`（premain/agentmain 字节码改写）
 - `jdk-lab/`：JDK 各类 API 用法示例（SPI、Stream、Unicode、Type 等）
 - `memory-storage/`：JVM 内存中的行存（`rowstorage`）与列存（`columnstorage`）实现，含 segment/buffer 子包
 
