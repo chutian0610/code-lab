@@ -1,6 +1,4 @@
-# common-tool
+# java snippets
 
-## fluent-json
-
-json 工具类，支持 fluent api, 当前只有jackson的api。
+java 代码片段
 
