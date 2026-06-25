@@ -53,30 +53,16 @@ class PriorityThreadPoolTest
         tpe.submit(new PriorityRunnableTask(new SimpleRunnable("T3"), 3));
         tpe.submit(new PriorityRunnableTask(new SimpleRunnable("T2"), 2));
         tpe.submit(new PriorityRunnableTask(new SimpleRunnable("T1"), 1));
-        Thread.currentThread().sleep(50000);
+        try {
+            Thread.currentThread().sleep(50000);
+        }finally {
+            tpe.shutdown();
+            tpe.awaitTermination(20, TimeUnit.SECONDS);
+        }
     }
 
     @Test
     void testParser02()
-            throws InterruptedException
-    {
-        ThreadPoolExecutor tpe = new PriorityThreadPool(1, // core pool size
-                1, // maximum pool size
-                1000,  // keep alive time
-                TimeUnit.SECONDS,  // time unit
-                new BoundedPriorityBlockingQueue<>(2) // worker queue
-        );
-
-        tpe.submit(new PriorityRunnableTask(new SimpleRunnable("T5"), 5));
-        tpe.submit(new PriorityRunnableTask(new SimpleRunnable("T4"), 4));
-        tpe.submit(new PriorityRunnableTask(new SimpleRunnable("T3"), 3));
-        tpe.submit(new PriorityRunnableTask(new SimpleRunnable("T2"), 2));
-        tpe.submit(new PriorityRunnableTask(new SimpleRunnable("T1"), 1));
-        Thread.currentThread().sleep(50000);
-    }
-
-    @Test
-    void testParser03()
             throws InterruptedException
     {
         ThreadPoolExecutor tpe = new PriorityThreadPool(1, // core pool size
@@ -91,6 +77,11 @@ class PriorityThreadPoolTest
         tpe.submit(new PriorityRunnableTask(new SimpleRunnable("T3"), 3));
         tpe.submit(new PriorityRunnableTask(new SimpleRunnable("T2"), 2));
         tpe.submit(new PriorityRunnableTask(new SimpleRunnable("T1"), 1));
-        Thread.currentThread().sleep(50000);
+        try {
+            Thread.currentThread().sleep(50000);
+        }finally {
+            tpe.shutdown();
+            tpe.awaitTermination(20, TimeUnit.SECONDS);
+        }
     }
 }
